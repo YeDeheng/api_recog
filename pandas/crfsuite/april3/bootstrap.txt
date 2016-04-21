@@ -1,0 +1,1499 @@
+Rolling median in python
+I need to be able to insert these values into a python list and get a median for the last 30 closes .
+It would be more efficient to do the median of the last 29 values .
+isn't the median just the middle value in a sorted range ?
+For an list with an even number of values the median is the mean of the two middle values .
+so you could grab daily close prices , their rolling means , etc ... then timestamp every calculation , and get all this stored in something similar to a python dictionary ( see the ` pandas.DataFrame ` class ) ... then you access slices of the data as simply as : #CODE
+See the pandas rolling moments doc for more information on to calculate the rolling stdev ( it's a one-liner ) .
+I was was thinking of using a lambda function in the apply method of DataMatrix but I'm having some challenges ...
+@USER Pennington : couponded is an array in this case and has no shift method ...
+@USER Pennington : Done , sorry , new to Stack :)
+b ) strip the seconds out of python datetime objects ( Set seconds to 00 , without changing minutes ) .
+You have a number of options using pandas , but you have to make a decision about how it makes sense to align the data given that they don't occur at the same instants .
+The ` reindex ` function enables you to align data while filling forward values ( getting the " as of " value ): #CODE
+I tested with apply , it seems that when there are many sub groups , it's very slow . the groups attribute of grouped is a dict , you can choice index directly from it : #CODE
+append two data frame with pandas
+I try to merge dataframes by rows doing : #CODE
+Also post what keywords you used when you performed the merge .
+The ` append ` function has an optional argument ` ignore_index ` which you should use here to join the records together , since the index isn't meaningful for your application .
+Just as a small addition , you can also do an apply if you have a complex function that you apply to a single column :
+probably x is a confusing name for the column name and the row variable , though I agree apply is easiest way to do it :)
+just to add , ` apply ` can also be applied to multiple columns :
+Can apply take in a function defined elsewhere in code ?
+Is it possible create a matching panel that only has these columns and then somehow merge the two ?
+Here's the 2nd panel I would like to append : #CODE
+Could you have a look at the new concat function in pandas 0.7.0 and see if it meets your needs :
+I recently spent a great deal of time on the join and concatenation methods .
+I've moved on from this problem ( I hacked together a loop ) but looking at your concat documentation this does appear to solve the issue .
+I realize the map function can only output lists .
+How to apply slicing on pandas Series of strings
+I'm playing with pandas and trying to apply string slicing on a Series of strings object .
+I got it to work by using the map function instead , but I think I'm missing something about how it's supposed to work .
+` apply ` first tries to apply the function to the whole series .
+` apply `' s source code for reference : #CODE
+also , how can I then reindex things so that the first indices are the column labels of each file and the second is the filename ?
+Suppose there are many columns and you only want the ` any ` to apply to a subset of them ( you know the subset's labels ) .
+There are at least a few approaches to shortening the syntax for this in Pandas , until it gets a full query API down the road ( perhaps I'll try to join the github project and do this is time permits and if no one else already has started ) .
+Expanding the mini domain-specific language I made above for expressing logicals to have this option with simple syntax will probably be an uncomfortable chore .
+Is there a way to perform inner and outer joins in ` data.table ` without resorting to ` merge ( X , Y , all=FALSE )` and ` merge ( X , Y , all=TRUE )` ?
+And I think most of the pandas merge code is in Cython .
+In this case ( database joins ) pandas ' DataFrame contains no pre-computed information that is being used for the merge , so to speak it's a " cold " merge .
+If I had stored the factorized versions of the join keys , the join would be significantly faster - as factorizing is the biggest bottleneck for this algorithm .
+Of course , now that you've figured it all out in python , it should be easy to translate into R ;)
+This isn't really the join itself ( the algorithm ) , but a preliminary step .
+Some benchmark results are already reported by ` test.data.table() ` but that code isn't hooked up yet to replace the levels to levels match .
+Also , ` data.table ` has time series merge in mind .
+Two aspects to that : i ) multi column ordered keys such as ( id , datetime ) ii ) fast prevailing join ( ` roll=TRUE `) a.k.a. last observation carried forward .
+` data.table ` has time series merge in mind .
+join ( ` roll=TRUE `) a.k.a. last observation carried forward .
+So the Pandas equi join of two character columns is probably still faster than data.table .
+I actually have not yet optimized the code for the integer join key case ( put that on my todo list ! ) , but you can expect significantly better performance than the string case given the hash table study in the linked presentation .
+Here's some Rprof results #URL It looks like 20-40 % of the time is spent in sortedmatch depending on the join type .
+The graph depicted there shows how different tools and packages compare in terms of aggregation and join speed .
+I hope someone does a join benchmark soon too !
+You can also use panels to help you do this pivot .
+I am trying to do a pivot table of frequency counts using Panda .
+Just replace ` rows =[ ' Y ']` with ` rows =[ ' X2 ']` #CODE
+It doesn't have the GUI tools of Enthought but otherwise contains a full scientific python stack .
+Debug build of Python ( python-dbg ) in tandem with gdb allow you right away debug your extensions while inspecting Python stack etc .
+I would also be interested in aligning my irregular timestamp intervals to one second resolution , I would still wish to plot multiple events for a given second , but maybe I could introduce a unique index , then align my prices to it ?
+I will join pystatsmodels -- if you are looking for stumbling noobs with use cases , I could be fertile territory .
+I have a SAS background and was thinking it'd replace proc freq -- it looks like it'll scale to what I may want to do in the future .
+However , I just can't seem to get my head around a simple task ( I'm not sure if I'm supposed to look at ` pivot / crosstab / indexing ` - whether I should have a ` Panel ` or ` DataFrames ` etc ... ) .
+I can't work out whether I should be using ` pivot / crosstab / groupby / an index `
+Then , using the ability to apply multiple aggregation functions following a groupby , you can say : #CODE
+I think I will continue converting the dataframe after loading with the apply method .
+Reason I put table=True is that I want to * append * to existing tables for very large data sets .
+So it seems the combination of append and mixed-type is still on the todo-list ?
+suspect with some unix magic you can transform a FWF file into a CSV
+Pandas rolling median for duplicate time series data
+I am wondering if there is a good way to apply rolling window means to a dataset with duplicate times by a multi-index tag / column
+What I want to do is build and graph rolling means with varying ms windows , by event and event+tag .
+join or merge with overwrite in pandas
+I want to perform a join / merge / append operation on a dataframe with datetime index .
+Try the ` truncate ` method : #CODE
+I'm on #URL and I haven't found the truncate function .
+@USER : here's the link to the description of truncate in the current documentation ( v0.7.2 ): #URL
+See my answer below -- if someone would contribute some docs about truncate that would be helpful .
+I am trying to insert a pandas ( pandas.pydata.org ) DataFrame into a Postgresql DB ( 9.1 ) in the most efficient way ( using Python 2.7 ) .
+You can also perform aggregation on individual columns , in which case the aggregate function works on a Series object .
+it uses numpys " argmax " function to find the rowindex in which the maximum appears .
+i tested the speed on a dataframe with 24735 rows , grouped into 16 groups ( btw : dataset from planethunter.org ) and got 12.5 ms ( argmax ) vs 17.5 ms ( sort ) as a result of %timeit .
+If the number of " obj_id " s is very high you'll want to sort the entire dataframe and then drop duplicates to get the last element .
+This should be faster ( sorry I didn't test it ) because you don't have to do a custom agg function , which is slow when there is a large number of keys .
+However mine uses the apply function of a dataframe instead of the aggregate .
+Yes , just use truncate .
+I have been using the scikits.statsmodels OLS predict function to forecast fitted data but would now like to shift to using Pandas .
+I have tried using ` groupby ` and ` agg ` but to no avail .
+and apply agg() with it : #CODE
+I want to make a pivot_table on the dataframe using counting aggregate per month for each location .
+to pivot the values .
+It wants to apply the to strings , not series object .
+I think you received a KeyError because `` df `` was indexed before joining , thus ' first ' was no longer a column to join " on " .
+To put data in a DataFrame indexed by that , you should add the columns and reindex them to the date range above using ` method= ' ffill '` : #CODE
+I am trying do use a pandas multiindex to select a partial slice at the top level index ( date ) , and apply a list to the second level index ( stock symbol ) .
+which DOES work when passed to ix .
+How to resample a dataframe with different functions applied to each column ?
+You can also downsample using the ` asof ` method of ` pandas.DateRange ` objects .
+@ Wes McKinney this should be ` resample ` in 0.8 , isn't it ?
+Pandas : simple ' join ' not working ?
+I can achieve the desired results using ' merge ' .
+But I eventually need to join multiple ` pandas ` ` DataFrames ` so I need to get this method working .
+Try using ` merge ` ( #URL ): #CODE
+So it looks like in order to get what I want I'll have to perform successive merges , since ` merge ` only take two DataFrames ?
+From the 0.16.2 docs : The related DataFrame.join method , uses merge internally for the index-on-index and index-on-column ( s ) joins , but joins on indexes by default rather than trying to join on common columns ( the default behavior for merge ) .
+Best way to insert a new value
+My question is , how can I group / transform the data in such a way that I have a MultiIndex with ( Z , A ) as indexes ( or MultiIndexes ) having into account that the data is not unique ?
+Now use this as an auxiliary index variable and unstack : #CODE
+Is there a way to index ` series ` by the mapping of result / frequency defined by ` freq ` ?
+Yes , use the ` map ` Series method : #CODE
+Pandas : trouble understading how merge works
+I'm doing something wrong with merge and I can't understand what it is .
+If I print ` hist ` and ` freq ` this is what I get : #CODE
+They're both indexed by `" series "` but if I try to merge : #CODE
+on : Columns ( names ) to join on .
+are False , the intersection of the columns in the DataFrames will be
+inferred to be the join keys
+Alternatively and more simply , ` DataFrame ` has ` join ` method which does exactly what you want : #CODE
+Time to improve the merge docstring !
+I would like to use pandas to create a HLOC chart of data for every one minute starting with time zero being 9:46 using the asof method ....
+Is there a add to table method .... thinking ..... take new data , process ( ts.convert ) . append table .. numpy add to array . any help here .
+You can append data ( yielding a new object ) with df.append ( new_data ) but that's not especially efficient
+" Parameters ---------- key : object Some label contained in the index , or partially in a MultiIndex axis : int , default 0 Axis to retrieve cross-section on copy : boolean , default True Whether to make a copy of the data "
+Color each alternative cell with a specific color ( like a chess board : instead of black / white I will use some other color combination ) and insert value for each cell from a pandas data frame or python dictionary .
+You can either truncate the data , or add an extra column .
+This function was updated to the name ` idxmax ` in the Pandas API , though as of Pandas 0.16 , ` argmax ` still exists and performs the same function ( though appears to run more slowly than ` idxmax `) .
+Previously ( as noted in the comments ) it appeared that ` argmax ` would exist as a separate function which provided the integer position within the index of the row location of the maximum element .
+In general , I think the move to ` idxmax ` -like behavior for all three of the approaches ( ` argmax ` , which still exists , ` idxmax ` , and ` numpy.argmax `) is a bad thing , since it is very common to require the positional integer location of a maximum , perhaps even more common than desiring the label of that positional location within some index , especially in applications where duplicate row labels are common .
+So here a naive use of ` idxmax ` is not sufficient , whereas the old form of ` argmax ` would correctly provide the positional location of the max row ( in this case , position 9 ) .
+So you're left with hoping that your unit tests covered everything ( they didn't , or more likely no one wrote any tests ) -- otherwise ( most likely ) you're just left waiting to see if you happen to smack into this error at runtime , in which case you probably have to go drop many hours worth of work from the database you were outputting results to , bang your head against the wall in IPython trying to manually reproduce the problem , finally figuring out that it's because ` idxmax ` can only report the label of the max row , and then being disappointed that no standard function automatically gets the positions of the max row for you , writing a buggy implementation yourself , editing the code , and praying you don't run into the problem again .
+Per #URL argmax is now idxmax .
+Based on the second-to-last comment there , it looks like ` argmin ` and ` argmax ` will remain part of ` DataFrame ` and the difference is just whether you want the index or the label .
+` argmax ` will give you the index integer itself .
+Note that you need to be careful trying to use the output of ` idxmax ` as a feeder into ` ix ` or ` loc ` as a means to sub-slice the data and / or to obtain the positional location of the max-row .
+Another way I did something similar was create a pivot table
+In this case I want to convert this pivot table to 2d numpy array .
+AttributeError : Cannot access callable attribute ' reset_index ' of ' DataFrameGroupBy ' objects , try using the ' apply ' method
+Aggregating functions are ones that reduce the dimension of the returned objects , for example : ` mean ` , ` sum ` , ` size ` , ` count ` , ` std ` , ` var ` , ` sem ` , ` describe ` , ` first ` , ` last ` , ` nth ` , ` min ` , ` max ` .
+if you really need to replace the version provided by the system , uninstall it .
+The ` reindex ` method can accomplish this when passed a reordered array of tuples matching the desired order .
+let me try to answer this . basically i will pad or reindex with complete weekdays and sample every 5 days while drop missing data due to holiday or suspension
+There may be cleaner way to perform the next step , but the goal is to change the index from an array of tuples to a MultiIndex object .
+The final step is to " unstack " weekday from the
+MultiIndex , creating columns for each weekday , and replace the weekday numbers with an abbreviation , to improve readability .
+To create a line plot for each week , transpose the dataframe , so the columns are week numbers and rows are weekdays ( note this step can be avoided by unstacking week number , in place of weekday , in the previous step ) , and call ` plot ` .
+I think the same concepts apply to an index of floats .
+I can reindex but how do i deal with ` NaN ` ?
+It would be nice to have a convenience function for this where you can pick the axes to interpolate over
+Could also use DataFrame's interpolate method ?
+but it would work if the csv file would be somehow transpose .
+Obviously you may need to clean you data after import , e.g. you chould check for data types , remove empty fields ( or replace with None ) This version processes the entire dataset , but only returns one line , so you could use break at that point or perhaps append other interesting data .
+I'm trying to align my index values between multiple DataFrames or Series and I'm using
+Series.interpolate but it doesn't seem to interpolate correctly .
+I don't think underlying mathematics apply that sum of interpolation equal to interpolation of sum .
+It assumes they are equally spaced and just uses ` len ( serie )` for indexes .
+I modified the ` Series.interpolate ` method and came up with this ` interpolate ` function .
+I don't understand why the join has created a tuple .
+When I export the csv -- it gives back the * original * data set df1 ( & vice versa for if df1 and df2 are swapped in the align command ) .
+Is there a reason one shouldn't use align for this task ?
+Using join works for what I needed .
+I'm still curious about the align ...
+@USER Align , I would imagine , simply arranges the data .
+` align ` returns aligned versions of the left and right DataFrames ( as a tuple ):
+Not sure whats the way to append to current data frame in pandas or is there a way for pandas to suck a list of files into a data frame .
+Once you have read the files and save it in two dataframes , you could merge the two dataframes or add additional columns to one of the two dataframes ( assuming common index ) .
+Why not use read_csv , to build two ( or more ) dataframes , then use join to put them together ?
+The pandas ` concat ` command is your friend here .
+` dr = pd.date_range ( dt ( 2009 , 1 , 1 ) , dt ( 2010 , 12 , 31 ) , freq= ' H ') ;
+dt = pd.DataFrame ( rand ( len ( dr ) , 2 ) , dr );
+data = dt [ selector ]`
+there is conflict of dt package and dt variable
+Python Pandas : Aggregate changed from 0.7.1 to 0.7.3
+The problem seems to be with the aggregate method .
+I'm using a dictionary of different aggregation methods to ` agg ` different columns ( ` np.mean ` , ` np.sum ` ... etc ) .
+" No numeric values to aggregate "
+Pandas : Sort pivot table
+Just trying out Pandas for the first time , and I am trying to sort a pivot table first by an index , then by the values in a series .
+What's the correct way to sort a pivot table by index then value ?
+For example , just focus on the ix interface .
+using the ix
+using the reindex method
+I'm trying to do shift operations ... but this also happens with the window functions like ` rolling_mean ` .
+On an aside : does truncate need to be existing indexes in the data ?
+Note this is a very inefficient way to build a large DataFrame ; new arrays have to be created ( copying over the existing data ) when you append a row .
+For details and examples , see Merge , join , and concatenate .
+I has a similar problem where if I created a data frame for each row and append it to the main data frame it took 30 mins .
+Copying from pandas docs : ` It is worth noting however , that concat ( and therefore append ) makes a full copy of the data , and that constantly reusing this function can create a significant performance hit .
+Add rows through ` loc ` on non existing index data .
+` .loc ` is referencing the index column , so if you're working with a pre-existing DataFrame with an index that isn't a continous sequence of integers starting with 0 ( as in your example ) , ` .loc ` will overwrite existing rows , or insert rows , or create gaps in your index .
+I would like to print the intersection between them removing all " NaN's " , but without loose alignment .
+Do you mean you want to drop rows where there are NaNs in either of the S or JEXP columns only ?
+numpy function to aggregate a signal for time ?
+I know about apply , but sometimes it's more convenient to use a for loop .
+Is apply more efficient than iterrows ?
+Returning multiple values from pandas apply on a DataFrame
+This is fairly trivial with pandas , using ` apply ` with axis=1 .
+However , I can either return a DataFrame of the same shape if my function doesn't aggregate , or a Series if it aggregates .
+Is this possible or I have to do two runs for the two calculations , then merge them together ?
+Why are you using ` apply ` in the first place ?
+You could just have ` t_test_and_mean ` accept your input dataframe ( and the columns to group by ) and return a 1-row-2-columns dataframe , without using ` apply ` .
+Is there a really straight forward way to apply a css to an IPython Notebook and then have tables rendered using the style sheet ?
+If you just stick that in one of your markdown cells , then it will apply to everything on the page .
+b ) now do a left join on this on the data set A .
+It also does a ` sort ` of the output index , so finally the complexity is something like O ( m lg m ) with m = len ( B.index ) ...
+I have two pandas DataFrames and I want to join them together such that I get the outer join with the duplicates removed .
+And then join all the pieces together with ` pandas.concat ` or similar .
+Is there a way to perform something similar by a clever use of ` crosstab ` or ` pivot_table ` or ` stack ` or something similar ?
+Note that I have implemented new ` cut ` and ` qcut ` functions for discretizing continuous data :
+How to optimally apply a function on all items of a dataframe using inputs from another dataframe ?
+I would like to apply the same function to each item of a given dataset but using a time-dependent parameter .
+One way to do it is to use the ` map ` function , or ` numpy.vectorize ` ; it's also possible to do it with lambda functions .
+Again , ` read_table ` can be used , for example : ` pandas.read_table ( buf , sep= ' ' , index_col =[ 0 , 1 ] , header=None )` will create a table with multiple columns and a ` multiindex ` made of 2 levels : first level the year-month-day , second level the time .
+If you wish , you can then merge the multiindex in a normal index ( for example : ` df.index = [ ' %s %s ' % ( a , b ) for a , b in zip ( df.index.get_level_values ( 0 ) , df.index.get_level_values ( 1 ))]` .
+One more thing : the grouping with multiindex works .
+date_to = df.index [ len ( df.index ) -1 ] #last datetime entry in date frame
+You can fix it with : ` df.index = map ( dateutil.parser.parse , df.index )` and then date-ranges are : ` pandas.DateRange ( df.index [ 0 ] , df.index [ -1 ])` .
+You can use ` aggregate ` to define your aggregate function , which will just keep the first element of a column and drop the others .
+Pandas : List of Column names in a pivot table
+I got stuck trying to get the resulting names of a pivot table .
+I'm having a bit of trouble altering a duplicated pandas DataFrame and not having the edits apply to both the duplicate and the original DataFrame .
+Then I assign the ' d ' dataframe to variable ' e ' and apply some arbitrary math to column ' a ' using apply : #CODE
+The problem arises in that the apply function apparently applies to both the duplicate DataFrame ' e ' and original DataFrame ' d ' , which I cannot for the life of me figure out : #CODE
+can you specify the ' dropna ' value ? for example could you drop rows that are all zeros ?
+[ Documentation ] ( #URL ) for read_csv now offers both ` na_values ` ( list or dict indexed by columns ) and ` keep_default_na ` ( bool ) .
+Essentially my question would then boil down to : how to join several unaligned time series , where each series has a date column , and column for the series itself ( .CSV file exported from Excel )
+the thing is you have to make sure that there is case like date exists but not rate . because dropna() will shift records and mismatch with index
+Now , to join then together and align the data in a DataFrame , you can do : #CODE
+This will form the union of the dates in ` ts1 ` and ` ts2 ` and align all of the data ( inserting NA values where appropriate ) .
+So , apply this function to each of those 3 columns : #CODE
+To transform to strings , use table.rename : #CODE
+The ix [ , ] construct doesn't check if column exists .
+pandas reindex DataFrame with datetime objects
+Is it possible to reindex a pandas DataFrame using a column made up of datetime objects ?
+I can reindex the ` df ` easily along ` DOYtimestamp ` with : ` df.reindex ( index =d f.dtstamp )`
+but I'd like to reindex the DataFrame along ` dtstamp ` which is made up of datetime objects so that I generate different timestamps directly from the index .
+When I try and reindex ` df ` along ` dtstamp ` I get the following : #CODE
+It sounds like you don't want reindex .
+Somewhat confusingly ` reindex ` is not for defining a new index , exactly ; rather , it looks for rows that have the specified indices .
+So if you have a DataFrame with index ` [ 0 , 1 , 2 ]` , then doing a ` reindex ([ 2 , 1 , 0 ])` will return the rows in reverse order .
+Doing something like ` reindex ([8 , 9 , 10 ])` does not make a new index for the rows ; rather , it will return a DataFrame with ` NaN ` values , since there are no rows with indices 8 , 9 , or 10 .
+To do that i could loop through the file using beautiful soup and insert the values row by row or create lists to be inserted as columns .
+Pandas DataFrame aggregate function using multiple columns
+It may be more efficient to break this up into a few operations as follows : ( 1 ) create a column of weights , ( 2 ) normalize the observations by their weights , ( 3 ) compute grouped sum of weighted observations and a grouped sum of weights , ( 4 ) normalize weighted sum of observations by the sum of weights .
+I am not seeing ` concat ` as a function in the pandas namespace ; I'm not sure what I am missing .
+I was running pandas ver 0.6.1 which doesn't have the concat function included .
+An upgrade to v 0.7.3 brings concat into the namespace .
+How to shift a column in Pandas DataFrame
+I would like to shift a column in a Pandas DataFrame , but I havent been able to find a method to do it from the documentation without rewriting the whole DF .
+How to aggregate duplicate timestamps with pandas ?
+@USER - you have to aggregate them somehow .
+You want to use the apply function and a lambda : #CODE
+You'll first need to split the data by timestamp , then from there if you were to treat it as an array shift an element from the array to use as comparison if the quote type is equal then continue and shift a new element repeat until !
+i did groupby first but an array shift to compare is going to be extremely slow .
+You can possibly duplicate the ` quote ` column twice shifting it by one each direction and apply it to your dataset to create a pivot table based on entries where ` quote ` is !
+For example , when I try to aggregate ( using ' mean ') 10min values to monthly values , the function seems to use the last day of data from one month in the mean of the next month ...
+Looking at the documentation , it may be that using the ` MultiIndex ` may solve my problem , but I'm not sure how to apply it to my situation - the documentation shows examples of creating MultiIndexes with random data and DataFrames , but not Series with pre-existing timeseries data .
+When I iterate over these composite objects , I have an ` iterseries ` routine for the frame and ` iterframes ` routine for the panel that reconstruct the appropriate metadata / data pairing as I drop one dimension ( i.e. the series from the frame with lead time varying across the columns will have all the metadata of its parent plus the ` Lead Time ` field restored with the value taken from the column label ) .
+I've tried the examples given in the documentation , but I'm still a little unclear how to apply it to my situation .
+Once I have the frame given by this routine , I can easily apply the various operations suggested below - of particular utility is being able to use the ` names ` field when I
+call ` concat ` - this eliminates the need to store the name of the column key internally
+I might suggest using ` pandas.concat ` along with its ` keys ` argument to glue together Series DataFrames to create a MultiIndex in the columns : #CODE
+We added an ` append ` option to ` set_index ` .
+As I mentioned above , if you know beorehand that your TSV file header represents a ` MultiIndex ` then you can do the following to fix this : #CODE
+How can I iterate and apply a function over a single level of a DataFrame with MultiIndex ?
+However , I see that this doesn't drop the top level as you're looking for .
+How do I apply it to a pandas DataFrame ?
+` df.resample ( ' Min ')` is too high level and wants to aggregate .
+NumPy by itself is a fairly low-level tool , and will be very much similar to using MATLAB . pandas on the other hand provides rich time series functionality , data alignment , NA-friendly statistics , groupby , merge and join methods , and lots of other conveniences .
+Data alignment , join , etc all become * possible * due to this , but for people who don't grok that underlying difference it's not even clear what those mean ( e.g. , what is " data alignment " of two numpy arrays ? ) .
+Other thing that is great in pandas is the Panel class that you can join series of layers with different properties and combine it using groupby function .
+This isn't quite what's suggested in the documentation for pivot -- there , it shows results without the 1 and 0 in the upper-left-hand corner .
+Is there a way to get pivot to give me a DataFrame object without that additional information in the upper-left corner ?
+to build on @USER , it would be really helpful if you could convert the pandas output to either a list of lists or a list of dicts and then show the result of the conversion e.g. with ` map ( list , B_p )` .
+I'm just confused because in the documentation ( help ( B_p.to_csv )) it doesn't show anything in the upper-left-hand corner when you pivot a table .
+For making more general the answer ... first I will take the common index for synchronizing both dataframes , then I will join each of them to my pattern ( dates ) and I will sum the columns of the same name and finally join both dataframes ( deleting added columns in one of them ) ,
+The solution I have come up with is to exclude dates for which valuation ( actually price ) data doesn't exist for a given holding and then aggregate on these dates where I have complete data .
+It seems like some combination of resample and / or fillna is going to get you what you're looking for ( realize this is coming a little late ! ) .
+We now need to drop the ` DataRange ` type of your ` Index ` and make it a list of ` str ` to simulate how you would parse in your data : #CODE
+I would like to roll through my data by date and on each date take a time slice in the past apply a function to every time series so I get a result such as this where X is the output of the function of timeslice .
+Also is there some other way to do the following.Using Apply function seems to be very slow for large dataset .
+pandas row specific apply
+Similar to this R question , I'd like to apply a function to each item in a Series ( or each row in a DataFrame ) using Pandas , but want to use as an argument to this function the index or id of that row .
+In reality , I'm not worried ( in this case ) about returning anything meaningful , but more for the efficiency of something like ' apply ' .
+If you use the apply method with a function what happens is that every item in the Series will be mapped with such a function .
+A more complex usage of apply would be this one : #CODE
+However you can include indices in your function by creating a new series ( apply wont give you any information about the current index ): #CODE
+When you read in your files , you can use ` concat ` to join the resulting DataFrames into one , then just use normal pandas averaging techniques to average them .
+The problem disappears if I change window_type to ` expanding ` and I get about 500 output points as expected , but I don't want to do an expanding regression .
+issue with pandas and semilog for boxplot
+For some reason , when I use semilogy and boxplot with the video series , I get the error #CODE
+but when I do it on the ' link ' series I can draw the boxplot correctly .
+and I am able to draw the boxplot .
+You could create a semi-log boxplot , for example , by : #CODE
+Or , more generally , modify / transform to you heart's content , and then boxplot .
+Pandas pivot warning about repeated entries on index
+On Pandas documentation of the ` pivot ` method , we have : #CODE
+But when I run the ` pivot ` method , it is saying : #CODE
+I'm using the ` name ` column as the index of the pivot , the first argument of the ` pivot ` method call .
+Can you post the exact pivot method call you're using ?
+If you have duplicates you may need to aggregate first .
+It would be nice to add an option to pivot to take either the first or last observed entry : #URL
+I fixed the parser bug shown in the stack trace that you pasted .
+Find all elements in dataframe column that startswith string
+I am currently rolling up numbers with the following code .
+Try saving that to a temporary variable and using the temp variable inside ` startswith ` .
+` df = df.index.drop ( ' L ')` removes L completely from the DataFrame ( unlike ` df= df.reset_index() ` which has a drop argument ) .
+The bit about the copy was only for use of ` ix [ ]` if you * prefer * to use ` ix [ ]` for any reason .
+` ix ` indexes rows , not columns .
+` ix ` accepts slice arguments , so you can also get columns .
+It is incorrect to say that ` ix ` indexes rows .
+So , ` ix ` is perfectly general for this question .
+Never knew about that feature of ` ix ` .
+That said , you can easily convert a column-slicing problem into a row-slicing problem by just applying a transpose operation , ` df.T ` .
+The ` drop ` method is documented here .
+You're correct that this would be wrong for most types ; however ` pandas.DataFrame ` has special support for setting values using a Boolean mask ; it will select the corresponding values from the RHS with the corresponding time value .
+My worry is that in the original code , the first N values of cap_level will be taken and used , where N is the number of True values in the Boolean mask .
+I have several Series indexed by dates that I would like to concat into a single DataFrame , but the Series are of different lengths because of missing dates etc .
+grouped pandas DataFrames : how do I apply scipy.stats.sem to them ?
+I know that I can apply numpy methods by doing the following :
+However , what if I want to compute the standard error of the mean ( sem ) ?
+Oddly , the results of the method I used before to compute sem , ` std / sqrt ( # replicates )` , varies _slightly_ from ` sem() ` results , but we're only talking ~ 4e-11 difference max .
+I'm not sure why Pandas thinks this is a " bool " type column .
+Doesn't the true / false part of QRY explain the bool nature of i for your example ?
+I have a data table using pandas and column labels that I need to edit to replace the original column labels .
+I have the edited column names stored it in a list , but I don't know how to replace the column names .
+This will put them into dictionary form , including the earlier defined class and subject variables , and append them to an outputList .
+The trick here is to use the ` axis=1 ` option in the ` apply ` to pass elements to the lambda function row by row , as opposed to column by column .
+once sorted I replace the df.index with a numerical index #CODE
+Is it possible to customize Serie ( in a simple way , and DataFrame by the way :p ) from pandas to append extras informations on the display and in the plots ?
+A great thing will be to have the possibility to append informations like " unit " , " origin " or anything relevant for the user that will not be lost during computations , like the " name " parameter .
+We'd welcome any additional feedback you have ( see pandas on github ) and would love to accept a pull-request if you're interested in rolling your own .
+Why map instead of apply ?
+Using the dt option playing around with weekofyear , dayofweek etc . becomes a easier
+Is there a way to " merge " multiple DataFrames , but what is done at dates that occur only in one of the underlying DataFrames ?
+making things continuous : you should just be able to use resample directly
+Basically , I'm trying to pivot on location to end up with a dataframe like : #CODE
+Unfortunately when I pivot , the index , which is equivalent to the original dates column , does not change and I get : #CODE
+because I have a # of data columns I want to pivot ( don't want to list each one as an argument ) .
+I believe by default pivot pivots the rest of the columns in the dataframe .
+I'm actually calling df.pivot without the third argument as in my actual data , i have a # of data columns and I want to pivot all of them .
+If you have multiple data columns , calling pivot without the values columns should give you a pivoted frame with a MultiIndex as the columns : #CODE
+Yeah I'm seeing the information come out as a multiindex , but again , I get the same issue where pandas seems to recognize all the dates as unique and I get a bunch of Nans .
+Even if I set the pivot argument values to say column C , I still get the same # of rows as in my original table , just with Nans for all the repeated dates .
+Hence the dataframe pivot treated each column value as unique in the index .
+I'm trying to drop the last row in a dataframe created by pandas in python and seem to be having trouble .
+I tried the drop method like this : #CODE
+I also tried to drop by index name and it still doesn't seem to be working .
+I can use sin and DataFrame.prod to create a boolean mask : #CODE
+Then use the mask to select from the DataFrame : #CODE
+better method to aggregate pandas dataframe by non matching criteria
+I have a dataframe of species survey counts and need to aggregate the rows by multiple criteria .
+Is there a vectorised way to aggregate data in this way ?
+What's the right way for me to aggregate these stock prices into Monthly ?
+The error message is " GroupByError ( ' No numeric types to aggregate ')" .
+EDIT : I just realized that most of the other functions ( min , max , median , etc . ) work fine but not the mean function that i desperately need :-( .
+Also , you don't really need the lambda here , just feeding ` np.mean ` would work too , but I left the lambda in to illustrate how you would solve this when more general functions that you want to apply aren't working in their default ways .
+You can replace the ` [ 0:4 ]` with ` [ df.index.values [ i ]: df.index.values [ j ]]` or ` [ df.index.values [ i ] for i in range ( N )]` or even with logical values such as ` [ df [ ' a '] 5 ]` to only get rows where the ' a ' column exceeds 5 , for example .
+I am trying to use the agg fn but without doing a groupby .
+I think it uses ` patsy ` in the backend to translate the formula expression , and intercept is added automatically .
+dalejung on GitHub has done quite a bit of work recently in creating a tighter pandas-xts interface with rpy2 , you might get in touch with him or join the PyData mailing list
+Length : 3 , Freq : 3H , Timezone : None
+Length : 3 , Freq : H , Timezone : None
+We run into issues that join columns are converted into either ints or floats , based on the existence of a NA value in the original list .
+( Creating issues later on when trying to merge these dataframes )
+I haven't done time benchmarking , but I am skeptical of the following immediately obvious way that comes to mind ( and variants that might use ` map ` or ` filter `) .
+First is for ` vtype ` above , then for the ` apply ` route .
+Can you post a stack trace and / or what merged2 looks like ?
+Collapse a Pandas multiindex or run OLS regression on a multiindexed dataframe
+I used pivot to reshape my data and now have a column multiindex .
+Collapse the multiindex .
+Is there some way to run a regression with a multiindex ?
+I can create a new dataframe , loop over both column indexes , and insert new columns into the new dataframe with the same name , but with names as strings instead of tuples .
+I.e. how easy is it for me to cvs checkout the code , test my changes in iPython rather than with the prod version then creating a pull request ?
+So in this case I would replace that missing value with the average rating given to that artist ( a bad first approximation , better to use the SVD )
+It depends on the size of your DataFrame , but potentially you could repeat the mean rating so it's the same size as the ratings matrix and then use the NA mask to replace the missing values ?
+I built the features by using the pandas group operations , then applied the mean() on the group , and finally did a merge back onto the main dataframe .
+This supersedes the ` irow ` approach .
+If you want to remove the old 10-based indices , you can insert the flag ` drop=True ` into the parenthesis of the reset_index function .
+I think it is ` df [ ' A '] .iget ( 0 )` because ` df [ ' A ']` is a ` Series ` , which has no ` irow ` .
+Say I can read the file and concat all of them together into one DataFrame .
+what if the values are strings or categorical - i am getting the error : incompatible categories in categorical concat
+Pandas join / merge / concat two dataframes
+should I be able to join it with y on index with a simple join command where y = x except colnames have +2 .
+I tried merge as well but I have the same issue .
+If you are having issues with join , read Wes's answer below .
+` merge ` and ` join ` do , well , joins , which means they will give you something based around the Cartesian product of the two inputs , but it sounds like you just want to paste them together into one big table .
+Edit : did you try concat with ` axis=1 ` ?
+here is what concat looks like :
+Perhaps ` concat ([ x , y ] , axis=1 )` ?
+Pandas : pivot a dataframe
+The sensor timeseries data is then also rounded to the nearest minute and I use numpy.in1d and take the timestamps from the above ' minutes_array ' and the ' sensor_data ' array and create a mask for the records relating to that sensor .
+I then wish to modify the records in minutes_array which are true for that mask and place the sensor_data value into the first column following the timestamp in minutes_array .
+From my attempts it does not seem possible to alter the original ' minutes_array ' when a mask is applied to it , is there a way to achieve this outcome in numpy without using for loops and matching timestamps individually ?
+concat pandas DataFrame along timeseries indexes
+I have two largish ( snippets provided ) pandas DateFrames with unequal dates as indexes that I wish to concat into one : #CODE
+Not sure what your ` concat ` line will do
+Try to join on outer .
+I often need to apply a function to the groups of a very large ` DataFrame ` ( of mixed data types ) and would like to take advantage of multiple cores .
+I do something like that but using UWSGI , Flask and preforking : I load the pandas dataframe into a process , fork it x times ( making it a shared memory object ) and then call those processes from another python process where I concat the results . atm I use JSON as a communication process , but this is coming ( yet highly experimental still ): #URL
+pandas concat ( ' outer ') not doing union ?
+It looks pandas.concat is doing ' left outer ' join instead of just union the indexes .
+How to resample a python pandas TimeSeries containing dytpe Decimal values ?
+I'd like to use the new pandas 0.8 function to resample the decimal time series like this : #CODE
+When trying this i get an " GroupByError : No numeric types to aggregate " error .
+I assume the problem is that np.mean is used internaly to resample the values and np.mean expects floats instead of Decimals .
+Thanks to the help of this forum i managed to solve a similar question using groupBy and the apply function but i would love to also use the cool resample function .
+It is possible to provide a function to the ' how ' argument of resample : #CODE
+Currently i'm using string replace which i consider to be a significant perfomance penalty .
+Unexpected result when upsampling hourly values using the pandas resample function
+I try to upsample daily TimeSeries values using the pandas resample function .
+If it is a feature how can i set the resample arguments to achieve my goal ?
+Given the " circular " dependency ( not really circular given the lags ) , I'm not sure how I could do either regular series math or use normal shift operations ( e.g as I do with ` Cash Return `) .
+A combination of boolean indexing and apply can do the trick .
+However , I think that you can get away with ` .max ( axis=1 )` instead of ` apply ( ... )` .
+` max() ` is ok too of course , i think i got biased towards ` apply ` by the way you asked the question :-)
+Simplest way is probably ` list ( dt.T.itertuples() )` ( where ` dt ` is your dataframe ) .
+The problem in your code is that you want to apply the operation on every row .
+Most operations in ` pandas ` can be accomplished with operator chaining ( ` groupby ` , ` aggregate ` , ` apply ` , etc ) , but the only way I've found to filter rows is via normal bracket indexing #CODE
+If you want to chain methods , you can add your own mask method and use that one .
+I would extend it by generalizing the mask function as : #CODE
+If you would like to apply all of the common boolean masks as well as a general purpose mask you can chuck the following in a file and then simply assign them all as follows : #CODE
+But I found that , if you wrap each condition in ` ( ... == True )` and join the criteria with a pipe , the criteria are combined in an OR condition , satisfied whenever either of them is true : #CODE
+pandas : stacking DataFrames generated by apply
+1 ) " join " the results back to the initial DataFrame
+1 ) join this back to the original DataFrame ` df `
+transform ( #URL ) and agg ( #URL ) can be used .
+Just use the aggregate method of the groupby object : #CODE
+If you want different operations on each column , according to the docs you can pass a ` dict ` to ` aggregate ` .
+and than apply it by passing the function and the args to ` agg ` : #CODE
+Excel considers 1900 a leap year , so be careful with exactly what you want to translate :
+Minor bug : my_colors = [ cycle ([ ' b ' , ' r ' , ' g ' , ' y ' , ' k ']) .next() for i in range ( len ( df ))] will give ' b ' every time in python 2.7 .
+You should use list ( islice ( cycle ([ ' b ' , ' r ' , ' g ' , ' y ' , ' k ']) , None , len ( df ))) instead .
+it = cycle ([ ' b ' , ' r ' , ' g ' , ' y ' , ' k ']) ; my_colors =[ next ( it ) for i in xrange ( len ( df ))] would cut it as well ...
+This creates a boolean mask which is then used for the subsetting .
+I have a relatively simple python multiprocessing script that sets up a pool of workers that append output to a pandas dataframe by way of a custom manager .
+The correct solution is to wait use the results objects to get the results and then append all of them in the main thread .
+Where has ` unstack ` been hiding ???
+Filtering and selecting from pivot tables made with python pandas
+Is there a way to do this directly within the pivot table structure , or do I need to convert this back in to a panda data frame ?
+Is there a way to get a list of values in a pivot table column by specifying the header ?
+I can do this on the dataframe with ' df [ ' A '] .values ' but I'm struggling to obtain something similar from the pivot table
+the result of the pivot table is a DataFrame .
+How to keep index when using pandas merge
+I would like to merge two data frames , and keep the index from the first frame as the index on the merged dataset .
+However , when I do the merge , the resulting DataFrame has integer index .
+But for many merge operations , the resulting frame has not the same number of rows than of the original ` a ` frame .
+reset_index moves the index to a regular column and set_index from this column after merge also takes care when rows of a are duplicated / removed due to the merge operation .
+There are some places where pandas is not as careful as it could be about memory usage when it comes to MultiIndex -- if you do find a case that reproduces the issue please do post it on the issue tracker .
+I can loop over the list of TimeStamps and get the relevant rows from the ` DataFrame ` but this is a lengthy process and I thought that ` ix [ ]` should accept a list of values according to the docs ?
+Ok , I can create an empty dict , insert values and create a DataFrame .
+Just for completeness , though , you could -- inefficiently -- use ` join ` or ` concat ` to get a column-by-column approach to work : #CODE
+In this example I get an Attribute error related to the map function .
+note that support for ` filter ( None , iterable )` ceased in Python 3 , need to do ` filter ( bool , iterable )` there
+I'm trying to unstack a dataframe perform operations on it ( over time only ) and then stack it back together like this : #CODE
+The problem is that multiindex is getting reversed after the operation , is there any easy way to make this work ?
+Perhaps I'm misusing the stack from the start ?
+` stack ` and ` unstack ` add level ( s ) to the end of the MultiIndex , this is not controllable .
+You can change the order of the levels in a MultiIndex with ` reorder_levels() ` : ` stacked.reorder_levels ([ 2 , 1 , 0 ])` will give you the same MultiIndex levels order as in ` df `
+thanks almost works , you have to add an ` .sortlevel ( 0 )` to get a correct multiindex .
+As noted below , pandas now uses SQLAlchemy to both read from ( read_sql ) and insert into ( to_sql ) a database .
+How do I really use the ` ix ` method of a pandas DataFrame ?
+Having read the docs one the ` ix ` method of DataFrames , I'm a bit confused by the following behavior with my MultiIndexed DataFrame ( specifying select columns of the index ) .
+Why does the ` ix ` method behave like this ?
+If you want to select rows / columns based on MultiIndex level values i suggest using the ' .xs() ' method .
+Is there a direct way to do this on one level of a multiindex ( i.e. without the reset_index ? )
+We can join these strings with the regex ' or ' character ` | ` and pass the string to ` str.contains ` to filter the DataFrame : #CODE
+You mention in your question that the red line is the mean - it is actually the median .
+with a line at the median .
+The set_value approach also works for multiindex DataFrames by putting the multiple levels of the index in as a tuple ( e.g. replacing column with ( col , subcol ) )
+I want to normalize this data , by splitting it into tables .
+In case of fixed width file , no need to do anything special to strip white space , or handle missing fields .
+Python pandas equivalent for replace
+In R , there is a rather useful ` replace ` function .
+` replace ( df$column , df$column == 1 , ' Type 1 ') ; `
+Should I use a lambda with ` apply ` ?
+` pandas ` has a ` replace ` method too : #CODE
+In my defence , the replace function is not listed [ here ] ( #URL )
+How to broadcast to a multiindex
+If B is the one with a MultiIndex then you can do A.reindex ( B.index , level=0 ) , compute the result , and then do result.groupby ( level=0 ) to compute an aggregate result .
+After this , I think I should insert a column in the dataframe that labels all my data with Monday through Friday -- for all the dates in the file ( there are 6 years of data ) .
+And then , I need to join these .
+Does there exist in pandas methods to perform a similar array calculation to obtain a datetime ( 64 ) date / time stamp with which I can replace the current sequential dataframe index ?
+python pandas : apply a function with arguments to a series
+I want to apply a function with arguments to a series in python pandas : #CODE
+The documentation describes support for an apply method , but it doesn't accept any arguments .
+The apply method accept a python function which should have a single parameter .
+For a DataFrame apply method accepts ` args ` argument , which is a tuple holding additional positional arguments or ** kwds for named ones .
+@USER : I notice that ` np.random.permutation ` would strip the column names from the DataFrame , because ` np.random.permutation ` .
+pandas merge timeseries , concat / append / ...
+I would like to merge the existing series with the new ones subsequently in every loop , while preserving their ( different ) indices .
+I tried concat , but somehow I cannot add another series after the first one ...
+so I really need to append the time series after every loop ...
+I do something like this all the time but I use ` append ` like this : #CODE
+I want to apply a groupby operation that computes cap-weighted average return across everything , per each date in the " yearmonth " column .
+The join example at the bottom does work , but it's not presented clearly .
+Then you reindex this result according to the original DataFrame , matching their indices on the 2 values in your example .
+While I'm still exploring all of the incredibly smart ways that ` apply ` concatenates the pieces it's given , here's another way to add a new column in the parent after a groupby operation .
+May I suggest the ` transform ` method ( instead of aggregate ) ?
+My understanding was that transform produces an object that looks like the one it was passed .
+So if you transform a DataFrame , you don't just get back a column , you get back a DataFrame .
+Whereas in my case , I want to append a new result to the original data frame .
+Or are you saying that I should write a separate function that takes a data frame , computes the new column , and appends the new column , and * then * transform with that function ?
+I agree , transform is a better choice , df [ ' A-month-sum '] = df.groupby ( ' month ') [ ' A '] .transform ( sum )
+IMHO , ` transform ` looks cleaner .
+Very weird bug here : I'm using pandas to merge several dataframes .
+As part of the merge , I have to call reset_index several times .
+Inspecting frame.py , it looks like pandas tries to insert a column ' index ' or ' level_0 ' .
+Fortunately , there's a " drop " option .
+And now I want to replace the element of df_a by element of df_b which have the same ( index , column ) coordinate , and attach df_b's elements whose ( index , column ) coordinate beyond the scope of df_a .
+They have 2 index columns and the reindex operation results in NaN values in strange places ( I'll post the dataframe contents if anyone is willing do debug it ) .
+Is there an efficient way to apply this disaggregation map to get a new dataframe at a State level ?
+Building on that , you can create a boolean array from a MultiIndex with df.index.map() and use the result to filter the frame .
+And if I want to filter the Q1 , Q3 , Q4 together , which is " NOT endswith ( ' 0630 ')" , how to add the ' NOT ' to the command of " df [ df.index.map ( lambda x : x [ 1 ] .endswith ( " 0630 "))] " ?
+I think the first thing I should do should be to ' unstack ' the values in the csv , in order to have an aligned index first , and then create a DataFrame , but really don't how ...
+There might be a slick vectorized way to do this , but I'd just apply the obvious per-entry function to the values and get on with my day : #CODE
+Reindex time-stamped data with date_range
+If you would use the timestamps of the events as index of the series instead of the data , resample can do this .
+resample ( this method can also be used on a DataFrame ) will give a new series with in this case 15min periods , the end time of a bucket ( period ) is used to refer to it ( you can control this with the label arg ) .
+Definitely pay attention to the ` closed ` and ` label ` options to ` resample ` !
+You can also use this to transform a subset of a column , e.g. : #CODE
+However , it says [ here ] ( #URL ) that setting works with ix .
+I didn't realize @USER B . was asking about ` ix ` in general .
+The section after ' Assignment / setting values is possible when using ix : ' will explain exactly what you need !
+KDB+ like asof join for timeseries data in pandas ?
+kdb+ has an aj function that is usually used to join tables along time columns .
+I see that pandas has an asof function but that is not defined on the DataFrame , only on the Series object .
+I guess one could loop through each of the Series and align them one by one , but I am wondering if there is a better way ?
+this is also called * rolling join *
+It could be easily ( well , for someone who is familiar with the code ) extended to be a " left join " mimicking KDB .
+I was getting ` ValueError : Index contains duplicate entries , cannot reshape ` when doing ` unstack ` on a MultIndex but this solution works for that only I had to do ` df_unique = df.groupby ( level =[ 0 , 1 ]) .first() `
+You need to reset_index if you want to drop on index and values or just work with the index if you want to have a unique index .
+Add parse_dates=True , otherwise your index will be plain strings and resample does not like that .
+Date = range ( len ( df2 ))
+Volume = np.zeros ( len ( df2 ))
+EDIT : I have just read the help on ` pandas.Series.diff() ` , but still I'd like to " replace " the subtraction used on diff by another function , say ` euclidean_distance() ' .
+I would suggest you just write a function to do what you're saying probably using ` drop ` ( to delete columns ) and ` insert ` to insert columns at a position .
+I have a Pandas dataframe ' dt = myfunc() ' , and copy the screen output from IDLE as below : #CODE
+The function to apply is like : #CODE
+I would use transpose and the sort method ( which works on columns ): #CODE
+Duplicate entries for index in pandas pivot function
+My goal is to have data grouped by date , mat and strike ( I can drop the ' 3m ' and ' dataframe name ' columns since they're common to all data ) .
+Can anyone help me with this issue , or propose an alternative approach to the pivot function ?
+` pivot ` is a reshape operation : #CODE
+Now for the strides .
+Basic problem : how do I map the function to the column , specifically where I would like to reference more than one other column or the whole row or whatever ?
+Then you can use map : #CODE
+I don't suppose you have nny ideas on the second part , viz referencing neighbouring rows in the dataframe from within the map / apply function ?
+The exact code will vary for each of the columns you want to do , but it's likely you'll want to use the ` map ` and ` apply ` functions .
+If you need to use operations like max and min within a row , you can use ` apply ` with ` axis=1 ` to apply any function you like to each row .
+For the second part of your question , you can also use ` shift ` , for example : #CODE
+Then groupby the pattern and apply the appropriate function to each group .
+Generating a boolean mask indexing one array into another array
+Note that as suggested in a comment by @USER , you should use ` np.eye ( len ( x ))` instead of ` np.diag ([ 1 ] *len ( x ))` .
+Now I really don't know why you want a boolean mask , these indices can be applied to z to give back x already and are more compact .
+Python Pandas : how to add a totally new column to a data frame inside of a groupby / transform operation
+Now , the real question is how to use ` transform ` to add a new column to the data .
+Note that a simple ` apply ` will not work here , since it won't know how to make sense of the possibly differently-sized result arrays for each group .
+can you not use ` map ` ?
+What problems are you running into with ` apply ` ?
+You need to construct your full index , and then use the ` reindex ` method of the dataframe .
+In the current version of pandas , there is a function to build ` MultiIndex ` from the Cartesian product of iterables .
+Python Pandas : How to broadcast an operation using apply without writing a secondary function
+It seems logical to use the ` apply ` function for this , but it doesn't work like expected .
+It does not even seem to be consistent with other uses of ` apply ` .
+Based on this , it appears that ` apply ` does nothing but perform the NumPy equivalent of whatever is called inside .
+That is , ` apply ` seems to execute the same thing as ` arr + " cat "` in the first example .
+But this seems to break from what ` apply ` promises in the docs .
+Is there some way of using ` apply ` that I am missing here ?
+and I verified that this version does work with Pandas ` apply ` .
+Isn't this specifically what ` apply ` is supposed to abstract away from the user ?
+and use this in ` apply ` : #CODE
+This works , but I consider it a workaround as well , since it doesn't address the fact that ` apply ` isn't working as promised .
+Can you verify that ` map ` will work in all the same situations where ` apply ` will work ?
+I also don't like the inconsistency in going from ` map ` for a Series to ` applymap ` for a DataFrame .
+That contradicts the docs for ` apply ` , as well as its 0.8.1 behavior , in which it successfully performs the elementwise version of my example above , whereas version 0.7.3 seems to use the logic you describe .
+Since ` apply ` should work in 0.7.3 as it does in 0.8.1 ( according to the docs ) , that's why I think it's a workaround .
+` map ` is fine , but ` apply ` should work .
+` apply ` is designed so that you can apply a ufunc and get back a Series with the index intact .
+Though I do agree with you the docstring for apply is very unclear about this aspect .
+We can improve the documentation for apply .
+In fact , by saying that ` apply ` can take any function that expect a * single * argument , it's not just unclear , but plain misleading .
+So to be clear , we should use ` apply ` whenever we have a vectorized / ufunc already , and ` map ` when we literally want to apply an elementwise operation to a series ?
+Yup , that's exactly right on ` apply ` vs ` map ` .
+Stepping the trace in the case of date column , shows that matplotlib tries to do x [ 0 ] on the dates to retrieve tz info , which throws a KeyError .
+I decided to change date to first day of each month using a lamdba function that calls replace ( day=1 ) .
+You're producing an aggregate r and s value per group , so you should be using ` Series ` here : #CODE
+You'd have to map that to the columns using ` map ` or ` apply ` or something .
+@USER : To avoid the error , replace ` int ( x )` with the expression ` int ( text ) if x.isdigit() else x ` .
+Now I want to merge the data frame with the series , such that the values from the series are broadcasted along the second level index .
+How to groupby the first level index and apply function to the second index in Pandas
+And I want to apply a function ` func ` ( exp : `' lambda x : x*10 '`) to ` second ` , somewhat like : #CODE
+This way , the index column is not dropped and still accessible for your ` apply ` .
+I want to drop duplicates , keeping the row with the highest value in column B .
+Wes has added some nice functionality to drop duplicates : #URL .
+D'you know the best idiom to reindex this to look like the original DataFrame ?
+There's some code to reindex the grouped dataframe .
+PS : but if you really just want the last column , ` apply ` would suffice : #CODE
+@USER It seems to work for me , with your example ( without the ` skiprows `) ... perhaps you need to ` myData.T ` ( transpose ) .
+I've tried using rename to change the columns on one df first , but ( 1 ) I'd rather not do that and ( 2 ) my real data has a multiindex on the columns ( where only one layer of the multiindex is differently labeled ) , and rename seems tricky for that case ...
+So to try and generalize my question , how can I get ` df1 * df2 ` using ` map ` to define the columns to multiply together ?
+Assuming the index is already aligned , you probably just want to align the columns in both DataFrame in the right order and divide the ` .values ` of both DataFrames .
+Suppose we want to multiply several columns with other serveral columns in the same dataframe and append these results into the original dataframe .
+( I think it can be some problem with ` lambda ` When I want to apply my function to the column I have an error : ` TypeError : only length-1 arrays can be converted to Python scalars `)
+On top of a dodgy converter , i think you apply the converter to the wrong column ( look at the exception you get ) .
+Is there a way to do this if you want to normalize a subset ?
+Say that row ` A ` and ` B ` are part of a larger grouping factor that you want to normalize separately from ` C ` and ` D ` .
+You can use ` apply ` for this , and it's a bit neater : #CODE
+If you want that done on every row in the dataframe , you can use apply ( with axis=1 to select rows instead of columns ): #CODE
+I tried with various attempts of ' unstack ' , ' groupby ' and ' pivot ' but with no success .
+At the moment for conversion I use as below , but need remove unwanted rows first to apply it to all df .
+( The series always got the same length as a dataframe . ) I tried different versions of ` join ` , ` append ` , ` merge ` , but I did not get it as what I want , only errors at the most .
+Note my original ( very old ) suggestion was to use ` map ` ( which is much slower ): #CODE
+@USER if you already have ` e ` as a Series then you don't need to use ` map ` , use ` df [ ' e '] =e ` ( @USER answer ) .
+this will effectively be a left join on the df1.index .
+So if you want to have an outer join effect , my probably imperfect solution is to create a dataframe with index values covering the universe of your data , and then use the code above .
+This worked fine to insert the column at the end .
+Then , since you extend the base class , you have to replace the methods with a suitable descriptor : #CODE
+I want to resample a TimeSeries in daily ( exactly 24 hours ) frequence starting at a certain hour .
+Some weeks ago you could pass `' 24H '` to the ` freq ` argument and it worked totally fine .
+is there an existing built-in way to apply two different aggregating functions to the same column , without having to call ` agg ` multiple times ?
+Is there any other manner for expressing the input to ` agg ` ?
+If you look at the doc string for ` aggregate ` it explicitly says that when a ` dict ` is passed , the keys must be column names .
+So this is the Series version of aggregate ?
+I'm looking to do the DataFrame version of aggregate , and I want to apply several different aggregations to each column all at once .
+I would just use the transpose of the array because that's much faster , but then I would have a ` MultiIndex ` on the columns , and I haven't yet found any documentation in Pandas showing how to use ` MultiIndex ` s as columns .
+To get all shank 1's ( i.e. where the first level of the MultiIndex is equal to 1 ) .
+This is pretty flexible if you need to cross-section by a different level of the MultiIndex as well .
+An alternative slightly more flexible way , might be to use ` apply ` ( or equivalently ` map ` ) to do this : #CODE
+I think it wight be simpler to completely drop this column , and then add a new one with the year , or completely replace the values by the year .
+First , I think you have to either specify named parameters or use ` args ` to pass additional arguments to ` apply ` .
+because ` apply ` doesn't act elementwise , it acts on entire Series objects .
+Is there a grep like built-in function in Pandas to drop a row if it has some string or value ?
+Below example will drop all rows where column A holds ' a ' character and ' B ' equals 20 .
+@USER : to drop the unmatched condition .
+Generally , I find myself using boolean indexing and the tilde operator when obtaining the inverse of a selection , rather than df.drop() , though the same concept applies to df.drop when boolean indexing is used to form the array of labels to drop .
+You can transform the tuple to list with ` list ( tup )` and do the switch .
+One way to do this is to use apply : #CODE
+If you want to change the values in only one column you can still use ` apply ` : #CODE
+Note : since ` my_fun2 ` returns a single value , this time ` apply ` return a Series , so we need to slightly change the way we apply apply .
+` agg ` is just a shorthand for ` aggregate ` , you are however forcing it to work on single columns always , which works around the issue .
+median median
+` agg ([ np.median ])` :) yes .
+This means aggregate passes first the 2D series in .
+Thank you , I suspected the problem was about pandas - numpy interface and numpy's array treatment , inspected ` aggregate ` docstring , but could not draw the conclusion you did ;)
+For things like sum , mean , median , max , min , first , last , std , you can call the method directly and not have to worry about the apply-to-DataFrame-but-failover-to-each-column mechanism in the GroupBy engine .
+( what is ` pd ` and what is ` dt `) ?
+>>> import datetime as dt
+I replace 2 by 1 in the isocalendar . the propriety week of TimeStamp is very strange .
+In general , though , is there a prefered approach to Split-Apply-Combine where Apply returns a dataframe of arbitrary size ( but consistent for all chunks ) , and Combine just vstacks the returned DFs ?
+Use ` join ` : #CODE
+I do not want to join them )
+I would like to drop all non-numeric columns in one fell swoop , without knowing their names or indices , since this could be doable reading their dtype .
+pyPandas : mess with join / append / concat two dataframes
+I would like to join them side by side resulting in a 21 cols dataframe with the same 624 number of rows .
+I have tried several things join them by axis=1 ignoring index or not .
+I also tried concat and append , but with no success .
+One alternative is to merge on ' Name ' and ' L1 ' : #CODE
+Another is to call DataFrame.reset_index first before you call merge : #CODE
+I had realized that reset would work , however , why to reset index to concat dfs ignoring them ?
+At least in ` concat ` , you have to declare axis .
+Pandas DataFrame : apply function to all columns
+Is there a more pythonic way to apply a function to all columns or the entire frame ( without a loop ) ?
+Pandas transpose concat()
+How to transpose a DataFrame returned by concat() ?
+I have been attempting to use the merge , concat and join functions to no avail .
+You can use the keys argument for concat , this will result in a MultiIndex and will allow you to uniquely select data : concat ( pieces , keys =[ ' left ' , ' middle ' , ' right '] .
+Note that basic backfill and forward fill would not be sufficient to fill every daily observation in the month with the monthly value .
+you can fill the resampled series sr as following : sr.groupby ( sr.index.month ) .transform ( lambda x : x.fillna ( method= ' backfill '))
+Using your guidance , I was also able to implement the daily average I mentioned : sr.groupby ( sr.index.month ) .transform ( lambda x : x.fillna ( method= ' backfill ') / len ( x ))
+I don't think you need the groupby here if you use resample , there is a ` fill_method ` parameter in ` resample ` that just fills the time bin .
+@USER She - I was able to use s.resample ( ' D ' , fill_method= ' backfill ') to fill in data , however , I couldn't figure out how to use resample to get data starting from 2012-01-01 as opposed to 2012-01-31 .
+Accessing pandas Multiindex Dataframe using integer indexes
+No numeric types to aggregate - change in groupby() behaviour ?
+On 0.9 , I get No numeric types to aggregate errors .
+I can understand why this might happen , as the weekly dates don't exactly align with the monthly dates , and weeks can overlap months .
+As for the resample example given , unfortunately it doesn't return quite what I was looking for .
+I believe you can use the append #CODE
+Python Pandas : pivot table with aggfunc = count unique distinct
+How do I get a Pivot Table with counts of unique values of one DataFrame column for two other columns ?
+I am aware of ' Series ' ` values_counts() ` however I need a pivot table .
+Note that using ` len ` assumes you don't have ` NA ` s in your DataFrame .
+You can do ` x.value_counts() .count() ` or ` len ( x.dropna() .unique() )` otherwise .
+You can construct a pivot table for each distinct value of ` X ` .
+will construct a pivot table for each value of ` X ` .
+You could also do an inner join on stations.id :
+the merge complains that there's ' no item named start_station_id ' .
+It was my bad : " on " is only to be used when the columns occur in both DataFrames ( so my code was referring to a join on both id and start_station_id which is wrong here ) .
+For the reindex : non-unique indices are rather new in pandas .
+I filed an issue because of the reindex error : #URL
+Can you load 2 separate data frames and do join / groupby on the datetime ?
+Using the same basic loop as above , just append the set of every forth row starting at 0 to 3 after you run your code above .
+If it is just formatting and the time is recorded to a precision that all entries are unique , then stack and merge would do it .
+Here is a solution based on numpy's repeat and array indexing to build de-stacked values , and pandas ' merge to output the concatenated result .
+Then build a de-stacked vector of TDRs and merge it with the original data frame #CODE
+I have two time series I need to join :
+How do I join these time series together in pandas as to express adjusted prices in expression #CODE
+i had figured out that i need to pivot the first point-in-time timeseries for tickers go into the columns and date into rows and for the second timeseries expand the interval into daily granularity and also pivot it ( through dataframe.pivot function . by combining the two dataframes one can write function i need .
+You can simply join the dataFrame with your daily bar and use fillna ( method= " ffill ") to forward fill the previous value . in your example you have adjustment factors for a range .
+I was hoping to get this to work but a pyTable table where does not provide a len
+` reindex ` realigns the existing index to the given index rather than changing the index .
+If there are no blanks some columns convert to ` TRUE / FALSE ` , others leave as ` Yes / No ` but dtype is bool .
+` fhs = fhs.drop ([ 1002 ])` to drop that row and data types are still good .
+first column comes into df as Yes , No , Yes , Yes type bool xxxx below
+3rd column comes into df as FALSE , FALSE , TRUE , TRUE type bool
+first column comes into df as Yes , No , Yes , Yes type bool xxxx below
+3rd column comes into df as FALSE , FALSE , TRUE , TRUE type bool
+The apply or transform function on a group seems like the right way to go but after hours of trying i still do not succeed .
+Using the same function with transform would work if the ' new ' column already exists in the df , but how do you add a new column at a specific level ' on the fly ' or before grouping ?
+Creating a new column based on grouped values is a task for transform , but i ` m not aware if tranform can output multiple columns .
+BTW under the hood , transform also creates a new frame for each group and concats them all at the end .
+Having the apply / transform mechanism be able to output structured values and those broadcast into colums ( i.e. if a tuple is produced by the applied function , the components go in separate columns instead of the tuple becoming an atomic element in a single column ) would be a fantastic feature , even if it is only syntactic sugar .
+Probably with another method name , to make intent clear ( applyfork or something like that , or a keyword splitseq=True in apply ) .
+Pandas DataFrame reindex column issue
+I want to reindex all the data frames according to totalColumns .
+So I used the reindex method : #CODE
+If yes , try to resolve that to have unique column names in the two frames , and execute the reindex again .
+How can I join the two columns with the same label together and sum up their numbers according to the respective row index ?
+After implementing a custom frequency in pandas by subclassing ` DateOffset ` , is it possible to " register " an offset alias for that frequency so that the alias can be used in built-in pandas functions such as ` date_range ` and ` resample ` ?
+Given the df below I am trying to do a stack bar plot for ' stats_value ' and ' read1_length ' v / s ' lib_name ' .
+Basically , I want to mimic R's melt / cast without getting into hierarchical indexing or stacked dataframes .
+I can't seem to to get exactly the above playing with stack / unstack , melt , or pivot / pivot_table -- Is there a good way to do this ?
+There is a ` melt ` in ` pandas.core.reshape ` : #CODE
+The columns end up being a MultiIndex , but if that's a deal breaker for you just concat the names and make it a regular Index .
+How might you concat the names , that is where I was confused ( " Basically , I want to mimic R's melt / cast without getting into hierarchical indexing or stacked dataframes " -- so was already aware of this , what I am confused on is how to get this into a flat structure with concatenated column names .
+Following the official docs you can use loc #CODE
+I have multiple ( more than 2 ) dataframes I would like to merge .
+I read that join can handle multiple dataframes , however I get : #CODE
+I have tried passing ` rsuffix =[ " %i " % ( i ) for i in range ( len ( data ))]` to join and still get the same error .
+I am interested to see if the experts have a more algorithmic approach to merge a list of data frames .
+I would try ` pandas.merge ` instead of ` join ` .
+The ` pandas.concat() ` solution is _much_ better -- I thought ` concat ` gave the duplicated column name error when ` axis=1 ` , but I have a lot to learn .
+As suggested in this post , I'm handling that with a MultiIndex .
+Forcing dates to conform to a given frequency in pandas
+Calculate diff of a numpy array using custom function instead of subtraction
+This would give me either a list of distances with ` len ( distances ) == coord_array.shape [ 1 ]` , or maybe a third column in the same array .
+It is important to say that I already have a function that returns a distance between two points ( two coordinate pairs ) , but I don't know how to apply it with a single array operation instead of looping through row pairs .
+How to shift a pandas MultiIndex Series ?
+In a regular time series you can shift it back or forward in time .
+We can shift it with : #CODE
+These values are median values I calculated from elsewhere , and I have also their variance and standard deviation ( and standard error , too ) .
+but not sure how to proceed from here , and how to join the new column back to the original data frame .
+Based on the values in two columns merge values in other columns
+One way I am thinking of is to use nested loops : outer loop read the lines sequentially and the inner loop reads all lines from the begining and look for map .
+All this does is ( 1 ) sort the first two columns so that ` e c ` becomes ` c e ` , ( 2 ) group the terms by ` col ` and ` col 2 ` , and then aggregate ( ` agg `) ` col3 ` and ` col4 ` by comma-joining the sorted set of the flattened terms .
+You can compress to the zlib format instead using ` zlib.compress ` or ` zlib.compressobj ` , and then strip the zlib header and trailer and add a gzip header and trailer , since both the zlib and gzip formats use the same compressed data format .
+The zlib header is fixed at two bytes and the trailer at four bytes , so those are easy to strip .
+Then you can prepend a basic gzip header of ten bytes : `" \x1f\x 8b \x0 8\ 0\0\0\0\0\0\xff "` ( C string format ) and append a four-byte CRC in little-endian order .
+I thought that adding a column of row numbers ( ` df3 [ ' rownum '] = range ( df3.shape [ 0 ])`) would help me select out the bottom-most row for any value of the ` DatetimeIndex ` , but I am stuck on figuring out the ` group_by ` or ` pivot ` ( or ??? ) statements to make that work .
+Unfortunately , I don't think Pandas allows one to drop dups off the indices .
+If you DO want a copy , you can ( in general ) use the copy method or , ( in this case ) use truncate : #CODE
+pandas : apply function to DataFrame that can return multiple rows
+I am trying to transform DataFrame , such that some of the rows will be replicated a given number of times .
+One possibility might be to allow ` DataFrame.applymap ` function return multiple rows ( akin ` apply ` method of ` GroupBy `) .
+How I do find median using pandas on a dataset ?
+You could try applying your own median function to see if you can work around the cause of the error , something like : #CODE
+Here is a different approach , you can add the median back to your original dataframe , the median for the metric column becomes : #CODE
+Wether its useful to have the median of the group attached to each datapoint depends a bit what you want to do afterwards .
+I created a DatetimeIndex and I want to resample the data with that index .
+Any idea how to resample by an index ?
+AFAIK you cannot pass in a DatetimeIndex to resample .
+As a workaround , just resample by the freq alias ( ' 1Min ') and then reindex to your generated index ?
+I started a github issue to maybe think about adding in additional parameters to resample .
+Wes replied saying he plans to extend ` resample ` like this eventually .
+Is there any work around I could apply before it is fixed ?
+Or use a boolean mask : data.A [ data.index.get_level_values ( 1 ) == 2 ] = 0
+I've played around with groupby and transpose to no avail , any tips would be great appreciated .
+I suppose I could loop through and append to the DataFrame , however I feel like there should be a much smarter method to doing this .
+You can use the ` pivot ` function : #CODE
+Could you upload an example of when it saves with the graph cut off ?
+Merge Columns within a DataFrame that have the Same Name
+How do I stack two DataFrames next to each other in Pandas ?
+and I would like to stack them next two each other in a single DataFrame so I can access and compare columns ( e.g. High ) across stocks ( GOOG vs . AAPL ) ?
+Have a look at the ` join ` method of dataframes , use the ` lsuffix ` and ` rsuffix ` attributes to create new names for the joined columns .
+And I want to do a rolling average for all columns , after groupby ` STK_ID ` , the rule expressed by pseudocode like : #CODE
+not exactly as expanding_mean() , for the rolling window depends on the RPT_Date and is range from 2-5 periodically .
+I notice Pandas can apply different function to different column by passing a dict .
+But I have a long column list and just want parameters to set or tip to simply tell Pandas to bypass some columns and apply ` my_func() ` to rest of columns ?
+One simple ( and general ) approach is to create a view of the dataframe with the subset you are interested in ( or , stated for your case , a view with all columns except the ones you want to ignore ) , and then use APPLY for that view .
+I believe the appropriate way is to write a function that takes the current row , then figures out the previous row , and calculates the difference between them , the use the ` pandas ` ` apply ` function to update the dataframe with the value .
+i.e. instead of diff ( 1 ) is there something like value ( 1 ) or value ( 1:3 ) .mean() .
+To get the ultimate perf you'd want to drop down into C or Cython and build the raw byte string yourself using C string functions .
+How to apply condition on level of pandas.multiindex ?
+I.e. , I would like to apply np.mean over all counts of the detectors of 1 channel at each time separately .
+Other aggregation functions can be passed via ` agg ` : #CODE
+Be carefull with floats groupby ( this is independent of a MultiIndex or not ) , groups can differ due to numerical representation / accuracy-limitations related to floats .
+( after diving in Pandas doc , I think ` cut ` function can help me because it's a discretization problem ... but I'm don't understand how to use it )
+to plot the results you can use the matplotlib function hist , but if you are working in pandas each Series has its own handle to the hist function , and you can give it the chosen binning : #CODE
+In the specific case of applying a ` diff ` function that could be vectorized ( applied like an array operation instead of an iterative pairwise loop ) , is there a way to do that idiomatically in pandas ?
+Should I create a " coordinate " class which support the diff ( ` __sub__ `) operation so I could use ` dataframe.latlng.diff ` directly ?
+As a follow-up question , how would you go about to apply the same function on groups ?
+I suspect that I need to use searchsort and asof , but I am not quite sure how to do that with .
+You're looking for a near timestamp , where ` asof ` searches for the latest timestamp .
+It is only applied to a time series , so you would have to apply ` reset_index ` to your ` DataFrame `
+This can be accomplished quite simply with the DataFrame method ` apply ` .
+Now that we have our ` DataFrame ` and ` Series ` we need a function to pass to ` apply ` .
+` df.apply ` acts column-wise by default , but it can can also act row-wise by passing ` axis=1 ` as an argument to ` apply ` .
+This could be done more concisely by defining the anonymous function inside ` apply ` #CODE
+In case of a multicolumn groupby these subgroups refer to several columns , but this is irrelevant as ` len ` counts by the rows in pandas objects .
+to find a way to group the data in a way that I can aggregate the time column ` D_Time `
+Most efficient way to shift MultiIndex time series
+I would suggest you reshape the data and do a single shift versus the groupby approach : #CODE
+You can verify it's been lagged by one period ( you want shift ( 1 ) instead of shift ( -1 )): #CODE
+( And I did mean shift ( -1 ); it's a hazard rate calculation , so it's forward-looking . )
+How do I resample / align a pandas timeseries to the closest calendar quarters ?
+Also , is there any way I can get it to align to Dec / Mar ( which seem to be closer to the original dates ) with the timeseries functions ?
+I know no easy solution to get to align to the closest and I find the current version quite logical .
+But with ` label= ' left '` you can achieve what you want with the current data , still it doesn't align to the closest , so overall you probably have to figure out something else ( like using apply to change the dates so they would conform as you wish ) .
+` lambda L : L.split ( ' , ')` - not join again ...
+I rewrote the answer to remove the map function as it was more confusing than helpful . thank you for your answer
+Using resample to align multiple timeseries in pandas
+The goal is to align the data to calendar quarter markers so the 3 data sets can be compared .
+just edited the question and added desired final output . the goal ( if it doesn't go without saying ) is to get this programmatically , so adjusting different resample params for each series in some non-automatically detectable way is unfortunately not helpful
+To get the dtypes we'd need to transform this ndarray into a structured array using view : #CODE
+The above gives me what I want , aggregate stats on julian day of the year BUT I would then like to reorder the group so the last half ( 183 days ) is placed in front of the 1st half .
+Why not just reindex the result ?
+I think the easiest way to do this is to ` join ` on index .
+I've got some radar data that's in a bit of an odd format , and I can't figure out how to correctly pivot it using the pandas library .
+Note that I did not set ` loc ` as the index yet so it uses an autoincrement integer index .
+However , if your data frame is already using ` loc ` as the index , we will need to append the ` time ` column into it so that we have a loc-time hierarchal index .
+This can be done using the new ` append ` option in the ` set_index ` method .
+So I edited my answer to suggest that you use the ` append=True ` option while adding ' time ' into your existing ' loc ' index .
+Now to extract a specific Series by the ` loc ` , since ` loc ` is an index in ` df_by_speed ` , it is as simple as ` df_by_speed.ix [ ' A ']` where A is the location name .
+You can use the pivot method here : #CODE
+If I transpose the input to model.predict , I do get a result but with a shape of ( 426,213 ) , so I suppose its wrong as well ( I expect one vector of 213 numbers as label predictions ): #CODE
+I tried the separate date and time route , and created a multiindex , but when I did , I ended up with two index columns -- one of them containing the proper date with an incorrect time instead of just a date , and the second one containing an incorrect date , and then a correct time , instead of just a time .
+The input data for my multiindex attempt looked like this : #CODE
+Maybe the multiindex approach is totally wrong , but it's one thing I tried .
+GroupBy objects also have an apply method , which is basically syntactic sugar around the " combine " step done with pd.concat() above .
+Benefits of panda's multiindex ?
+I found a way using ` join ` : #CODE
+This is not so direct but I found it very intuitive ( the use of map to create new columns from another column ) and can be applied to many other cases : #CODE
+Thanks , the map method seems pretty powerful .
+I would like to apply a function to a dataframe and receive a single dictionary as a result . pandas.apply gives me a Series of dicts , and so currently I have to combine keys from each .
+I had overlooked ` map ` completely , and my rewritten function is much cleaner now .
+pandas pivot dataframe to 3d data
+There seem to be a lot of possibilities to pivot flat table data into a 3d array but I'm somehow not finding one that works : Suppose I have some data with columns =[ ' name ' , ' type ' , ' date ' , ' value '] .
+When I try to pivot via #CODE
+` pivot ` only supports using a single column to generate your columns .
+You probably want to use ` pivot_table ` to generate a pivot table using multiple columns e.g. #CODE
+The hierarchical columns that are mentioned in the API reference and documentation for ` pivot ` relates to cases where you have multiple value fields rather than multiple categories .
+However , if you want separate columns for different value fields for the same category ( e.g. ' type ') , then you should use ` pivot ` without specifying the value column and your category as the columns parameter .
+Thanks , I guess the pandas philosophy is that you should probably work with your 3d data in a 2d multiindex array ... probably not a bad idea once you get used to indexing and slicing on multiindexes .
+it is probably more intuitive / readable to stick to using stack / unstacks and groupby as in the other solution below .
+` pandas.append() ` ( or ` concat() ` method ) can only append correctly if you have unique column names .
+However , my goal is to be able to use a row-wise function in the ` DataFrame.apply() ` method ( so I can apply the desired functionality to other functions I build ) .
+Row-wise functionality should be possible with apply .
+If you have a key that is repeated for each row , then you can produce a cartesian product using merge ( like you would in SQL ) .
+This won't win a code golf competition , and borrows from the previous answers - but clearly shows how the key is added , and how the join works .
+So , I created a list of all the weeks I wanted to have , then a list of all the store IDs I wanted to map them against .
+The merge I chose left , but would be semantically the same as inner in this setup .
+` combine_first ` is not actually an ` append ` operation .
+while ` append ` is #URL
+What would be a way to read this file and align the date / values ?
+Just replace `' / Users / spencerlyon2 / Desktop / test.csv '` with the path to your file
+How can I replace all the NaN values with Zero's in a column of a pandas dataframe
+I have also looked at this article How do I replace NA values with zeros in R ?
+Also , this is a complex example ( though I really ran into it ) , but the same may apply to fewer levels of indexes depending on how you slice .
+It's one line , reads reasonably well ( sort of ) and eliminates any unnecessary messing with intermediate variables or loops while allowing you to apply fillna to any multi-level slice you like !
+Merge parameters for Pandas
+I have a loop in Python which sequentially imports CSV files , assigns them to a temporary DataFrame object and then attempts to merge / concact them to a ' master ' DataFrame .
+The MLS_Stats DF is initially empty , which is the reasoning for the if loop , since I don't think you can merge a DF with an empty DF .
+For each merge , I want build the DataFrame by including any new uniquely indexed rows and new columns , but exclude overlapping columns .
+You can filter duplicate rows with ` drop_duplicates ` , and select to join only columns that are not yet present .
+You can use the append function to add another element to it .
+Only , make a series of the new element , before you append it : #CODE
+I believe append returns a new Series ( rather than doing it in place ) so you want ` test = test.append ( pd.Series ( 200 , index =[ 101 ]))`
+How to apply a function to two columns of Pandas dataframe
+Now I want to apply the ` f ` to ` df `' s two columns `' col_1 ' , ' col_2 '` to element-wise calculate a new column `' col_3 '` , somewhat like : #CODE
+can you apply f directly to columns : df [ ' col_3 '] = f ( df [ ' col_1 '] , df [ ' col_2 '])
+Here's an example using ` apply ` on the dataframe , which I am calling with ` axis = 1 ` .
+Depending on your use case , it is sometimes helpful to create a pandas ` group ` object , and then use ` apply ` on the group .
+Yes , i tried to use apply , but can't find the valid syntax expression .
+How to use Pandas ' apply ' function to create ' col_3 ' ?
+Use apply on the whole dataframe , passing in rows with df.apply ( f , axis=1 ) .
+Since you haven't provided the body of f I can't help in anymore detail - but this should provide the way out without fundamentally changing your code or using some other methods rather than apply
+pandas's resample with fill_method : Need to know data from which row was copied ?
+I am trying to use resample method to fill the gaps in timeseries data .
+With resample , I will get this #CODE
+align edge ( default ) | center
+For vertical bars , align = edge aligns bars by their left edges in left , while align = center interprets these values as the x coordinates of the bar centers .
+So adding try adding the keyword align = ' center ' to you first plot call and that might get aligned your x-axis .
+As a work-around , I'm probably going to simply import from my target sql and do a join .
+Understanding ` MultiIndex ` dataframes in pandas - understanding MultiIndex and Benefits of pandas multiindex ?
+If I ` reset_index ` on both frames I can now merge / join them and slice however I want , but how can I do it using the ( multi ) indexes ?
+Note that you can use xs on a multiindex .
+My approach was to groupby ' file ' and then aggregate on ' first ' : #CODE
+I convert this to a sparse series / dataframe with censored observations that I would like to join or convert to a series / dataframe with continuous dates .
+I feel as though I'm missing a more elegant solution involving a join .
+You can just use reindex on a time series using your date range .
+I used ` loffset= ' -1M '` to tell pandas to aggregate one period earlier than its default ( moved us to Jan-Jun ) .
+Assuming you had a ` DateTimeIndex ` with regular frequency you could always use ` df.resample ` to aggregate the data at another regular frequency ( like every two months ) and then use ` df.pct_change() ` to get the returns .
+Also there are various options for ` pct_change() ` [ see ` periods ` , ` freq `] that allow you to specify how many data points should be used to compute the returns ( ` periods ` defaults to 1 , which is why the solution gave the same answer as your function ) .
+You might also want to looking into the rolling and window functions for other types of analysis of financial data .
+Because you have a relatively small data set , the easiest way is to resample on the parameters that you need to calculate the data on then use the ` pct_change() ` function again .
+However , after you've read it in , you could strip out the whitespace by doing , e.g. , ` df [ " Make "] = df [ " Make "] .map ( str.strip )` ( where ` df ` is your dataframe ) .
+I don't have enough reputation to leave a comment , but the answer above suggesting using the map function along with strip won't work if you have NaN values , since strip only works on chars and NaN are floats .
+To extract the Series ( and plot ) from the panel you can use ` ix ` with the following syntax : #CODE
+pandas : slice a MultiIndex by range of secondary index
+not sure if this is ideal but it works by creating a mask #CODE
+Use ` ix ` : #CODE
+( It's good practice to do in a single ix / loc / iloc since this version allows assignment . )
+That said , I kinda disagree with the docs that ix is :
+use loc for labels
+use ix for both ( if you really have to )
+It feels like there ought to be a way to do this in one pass ( using loc / without chaining ) , however assignment ( ` s [ ' b '] .ix [ 1:10 ]`) works so I guess it's ok .
+Surprisingly ( for me at least ) , although comparable for small Series , this starts to become slower than using ` ix ` when the Series is longer than 250 .
+you can also use a mask :
+Using a mask is my fallback option , at this point =)
+Pandas rolling apply with missing data
+I want to do a rolling computation on missing data .
+Sample Code : ( For sake of simplicity I'm giving an example of a rolling sum but I want to do something more generic . ) #CODE
+I think that during the " rolling " , window with missing data is being ignored for computation .
+I think a partial answer to this question is probably via using the keyword argument min_periods in the rolling apply function .
+The best way to do this in pandas is to use drop : #CODE
+Finally , to drop by index instead of by name , try this to delete , e.g. the 1st , 2nd and 4th columns : #CODE
+@USER I don't know of any performance improvement , but readability-wise , ` drop ` is a more SQL-like description of the operation in question .
+I think in version 0.16.2 drop by index doesn't work - do nothing .
+How to drop rows of Pandas dataframe whose value of certain column is NaN
+Don't ` drop ` .
+` notnull ` is also what Wes ( author of Pandas ) suggested in his comment on another answer .
+Though of course that will drop rows with negative numbers , too .
+You could use dataframe method notnull or inverse of isnull , or numpy.isnan : #CODE
+You can use groupby and then apply to achieve what you want : #CODE
+pandas : slice a MultiIndex DataFrame by range of secondary index
+I think you want to ` resample ` your dataframe , but I'm not sure .
+My actual goal is to use ` groupby ` , ` crosstab ` and / or ` resample ` to calculate values for each period based on sums / means / etc of individual entries within the period .
+In other words , I want to transform data from : #CODE
+But you can use ` .shift ` to shift it by any number of days ( or any frequency for that matter ): #CODE
+However , this doesn't help with resampling on a range , as resample will still use bins aligned to the beginning of the month AFAIK .
+I don't have a simple workaround for you at the moment because ` resample ` requires passing a known frequency rule .
+I want to find all values in a Pandas dataframe that contain whitespace ( any arbitrary amount ) and replace those values with NaNs .
+I loop through each column and do boolean replacement against a column mask generated by applying a function that does a regex search of each value , matching on whitespace .
+And finally , this code sets the target strings to None , which works with Pandas ' functions like fillna() , but it would be nice for completeness if I could actually insert a NaN directly instead of None .
+What you really want is to be able to use [ ` replace `] ( #URL ) with a regex ...
+I'm pretty new to Pandas , but maybe the map / apply function are what I need ?
+Now the last step is to apply / map it back to the borough column ... how do I do that ?
+Edit : If you've already created your dict as in your edited post , just use ` d [ ' Borough '] = d.City.map ( paired [ ' Borough '])` to map each city to the borough from your dict .
+` map ` is a useful method to know about .
+It can map values either with a Pandas series , with a dict , or with a function that returns the mapped value given the key .
+There are cases when when the same city may be paired with different boroughs , for instance the city ' New York ' is mapped to the Borough Manhattan in like 97% of occurrences , but how does map handle that situation ?
+Another way of doing this could be to join these data frames , it will remove the non-matching entries and I can drop count column afterwards .
+i usually just use a mask and then select the cols i need
+a cute one-liner : data [ data.groupby ( ' tag ') .pid .transform ( len ) > 1 ]
+Ah ha , currently you can do : ` g.filter ( lambda x : len ( x ) > 1 , dropna=False ) .dropna() ` to keep the order .
+Mind you , nor does transform .
+Of course I can just manually replace the truncated words , but I'm curious to know what the cause is ?
+I'm also puzzled why the ` apply ` version along ` axis=1 ` is so much slower .
+This isn't exclusive to Pandas ; in general , any numpy operation will be much faster if you treat arrays and matrices in aggregate instead of calling Python functions or inner loops on individual items .
+You'd need to override the ` apply ` and ` onOffset ` methods to take into account your holiday calendar .
+If that's true , I guess I have to figured out how to properly convert my dataframe into a timeseries that I can resample .
+I am able to get the desired result by converting my dataframe to a timeseries using this command : " ts = pd.TimeSeries ( df [ 0 ])" , and then I can resample the timeseries .
+You can resample over an individual column ( since each of these is a timeseries ): #CODE
+Update : A useful workaround is to just smash this with the DatetimeIndex constructor ( which is usually much faster than an apply ) , for example : #CODE
+In 0.15 this will be vailable in the dt attribute ( along with other datetime methods ): #CODE
+With more complicated selections like this one you can use ` apply ` : #CODE
+problems with apply function in pandas after update
+I tried to apply ' manually ' the function recursively to see if some of the dates passed as the x parameter in the lambda definition where wrong , but managed to get correct results any time .
+But the ` apply ` method just seem not to work anymore , and cannot understand why .
+If you unstack STK_ID , you can create side by side plots per RPT_Date .
+I think the OP's primary concern is with the division , not the shift .
+` shift ` realigns the data and takes an optional number of periods .
+Aah , shift is what i needed .
+Python pandas insert long integer
+I'm trying to insert long integers in a Pandas Dataframe #CODE
+If I used ` cmov_mean ` in ` scikits.timeseries ` , what should I use when I " resample " in pandas ?
+When I " resample " my daily averages to monthly and then plot both , I notice a big time offset .
+I need to join it with some reference tables that I have access via a pyodbc connection .
+Merge of multiple data frames of different number of columns into one big data frame
+Also what if instead two CSV files I had two data frames and wanted to do the same , for example if I loaded first csv to ` df1 ` and second one in ` df2 ` and then wanted to make a merge to ` df3 ` that would look like example above .
+Why not try the ` concat ` function : #CODE
+Note : the ` concat ` does have some additional options if you have slightly different requirements .
+The ` and ` and ` or ` operators are special in Python and don't interact well with things like numpy and pandas that try to apply to them elementwise across a collection .
+Using the transpose allows you to select rows as df [ " AA " : " AA "] which then return a MultiIndex DataFrame ( not losing information ) , however , df.xs ( " AA " , axis=1 ) returns a DataFrmae with a single level Index ( thus losing information ) .
+However , if I do the same in a MultiIndex column DataFrame , then I get a crash .
+build dataframes for each user and concat , very clever !
+Finally , if you don't like the way the frame looks you can use the transpose function of panel to change the appearance before calling to_frame() see documentation here
+How to keep MultiIndex when using pandas merge
+A similar question was asked in How to keep index when using pandas merge , but it will not work with MultiIndexes , i.e , #CODE
+How can one make the merge while preserving the MultiIndex in the left dataframe ?
+( It would have to be exactly there , if the shift was detected a step later , wouldn't matter . )
+Actually , many of DataFrameGroupBy object methods such as ( apply , transform , aggregate , head , first , last ) return a DataFrame object .
+yes , df1 + df2 will try and align the columns .
+you should convert your time steps to a ` DatetiemIndex ` and than resample R2
+I would try to copy the original table , drop columns that differ ( ` result ` and ` run `) , reindex that , combine both things again with the new index as multi-index and then run the mean method for that outer multi-index level .
+I know that the returned pivot is a dataframe so I can calculate it through other means , but just curious if there is a more efficient way .
+Define the function you want to apply .
+Then , apply it .
+Was wondering if the pandas pivot had any similar built in functionality .
+Efficient way to apply multiple filters to pandas DataFrame or Series
+I have a scenario where a user wants to apply several filters to a Pandas DataFrame or Series object .
+I want to take a dictionary of the following form and apply each operation to a given Series object and return a ' filtered ' Series object .
+The input I receive is a dictionary defining what filters to apply .
+My example could do something like ` df [( ge ( df [ ' col1 '] , 1 ) & le ( df [ ' col1 '] , 1 )]` .
+Maybe I could add each intermediate boolean array to a big array and then just use ` map ` to apply the ` and ` operator to them ?
+The call to ` reindex_like() ` inserts some NaN data into the series so the ` dtype ` of that series changes from ` bool ` to ` object ` .
+is it possible to do fuzzy match merge with python pandas ?
+I have two DataFrames which I want to merge based on a column .
+However , due to alternate spellings , different number of spaces , absence / presence of diacritical marks , I would like to be able to merge as long as they are similar to one another .
+I want to merge on similar values between two DataFrames
+I would just do a separate step and use difflib getclosest_matches to create a new column in one of the 2 dataframes and the merge / join on the fuzzy matched column
+Could you explain how to use ` difflib.get_closest_matches ` to create such a column and then merge on that ?
+Similar to @USER suggestion , you can apply ` difflib ` ' s ` get_closest_matches ` to ` df2 `' s index and then apply a ` join ` : #CODE
+If these were columns , in the same vein you could apply to the column then ` merge ` : #CODE
+Instead of directly applying ` get_close_matches ` , I found it easier to apply the following function .
+Then you can insert it again into your DataFrame .
+I used this and DataFrame.apply to apply it to all major columns in the dataframe .
+map ( lambda x : ( x [ 3 ] , [ int ( x [ 1 ]) , int ( x [ 2 ])]) , [ line.split() ])
+You can either load the file and then filter using ` df [ df [ ' field '] constant ]` , or if you have a very large file and you are worried about memory running out , then use an iterator and apply the filter as you concatenate chunks of your file e.g. : #CODE
+I realize Dataframe takes a map of { ' series_name ' : Series ( data , index ) } .
+However , it automatically sorts that map even if the map is an OrderedDict() .
+or just concat dataframes #CODE
+I create a fresh dataframe with the appropriate index , drop the data to a dictionary , then populate the new dataframe based on the dictionary values ( skipping missing values ) .
+Resample Searies / DataFrame with frequency anchored to specific time
+Which I want to resample to say ' 5s ' .
+I was pleased to see that this method also works with the replace function .
+i'd use the pandas replace function , very simple and powerful as you can use regex .
+numpy diff on a pandas Series
+Pandas implements ` diff ` like so : #CODE
+Because np is taking ` np.asanyarray() ` of the series before finding the ` diff ` .
+I am attempting to left merge two dataframes , but I am running into an issue .
+I noticed some strange behavior when using IX on large pandas dataframes .
+Yes , ` ix ` caches results .
+How do I do the equivalent of ` df [ df [ " B "] == 2 ]` , if ` B ` is the name of a level in a ` MultiIndex ` instead ?
+Swapping the name I want to use to the start of the ` MultiIndex ` and then use lookup by index : ` df.swaplevel ( 0 , " B ") .ix [ 2 ]`
+Note : it is not equal to ` dt ` because it's become " offset-aware " : #CODE
+Think of np.datetime64 the same way you would about np.int8 , np.int16 , etc and apply the same methods to convert beetween Python objects such as int , datetime and corresponding numpy objects .
+You can use the ` resample ` method ( #URL ) if you have a time series ( if the time is used as the index ): #CODE
+Feels to me like the trick is to select all unique dates present , create 24 hour time samples for each of these dates and merge the two sets .
+OK , then indeed , the easiest way will probably be to create an index object with the date range you want and to reindex the dataframe .
+This gives me the error for serie_5 ( the second concat ): #CODE
+Another way is to use join : #CODE
+just create a Python list and append your Series into it and then provide it to pandas.concat as @USER was writing above .
+The use of join looks generic enough !
+I wish to merge the values from b into a .
+Apply can also do aggregation and other things
+Because my lists are large , is there any way not to load the full list into memory but , rather , efficiently append values one at a time ?
+` append ` is a wrapper for ` concat ` , so ` concat ` would be marginally more efficient , but as @USER says Pandas is probably not appropriate for updating a HDF5 file every second .
+If memory is no constraint just preallocate a huge zeros array and append at the end of the program removing any excess zeros .
+Another option is to use messaging to transmit from one process to another ( and then append in memory ) , this avoids the serialization issue .
+` tz ` means time zone and ` Not Windows ` and ` Windows ` are categories extracted from the User Agent in the original data , so we can see that there are 3 Windows users and 0 Non-windows users in Africa / Cairo from the data collected .
+I need to merge these three columns and have the entire date in one column for all the rows .
+You are looking for ` apply ` ( ` merge ` is like a database join . ): #CODE
+merge two dataframe and create a new one with multiindex
+I would like to merge the two dataframe in a new dataframe with a multi-index like :
+I tried to reindex like this but it doesn't work : #CODE
+Anybody knows how to reindex this dataframe to have the index levels in sorted order ?
+I am trying to add a column of smaller ` len ` into a ` DataFrame ` where indexes of smaller item are a subset of a larger item .
+You are looking for an outer ` join ` , here is a simple example : #CODE
+The pandas implementation uses a rolling window of the previous n values , which is how it's usually done in finance ( see this Wikipedia entry for simple moving average ) .
+` len ( np.arange ( 12 ))` and ` len ( pd.stats.moments.rolling_mean ( np.arange ( 12 ) , 6 ))` both equal 12 as I would have expected - what result were you expecting ?
+I have faced this with rolling statistics in pandas , too .
+I'd say for non-time-related measurements , such as an altitude vs . distance profile , a central-based moving window makes more sense , since it does not introduce lag or shift .
+If you use a pandas Series rather than a list , you can use its ` diff ` method : #CODE
+One " built-in " way to accomplish it might be accomplished using ` shift ` twice , but I think this is going to be somewhat messier ...
+I assume what you are trying to do is change the frequency of a Time Series that contains data , in which case you can use ` resample ` ( documentation ) .
+Then you can change the frequency to seconds using resample , specifying how you want to aggregate the values ( mean , sum etc . ): #CODE
+Update : if you're doing this to a DatetimeIndex / datetime64 column a better way is to use ` np.round ` directly rather than via an apply / map : #CODE
+Hence you can apply this to the entire index : #CODE
+I have corrected this and added how to apply this to the entire dt_index .
+Think I figured out the second part : sp500 [ " regression "] = exp ( sm.OLS ( log ( sp500 [ " Adj Close "]) , sm.add_constant ( range ( len ( sp500.index )) , prepend=True )) .fit() .fittedvalues )
+You might also want to report bugs on github issues rather than stack overflow .
+You are looking for a ` merge ` : #CODE
+The keywords are the same as for ` join ` , but ` join ` uses only the index , see " Database-style DataFrame joining / merging " .
+If you try and join on a column you get an error : #CODE
+It is giving me an error when i run merge : - UnicodeDecodeError : ' ascii ' codec can't decode byte 0xc2 in position 268 : ordinal not in range ( 128 )
+The ` for ` loops and ` append ` s will not be efficient and should be avoided .
+Try rewrting these using numpy functions and / or the DataFrame ` apply ` method ...
+Also , would you agree then , using your suggestion , if we want to apply a function / algorithm restricted every unique date in the file one should just groupby the ' datetime ' object ?
+As commented , in newer pandas , Series has a ` replace ` method to do this more elegantly : #CODE
+( been a while since I wrote this ! ) replace definitely best option , another is to use ` .apply ( { ' March ' : 0 , ' April ' : 1 , ' Dec ' : 3} .get )` :) In 0.15 we'll have Categorical Series / columns , so the best way will be to use that and then sort will just work .
+@USER I've taken the liberty of replacing the second line with the ' replace ' method .
+A bit late to the game , but here's a way to create a function that sorts pandas Series , DataFrame , and multiindex DataFrame objects using arbitrary functions .
+This also works on multiindex DataFrames and Series objects : #CODE
+some problem with ix and loc , the pandas documentation could be clearer
+When you do ` len ( df [ ' column name '])` you are just getting one number , namely the number of rows in the DataFrame ( i.e. , the length of the column itself ) .
+If you want to apply ` len ` to each element in the column , use ` df [ ' column name '] .map ( len )` .
+I came up with a way using a list comprehension : ` df [[( len ( x ) < 2 ) for x in df [ ' column name ']]]` but yours is much nicer .
+To directly answer this question's title ( which I understand is not necessarily the OP's problem but could help other users coming across this question ) one way to do this is to use the drop method :
+Finally doing pivot table and putting the pivots into a dataframe and plotting the dataframe in bar mode created the necessary graphs .
+I think the best way is to merge all dataframes together , then you could use all nice Panda functions to slice and mix-and-match anyway you want .
+I would merge them like this : #CODE
+You could of course use stack / unstack to structure your DataFrame a bit different depending on the amount of data and the way you will be using it most .
+Pandas join grouped and normal dataframe
+I need to join levels with lines ( atom , ion , level ): at first on atom , ion , level_number_upper and then atom , ion , level_number_lower .
+Is there a way to precompute the join - memory is not an issue , but speed is .
+To show what I want to join merge here a code snippet #CODE
+and then I want to join / merge grouped data with lines on atomic_number and ion_number
+Why not join / merge first then do the groupby ?
+It would cost a lot of performance to do the join / merge before the groupby .
+Just to confirm , are you are wanting to merge / join a groupby object with a dataframe ?
+Well no - I want to join / merge the result .
+pandas ' transform doesn't work sorting groupby output
+Good enough , but then I wanted to use pandas ' transform to do the same like this : #CODE
+I know that transform requires to return an array of the same dimensions that it accepts as input , so I thought I'd be complying with that requirement just sorting both slices ( smokers and non-smokers ) of the original DataFrame without changing their respective dimensions .
+` transform ` is not that well documented , but it seems that the way it works is that what the transform function is passed is not the entire group as a dataframe , but a single column of a single group .
+I don't think it's really meant for what you're trying to do , and your solution with ` apply ` is fine .
+The transform does not call ` func ( group1 )` and ` func ( group2 )` .
+This makes sense if you think about what transform is for .
+It's meant for applying transform functions on the groups .
+For instance , the example in the pandas docs is about z-standardizing using ` transform ` .
+You have to z-standardize the age with respect to the mean age and the weight with respect to the mean weight , which means you want to transform separately for each column .
+So basically , you don't need to use transform here .
+` apply ` is the appropriate function here , because ` apply ` really does operate on each group as a single DataFrame , while ` transform ` operates on each column of each group .
+Why is transform so poorly documented ?
+I dont think you have it quite right though ( although I have no idea how it in fact is working ) as when you put print statments in you functions it seems clear that transform is actually passing columns as series and data frames .
+Its really wierd and I want to understand exactly what is going on behind the scenes but can find no information on how transform is in fact implemented .
+by setting ` index_col =[ 0 , 2 , 4 ]` you are creating a MultiIndex that's why you get that output .
+Just read single and merge the dataframes
+Try to convert the ' sales ' string to an ` int ` , if it is well formed then it goes on , if it is not it will raise a ` ValueError ` which we catch and replace with the place holder .
+If it's already in the DataFrame you could use ` apply ` to convert those strings which are numbers into integers ( using ` str.isdigit ` ): #CODE
+Although , ` apply ` is the important bit of my answer ( weirdly no other answers seem to use it ) .
+Although Chang's answer explains how to plot multiple times on the same figure , in this case you might be better off in this case using a ` groupby ` and ` unstack ` ing :
+In pandas it is called ' expanding ' instead of cumulative I think :
+@USER only a multiindex has a levels attribute .
+This will append the correct values but does not update the index properly and the graph is messed up .
+If you want to plot the bars of all columns and the mean you can ` append ` the mean : #CODE
+Have you seen / tried the built-in rolling mean function ?
+For example , say you want to pivot the data so there are separate columns for
+a function of your creation ) can easily be applied to the columns of ` pivot ` .
+pd.rolling_mean() , like all rolling / moving functions in pandas , even accepts a ` center ` parameter for centered sliding windows .
+Non standard interaction among two tables to avoid very large merge
+However , standard solutions using merge / join would take too much RAM in the long run .
+The last major improvement I can think of would be to replace df.apply() with a for loop to avoid calling any function 200M times ( or however large A is ) .
+This is slightly faster than original , but there is till a lot of overhead ( for me 4ms for the merge and 2.5ms for the second line ) .
+I was under the impression that apply was preferable to loops .
+I would like to read in a csv file iteratively , append each chunk into HDFStore object , and then work with subsets of the data .
+If you replace that line with :
+or you can reindex afterwards #CODE
+apply on group replicating complete MultiIndex
+If I were to export to a list then I could use the numpy's ` interp1d ` function and apply this to the missing values .
+I'm surprised you accepted the answer so fast ( no offense , hayden ;) because I thought you especially wanted to interpolate time series , but I guess you didn't mean exactly pandas.TimeSeries .
+How do you apply that to one column only ( i.e. ' data1 ')
+I'm a newbie to pandas dataframe , and I wanted to apply a function to each column so that it computes for each element x , x / max of column .
+Pandas DataFrame : apply function to all columns
+They also fail if I drop the index on both stacked DataFrames ( e.g. , do ` wstk.reset_index ( inplace=True )` before the join ) .
+Trying to use the awfully useful pandas to deal with data as time series , I am now stumbling over the fact that there do not seem to exist libraries that can directly interpolate ( with a spline or similar ) over data that has DateTime as an x-axis ?
+) as x-argument , interestingly , the Spline class does create an interpolator , but it still breaks when trying to interpolate / extrapolate to a larger DateTimeIndex ( which is my final goal here ) .
+To simulate different consumption rates , replace all real outbound timestamps
+How to apply function to date indexed DataFrame
+Then ` apply ` this to each state in the DataFrame : #CODE
+Using ` join ` or ` merge ` works too : #CODE
+Pandas interpolate changed in version 0.10 ?
+Calling the column's ` interpolate ` method as below is the correct way .
+Dataframe merge creates duplicate records in pandas ( 0.7.3 )
+When I merge two CSV files , of the format ( date , someValue ) , I see some duplicate records .
+`' viridis '` ( will be default color map in 2.0 )
+I would suggest the ` cubehelix ` color map .
+So your requirements are " lots of colors " and " no two colors should map to the same grayscale value when printed " , right ?
+The white line is the luminance of each color , so you can see that each color will map to a different grayscale value when printed .
+Assuming Y is a column in your dataframe , one way is to use ` diff ` and cumsum : #CODE
+diff returns timedelta objects now in pandas master .
+But I do not see how to ' normalize ' fx and fy so that they have the same levels and ` fx.lables ` and ` fy.lables ` have the same coding .
+For example , I know that every data point has to take one of the five values [ a , b , c , d , e ] and I already have an index ` Index ([ a , b , c , d , e ] , dtype =o bject )` and I want to factorize vector y =[ ' a ' , ' c ' , ' e '] into a Categoricial variable with ` Index ([ a , b , c , d , e ] , dtype =o bject )` as its levels .
+In [ 6 ] , it should be range ( len ( fx.levels )) .
+You can ` unstack ` the groupby : #CODE
+I used map instead .
+The problem is that no two TimeSeries have the exactly the same index , i.e. I would need to merge all the TimeSeries ' indexes .
+However , an exception is thrown when attempting to aggregate the TimeSeries into a DataFrame and I believe it has to do with the duplicate index elements : #CODE
+pd.concat() performs an ' outer ' join on the indexes by default and holes can be filled by padding forwards and / or backwards in time .
+Python pandas resample added dates not present in the original data
+For some reason ` resample ` added rows for days that were not present in the intraday data .
+Prior to 0.10.0 , pandas labeled resample bins with the right-most edge , which for daily resampling , is the next day .
+` resample ` converts to a regular time interval , so if there are no samples that day you get NaN .
+Because I need to be able to rely on it that importing , say , a random number module , won't silently change , say , the pickle module to apply a random salt to everything it writes ..
+Pandas slicing along multiindex and separate indices
+I can slice on multiindex , but I give it a raw index and it gives me back a tuple .
+Hopefully there is a better way than ` np.array ( map ( np.array , df.index.values ))` ( ! )
+For now I think i will just do my_index = Series ( arange ( len ( df )) , index=myselectedindex )
+Python - rolling functions for GroupBy object
+Is there any way to apply rolling functions to ` groupby ` objects ?
+How exactly do you expect rolling function to work on grouped objects ( I mean write out the math you want to do in symbols ) ?
+Yes , ideally cumsum and any rolling function ( mean , sum , std ) .
+I think you could apply any cumulative or " rolling " function in this manner and it should have the same result .
+If you are creating a timeseries , you can use the ` tz ` argument of ` date_range ` : #CODE
+( Note that I don't actually use ` date_range() ` so using its ` tz ` parameter is not an option . )
+Update : In recent pandas , you can use the dt accessor to broadcast this : #CODE
+Here's one way ( depending if tz is already set it might be a ` tz_convert ` rather than ` tz_localize ` ): #CODE
+If you take the first and last duplicate value of each year and shift the data in-between by an hour , that should be the easiest way of correcting the issue .
+I tried using merge and join but I am not sure how to go about getting the desired result .
+If the dicts contain both numerical and string values , then you could combine them using a join , followed by a groupy and aggregation .
+In that case , I would like to know if there is a way to add only the numbers and append the ' D ' values as a list
+What do you want col1 and col2 to look like after you pivot ?
+I am using the groupby and sum to quickly aggregate accros two data sets
+However , I try using ` C = concat ([ A , B ])` and now find that I only have the column shares as an index and cannot group by sequence .
+Pass the ` axis ` option to the ` apply ` function : #CODE
+Does apply pass the columns including item1 , item2 when I use axis=0 ?
+` ix `' s main purpose is to allow numpy like indexing with support for row and column labels .
+I don't think ` ix ` supports negative indexing at all .
+You can resample the data to business month .
+If you don't want the mean price ( which is the default in ` resample `) you can use a custom resample method using the keyword argument ` how ` : #CODE
+@USER Don't know which method is preferred : normally I would use ` resample ` .
+` resample ` should work , not sure about advantages of ` asfreq ` .
+The ix notation allows you to slice columns .
+Now we have renamed the columns so they will align the way we want .
+Since pandas in it's current form assumes time series data are arranged with time in the index , not the columns , transposing the DataFrame , at least temporarily , will enable the use of many built-in methods , such as ` shift ` / ` diff ` / ` pct_change ` / etc .
+You can use the DataFrame ` apply ` method : #CODE
+For each date , when there is an ' S ' in the signal column append the corresponding price at the time the ' S ' occurred .
+That is , " give me the price at 1620 ; ( even when it doesn't give a " sell signal " , S ) so that I can diff . with the " extra B's " -- for the special case where B > S .
+` from numpy import * ` will replace the builtin ` any ` with ` numpy `' s any , which doesn't handle genexps , and so ` any (( False for i in range ( 3 ))) == True ` ; ` from os import * ` will replace ` open ` with ` os.open ` , and so most ` open ` calls will return ` TypeError : an integer is required ` ; and so on .
+I want to do it so that I can call reindex and fill in the dates between those listed in the table .
+Do I have to write an algorithm which is then going to go back and say on User 2 , insert the following entry ( 6 , 35 ) .
+You may find it faster to extract the index as a column and use ` apply ` and ` bfill ` .
+I'm a bit confused , first you append something to cash then you reassign it to an empty series .
+Update : in 0.15 you will have access to a dt attribute for datetimelike methods : #CODE
+Here's one ( slow ! ) workaround to do it using ` apply ` , not ideal but it works : #CODE
+It seems like a bug ( that you can't do ` apply ( lambda x : x.month )`) , perhaps worth adding as an issue on github .
+This happens when using apply as well #CODE
+How to apply quantile to pandas groupby object ?
+Then we make a copy , and use tril_indices_from to get at the lower indices to mask them : #CODE
+` map ` before ( or even after ) the ` zip ` ?
+Indeed , they are all " numbers " . apply ( float ) for some reason was rejected w / ValueError : could not convert string to float : price .
+Merge multi-indexed with single-indexed data frames in pandas
+How can I merge the two data frames with only one of the multi-indexes , in this case the ' first ' index ?
+Note : you are almost doing a ` join ` here ( except the df1 is MultiIndex ) ...
+you can * nearly * merge like this : ` df1.merge ( df2 , left_on =d f1.index.get_level_values ( ' first ') , right_on =d f2.index.get_level_values ( ' first '))`
+The mnemotechnic for what level you have to use in the reindex method :
+According to the documentation , as of pandas 0.14 , you can simply join single-index and multiindex dataframes .
+You can replace ` nan ` with ` None ` in your numpy array : #CODE
+Unfortunately neither this , nor using ` replace ` , works with ` None ` see this ( closed ) issue .
+The way I currently do it is that I reindex ` df ` with every second in the year and use forward filling like : #CODE
+These are the lines I tried to replace the True and False , and got a dataframe filled with all True values : #CODE
+` applymap() ` can be used to apply a function to every element of a ` dataframe ` #CODE
+It seems to be because the type of the objects in the ` DataFrame ` is actually ` numpy.bool_ ` , not Python's ` bool ` .
+I am having a real strange behaviour when trying to reindex a dataframe in pandas .
+and then I try to reindex inside a larger date range : #CODE
+I get strange behaviour when trying to reindex the dataframe .
+If I reindex one larger part of the dataset I get this error : #CODE
+Is there a way to replace the ' nan ' label with "" in the x-axis ?
+It's good practice to do that first before you apply .
+Is there a shorter way of dropping a column MultiIndex level ( in my case , basic_amt ) except transposing it twice ?
+For the rows which have ' ' in front I want to cut that and move into column C before the ' = ' sign .
+If I use normal slice it will cut values where there is no ' ' sign .
+And ` startswith ` does not work on float values .
+If you want to use ` startswith ` with a float , you can just first convert it to a str with str() .
+Then you can use Series ` apply ` with this function : #CODE
+I know I could resample the prices and fill in the details ( ` ffill ` , right ? ) , but that doesn't seem like such a nice solution , because I have to assume the frequency I'm going to be indexing it at and it reduces readability with too many unnecessary data points .
+Check ` asof ` #CODE
+I'm trying to merge a series of dataframes in pandas .
+I have a list of dfs , ` dfs ` and a list of their corresponding labels ` labels ` and I want to merge all the dfs into 1 df in such that the common labels from a df get the suffix from its label in the ` labels ` list .
+I'm trying to make a series of merges that at each merge grows at most by number of columns N , where N is the number of columns in the " next " df in the list .
+Unionize the non-common column names ( as in outer join ) .
+Here is my attempt at an implementation of this , which does not handle suffixes but illustrates the kind of merge I'm looking for : #CODE
+New columns are added in an outer-join style , but columns that are common ( and not part of the index ) are used in the join via the ` on= ` keyword .
+Is the above merge operation something that can be done more elegantly in pandas or that already exists as a builtin ?
+The cardinality of the " join space " is the issue and may need to be worked around .
+@USER : Yes , I want an outer join but I want it to use the indices of the left and right df .
+I can explain what's unclear if you let me know what - I basically want an outer merge that adds columns together based on a unique index
+On the other hand , you may want to look into an operation like ` pd.concat ([ df1 , df2 , df3 ] , keys =[ ' d1 ' , ' d2 ' , ' d3 '] , axis=1 )` , which produces a dataframe with MultiIndex columns .
+Can you explain though why this does not cause combinatorial issues while merge does ?
+From the documentation , this seems like an outer join on an index with merge , but they behave very differently ...
+Good question -- it seems to be a limitation of the current merge implementation .
+` Groupby ` the ID and apply the lambda function ` diff() .sum() ` to each group .
+Use ` transform ` instead of ` apply ` because ` transform ` returns an indexed series which you can use to assign to a new column ' diff ' .
+very smart , you changed diff ( 1 ) to diff ( -1 ) so that diff would be taken between i and i-1 , but then the signs were all negative , hence -diff ( -1 ) .
+i.e. , what if the row with shift == -560 was bad ?
+Here's a solution to separately aggregate each contiguous block of bad status ( part 2 of your question ? ) .
+As @USER comments this fails for NaN's and isn't particularly robust either , in practise using something similar to @USER ' s answer is probably recommended ( Note : we want a bool rather than raise if there's an issue ): #CODE
+@USER you're right you want to be using assert_frame_equal afterwards ( I don't think pandas exports a similar ) , although beware of using it from quant's answer as that can raise ( rather than return bool ) .
+@USER I think you want to do something similar to quants but return a bool , have included a recipe .
+Instead merge , join , or concatenate them into a single ` DataFrame ` beforehand as pandas gives you multiple ways of doing so .
+I think you are going to be better doing a ` concat ` of these DataFrames before exporting ( via ` to_excel ` ) .
+Unfortunately I think I should have to study a lot merge , join , concatenate functions in order to have usable and correctly formatted data on the sheet .
+python pandas custom agg function
+My agg function before integrating dataframes was u " | " .join ( sorted ( set ( x ))) .
+Ideally I want to have any number of columns in the group and agg returns the u " | " .join ( sorted ( set() ) for each column item like two above .
+I was hacking out the aweful ` grp2.agg ( lambda x : u " | " .join ( sorted ( set ( map ( str , x.tolist() )))))` .
+I can create a mask explicitly : #CODE
+[ Updated to adapt to modern ` pandas ` , which has ` isnull ` as a method of ` DataFrame ` s .. ]
+You can use ` isnull ` and ` any ` to build a boolean Series and use that to index into your frame : #CODE
+You could use the function ` isnull ` instead of the method : #CODE
+I've also tried doing this with concat and I get the same results .
+Are you trying to merge or concat these DataFrames somehow ?
+You should be able to use ` concat ` and ` unstack ` .
+If so , could you possibly append the output of ` s.head() .to_dict() ` for both Series to your question ?
+If you have a list / Series for this ordering ( in this case ` ser [: 3 ]` will do ) you can ` reindex ` before plotting : #CODE
+I suppose I could use ` pd.read_table ( " test.txt " , na_filter=False )` and subsequently replace ' NULL ' values with NaN and change the column dtype .
+One day I hope to replace my use of SAS with python and pandas , but I currently lack an out-of-core workflow for large datasets .
+I would then have to append these new columns into the database structure .
+I rarely append rows , but I do perform many operations that create new columns .
+Finally , I would like to append these new columns into the on-disk data structure .
+At the very end of this process , I apply some learning techniques that create an equation out of those compound columns .
+e.g. I have tables on disk that I read via queries , create data and append back .
+The second link makes me a bit worried that I can't append new columns to the tables in HDFStore ?
+You cannot append columns once a table is created .
+Is there any reason I couldn't just transpose a dataframe , add it to an HDFStore , and then index it by the " column " names ?
+This would allow me to access only the " columns " ( in the form of rows ) that I need , transpose them back , and then append any new ones I create .
+I can also add columns ( though not drop or rename ) and append observations .
+querying : gt = greater than ...
+How about a join since I normally get 10 data sources to paste together : #CODE
+then ( in my case sometimes I have to agg on ` aJoinDF ` first before its " mergeable " . ) #CODE
+Finally you can read into pandas your 3 to memory max key indicators and do pivots / agg / data exploration .
+You can also use the two methods built into MongoDB ( MapReduce and aggregate framework ) .
+See here for more info about the aggregate framework , as it seems to be easier than MapReduce and looks handy for quick aggregate work .
+Hi , I'm playing around with your example as well and I run into this error when trying to insert into a database : ` In [ 96 ]: test.insert (( a [ 1 ] .to_dict() for a in df.iterrows() )) ---------------
+Then I " transpose " the row-oriented HDF5 file into a column-oriented HDF5 file .
+The table transpose looks like : #CODE
+I subsequently process each file separately and aggregate results at the end
+And although the query language and pandas are different , it's usually not complicated to translate part of the logic from one to another .
+I think type change is fine as long as the timestamp they map to is preserved #CODE
+I want to do a map with a customized function where I'm expecting pandas.lib.Timestamp type .
+How do I turn a row into a map ?
+How can I turn a row into a map , or otherwise do simple concise custom printing of rows ?
+This will get you a map : ` speeds.ix [ 3 ] .to_dict() `
+This will convert to a map : ` speeds.ix [ 3 ] .to_dict() `
+Trouble with pandas cut
+I can then append this to my dataframe to have a new column .
+Then , you can groupby by the new column ( here it's called index ) , and use ` transform ` with a lambda function .
+Can you paste the entire stack trace ?
+File " / misc / apps / linux / python-2.6.1 / lib / python2.6 / site-packages / pandas-0.10.0-py2.6-linux-x86_ #URL line 1817 , in transform
+I pasted your stack trace into your original question .
+I am getting a TypeError : Transform function invalid for data types .
+Also , you shouldn't have to drop the NaNs .
+How do I join two dataframes ( pandas ) with different indices ?
+I'm working on a way to transform sequence / genotype data from a csv format to a genepop format .
+I want to insert the values from ` df2 ` into ` df1 ` , keeping empty rows where ` df1.index = ' POP '` .
+I tried ` join ` , ` combine ` , ` combine_first ` and ` concat ` , but they all seem to take the rows that exist in both df's .
+` df1.join ( df2 )` should default to a ` left ` join which only preserves the columns from df1 .
+It sounds like you want an ' outer ' ` join ` : #CODE
+My current solution is to define a temporary dataframe w , based on the fancy boolean indexing , set the corresponding values in ' y ' to 0 in w , and then merge w back to d using the index .
+And I'm trying to efficiently join where the keys match and the date is between the valid_from and valid_to .
+I was wondering if anybody had a better idea for a join such as this .
+( Note : the ` value ` column of ` df2 ` is accessed as ` value_y ` after the merge because it conflicts with a column of the same name in ` df ` and the default merge-conflict suffixes are ` _x , _y ` for the left and right frames , respectively . )
+Thanks @USER , I didn't know that qcut / cut had a labels-attribute ( isn't showing in IPython autocompletion unfortunately ) .
+2 , Use date as the primary index and time as the secondary index in a multiindex dataframe
+multiindex dataframe #CODE
+My naive inclination would be to prefer a single index over the multiindex .
+However , I am not very experienced with Pandas , and there could be some advantage to having the multiindex when doing time-of-day analysis .
+How can you elegantly apply condition a , b , c , etc . and make sure you then plot " the rest " ( things not in any of these conditions ) as the last step ?
+To find points skipped due to NA , try the ` isnull ` method : ` df [ df.col3.isnull() ]`
+pandas rolling computation with window based on values instead of counts
+I'm looking for a way to do something like the various ` rolling_* ` functions of ` pandas ` , but I want the window of the rolling computation to be defined by a range of values ( say , a range of values of a column of the DataFrame ) , not by the number of rows in the window .
+If I do something like ` rolling_sum ( d , 5 )` , I get a rolling sum in which each window contains 5 rows .
+But what I want is a rolling sum in which each window contains a certain range of values of ` RollBasis ` .
+I can't do it with the rolling functions , because their windows always roll by number of rows , not by values .
+For this to work correctly ( at least in pandas 0.14 ) , I think you need to replace chunk = indexed_what [ indexer ] by chunk = indexed_what.iloc [ indexer ] .
+" AssertionError when using apply after GroupBy " .
+In some cases I can get ` apply ` working after ` groupby ` and in other cases not .
+I am having difficulties understanding how to work with DataFrame with MultiIndex .
+Pandas Merge ( pd.merge ) How to set the index and join
+I tried the following merge : #CODE
+I want it to merge based on both date and cusip / idc_id .
+Reset the indices and then merge on multiple ( column- ) keys : #CODE
+You could append `' cuspin '` and `' idc_id '` as a indices to your DataFrames before you ` join ` ( here's how it would work on the first couple of rows ): #CODE
+` strip ` only removes the specified characters at the beginning and end of the string .
+If you want to remove all ` \n ` , you need to use ` replace ` .
+You could use ` regex ` parameter of ` replace ` method to achieve that : #CODE
+Maybe a nice trick / slightly dirty way to get around the unicode issues is to convert unicode columns into string columns with the " xmlcharrefreplace " option ; later on you can translate this back into unicode if you want to .
+Now groupby both columns and apply the lambda function : #CODE
+I tried looking at various join , merge etc . operators in the docs , but couldn't find anything offering similar logic .
+` alternating = big [( big.index.to_pydatetime() - start ) .total_seconds() / 17 % 2 == 0 ]` , but I can't seem to find a way to map the total_seconds() call to all elements .
+Renaming a pandas pivot table without losing axis labels
+When I invoke rename on a pivot table , I lose the axis labels : #CODE
+When you pivot , the values of x and y are the labels , and that is expected behaviour .
+You can use the ` DataFrame ` ` drop ` function to remove columns .
+This does indeed work well , but in this instance I only need to keep about 5-6 out of 40-50 series of data , and the series I want to drop may fluctuate based on changes in the input data file .
+I just had to do something similar to what you've done , and in my case , I've pre-computed the list of things I need to drop , and then passed in the list to the drop() function .
+@USER Zelleke , what if i had about 50 columns i want to drop and 50 columns i want to keep . and the number of columns can change each instance i run it .
+maybe replace the num with enumerate in the for loop ?
+Pandas : Read Timestamp from CSV in GMT then resample
+Then I would like the resample to one minute intervals , HOWEVER , I would like to be able to have it skip gaps which are larger than a user specified value .
+If this is not possible , is there way to resample to to one minute , but in the gaps , put in an arbitrary value like 0.0 ?
+The only thing I could figure out that might be the issue is in the dataframe dtypes were all object ( vs int64 ) but once I drop to the series , it went to longs .
+I actually think it won't always make sense to apply ` reshape ` to a Series ( do you ignore the index ? ) , and that you're correct in thinking it's just numpy's reshape :
+@USER the fact that it causes an exception when you try to do it is surely a bug , either it should let you do it to a DataFrame ( and reindex ) or the method shouldn't be available ?
+How to drop extra copy of duplicate index of Pandas Series ?
+So how to drop extra duplicate rows of series , keep the unique rows and only one copy of the duplicate rows in an efficient way ?
+One way would be using ` drop ` and ` index.get_duplicates ` : #CODE
+Not totally drop the duplicated ones .
+You can groupby the index and apply a function that returns one value per index group .
+@USER sorry , " arbitrary " of length len ( s ) :) .
+Below is my snippet : import pandas as pd ; idx_tp = [( ' 600809 ' , ' 20061231 ') , ( ' 600809 ' , ' 20070331 ') , ( ' 600809 ' , ' 20070630 ') , ( ' 600809 ' , ' 20070331 ')] ; dt = [ ' demo ' , ' demo ' , ' demo ' , ' demo '] ; idx = pd.MultiIndex.from_tuples ( idx_tp , names = [ ' STK_ID ' , ' RPT_Date ']) ; s = pd.Series ( dt , index=idx ); # s.groupby ( s.index ) .first() will crash on my machine
+@USER passing a MultiIndex to series.groupby and then applying a function also crashed for me .
+How do I elegantly apply this in Pandas ?
+Pandas has set logic for intersection and union , but nothing for disjoint .
+The ` Target ` is just a constant , so instead of trying to find the root for ` f ( x ) = 0 ` , you'd define ` g ( x ) = f ( x ) - Target ` and apply ` newton ` to ` g ` .
+I'm trying to identify the rows with unicode and strip the $ sign and comma , converting to float .
+However when I use the apply function to my case I get an ' unhashable type ' error .
+You are just printing these and not ` apply ` -ing them to the DataFrame , here's one way to do it :
+If I understand you right , you're looking for the ` apply ` method : #CODE
+Update : I now recommend installing the scientific python stack using Anaconda .
+@USER it may be preferable to install pandas via the fedora package #URL I now recommend using conda ( much easier for the python data stack ) .
+apply a function to a pandas Dataframe whose retuned value is based on other rows
+I want to apply the same process to the whole quantity column .
+Here , we groupby ` [ ' item ' , ' price ']` and apply the function above .
+After building basic class with ` __str__ ` and plotData() methods I would like to apply some filters and build a new class where additional column is the filter .
+To convert back to what we started with we could ` apply ` ` Timestamp ` to the column and ` set_index ` : #CODE
+I'm currently trying to build a fairly simple script that will compare two DataFrames from a CSV and perform an inner merge to remove duplicates .
+rank data over a rolling window in pandas DataFrame
+I am trying to rank a Timeseries over a rolling window of N days .
+I don't seem to be able to find a rolling rank function .
+If I wanted to rank the data over a rolling window of 3 days , the answer should be : #CODE
+To limit memory usage , simply replace the dict cache with something like a LRU .
+I try to apply exactly the same logic to my original problem with large dataframe inside a class .
+I found in here that there could be a problem with type of the columns but Depth is type ` numpy.float64 ` Hper is type ` float ` Vper is type ` float ` so I understand how it can apply to my problem .
+No , ` reindex ` doesn't do any sorting .
+You can use ` iget ` to retrieve by position :
+I have a Panda Series and based on a random number I want to pick a row ( 5 in the code example below ) and drop that row .
+I want to drop row " 5 NaN " and keep - 0.000052 with an index 0 to 8 .
+Somewhat confusingly , ` reindex ` does not mean " create a new index " .
+So at your last step just do ` sample_mean_series.index = range ( len ( sample_mean_series ))` .
+Using ` reindex [ blah ]` just selects rows , basically like doing ` df.ix [ blah ]` , and like that it gives you NaN if the ones you ask for don't exist .
+It does have some options for filling in the NaNs , but I've never really understood the point of reindex , let alone its name .
+Not sure where to drop sample data .
+In some circles this operation is known as the " asof " join .
+What about using ` Series.searchsorted() ` to return the index of ` y ` where you would insert ` x ` .
+If you want to combine ` join ` your MultiIndex into one Index ( assuming you have just string entries in your columns ) you could : #CODE
+Note : we must ` strip ` the whitespace for when there is no second index .
+And if you want to retain any of the aggregation info from the second level of the multiindex you can try this : #CODE
+pandas : merge rows on timestamp
+I'd like to merge the rows based on the first column and have the output look like this : #CODE
+I am still struggling to get a combination of groupby and stack to recast the dataframe .
+Construct the index as desired and apply it to the dataframe
+Now create the desired index and apply it .
+I'm trying to transform monthly returns data I have for thousands of stocks in postgres from the form : #CODE
+My suggestion would be to first ` set_index ` as date and company name , then you can ` unstack ` the company name and ` resample ` .
+@USER the column is a MultiIndex ( which is like a double header , and useful if there were more columns in the ` df2 ` , but not so useful here ) , you can " correct " this via ` df2.columns = df2.columns.get_level_values ( 1 )` .
+For posterity : in my actual , messier dataset , I needed to also use ` groupby ( levels =[ 0 , 1 ]) .last() ` to remove duplicate indices so I could ` unstack ( level=1 )` the dataframe , and then , to get the final result , I had to call [ ' return '] on the dataframe : e.g. with Andy's ` df4 ` ,, ` df4 [ ' return ']` got me the DataFrame I needed .
+The first resample starts at 2000-01-03 and the second resample starts at 2000-01-04
+The docs show how to apply multiple functions on a groupby object at a time using a dict with the output column names as the keys : #CODE
+What I want to do is apply multiple functions to several columns ( but certain columns will be operated on multiple times ) .
+but as expected I get a KeyError ( since the keys have to be a column if ` agg ` is called from a DataFrame ) .
+Because the aggregate function works on Series , references to the other column names are lost .
+This is starting to get pretty messy , though -- I think for readability manual looping may be preferable , plus I'm not sure there's a way to give it my preferred name in the ` agg ` argument ( instead of ` `) .
+How do I resample a time series in pandas to a weekly frequency where the weeks start on an arbitrary day ?
+You can pass anchored offsets to ` resample ` , among other options they cover this case .
+Pandas Drop Rows Outside of Time Range
+I have been looking for solutions but none of them separate the Date from the Time , and all I want to do is drop the rows that are outside of a Time range .
+Note : the same syntax ( using ` ix ` ) works for a DataFrame : #CODE
+@USER -- My first thought was also that it worked the same , but I think DataFrame tries to apply it to the columns ( without the ix ) .
+@USER I think it's good practice to use ix with Series as well , and that way the syntax is identical , so I updated the first part .
+@USER thanks for mentioning that , I will append :)
+I'm trying to transform a ( well , many ) column of return data to a column of closing prices .
+If abs ( stuff ) > 1 , the result will be negative .
+If you can't / don't want to replace your reading with ` pandas.read_csv ` , then probably my ` numpy.delete ` is easiest , but I think you're better off with his answer .
+` read_csv ` is much simpler , harder to get wrong , and probably faster than what he has , and there's no good reason not to drop the column in ` pandas ` instead of post-deleting after ` to_records ` .
+currently to create my time axis I'm using the following : ` x = mdates.num2date ( x , tz=None )` ` x = [ dt.replace ( tzinfo=None ) for dt in x ]`
+You may be trying to force the use of ` hist ` ... consider taking a step back to construct a bar plot .
+Pandas dataframe resample at every nth row
+I am planning to resample the dataframe so that if the dataset passes certain size , I will resample it so there are ultimately only the SIZE_LIMIT number of rows .
+I need to apply some function for every columns and create new columns in this DataFrame with special name .
+You can use ` join ` to do the combining : #CODE
+where you could replace ` df*2 ` with ` df.apply ( your_function )` if you liked .
+I would skip the ` apply ` method and just define the columns directly .
+But for whatever reason I avoid ` apply ` unless I really need it .
+BY avoiding the ` join ` this also has the nice benefit of not having to reassign the dataframe .
+In particular I want the inner join of the tables .
+I could not load the table B on memory as a pandas dataframe to use the normal merge function on pandas .
+straightfoward disk based merge , with all tables on disk .
+See this answer for a comment on how doing a join operation will actually be an ' inner ' join .
+For your merge_a_b operation I think you can use a standard pandas join
+table ; instead of storing the merge results per se , store the row index ; later
+I am avoiding to use join / concat / merge option of pandas since they all spit out a " segmentation fault : 11 " every now and then .
+Which is probably like a inefficient " join " .
+To avoid it replace last line with : #CODE
+I basically replace the stars in my example code above with ` ` .
+Pandas DatetimeIndex truncate error
+` df ` was created by concatenating multiple dataframes together using the ` concat ` function .
+Let's say I wanted to do the rolling sum over a 1ms window to get this : #CODE
+add column with time rounded to millisec and groupby it , apply cumsum within each group
+You need a way of handling NaNs and depending on your application , you may need the prevailing value asof the lagged time or not ( ie difference between using kdb+ bin vs np.searchsorted ) .
+ugh , the second asof ( s.asof ( lag )) is wrong .
+What you really need are the indices from the first asof .
+I have tried concat : #CODE
+but I need the output that adds values of existing indices and keeps new indices if they appear , so a mix of concat and ' + ' .
+Or you could align the two first , and then simply add them with ` + ` : #CODE
+Why not just take the [ transpose ] ( #URL ) ??
+You could replace : #CODE
+Is there a way to first compute the cumsums and then apply ' ohcl ' to the data ?
+I wasn't able to get your resample suggestion to work .
+Here's a way to aggregate the data at the business day level and compute the OHLC stats in one pass : #CODE
+The outer key references the columns you want to apply the functions to .
+The inner key contains the names of your aggregation functions and the inner values are the functions you want to apply : #CODE
+boolean mask in pandas panel
+1 ) I create a mask and mask the data as follows : #CODE
+What I cannot figure out how to do is filter all of my data based on a mask without a for loop .
+Assuming that Date is the index rather than a column then you can do an " outer " ` join ` : #CODE
+I get : `` 275 # FIXME : This doesn't handle MultiIndex
+How to drop a list of rows from Pandas dataframe ?
+Then I want to drop rows with certain sequence numbers which indicated in a list , suppose here is ` [ 1 , 2 , 4 ] , ` then left : #CODE
+This is because of using integer indices ( ` ix ` selects those by label over -3 rather than position , and this is by design : see integer indexing in pandas " gotchas " * ) .
+* In newer versions of pandas prefer loc or iloc to remove the ambiguity of ix as position or label : #CODE
+Note : Series has a similar ` iget ` method .
+Using the ` map ` lets you put in any condition you want , in this case you can do this more simply ( as pointed out in the comments by DSM ) #CODE
+Like the last non map solution from DSM , worked for me
+Python pandas , how to truncate DatetimeIndex and fill missing data only in certain interval
+for each date in the DataFrame truncate to only have data in the
+the pandas truncate functions only allows me to truncate according to date , but I would like to truncate according to datetime.time here .
+for each date in the DataFrame truncate to only have data in the range of 9:00 : 00AM - 11:30 : 00AM and 13:00 : 00 - 15:15 : 00
+Merge this dataframe with the original one using outer join .
+@USER You can probably create a two-level index ` [ ' date ' , ' time ']` and then apply time filtering for the second level , but that is beyond my current level of pandas-fu now .
+So you can use ` map ` and a ` lambda ` : #CODE
+Note , however , that while you can attach attributes to a DataFrame , operations performed on the DataFrame ( such as ` groupby ` , ` pivot ` , ` join ` or ` loc ` to name just a few ) may return a new DataFrame without the metadata attached .
+When I do df [ ' tracking '] = pd.np.arange ( len ( df )) I get ' tracking not in this series !
+To pick the last row using ` irow ` : #CODE
+I've delved into the code to realize that the repr function on Series eventually calls ' _format_datetime64 ' , which checks ' isnull ' and will print out ' NaT ' That explains the difference between these two .
+I suppose there may be other pandas functions that call ' isnull ' and act based on the answer , which might seem to partially work for NA timestamps in this case .
+Pandas append data frames , add a field , and then flood the field with a default value ?
+I want to append them into a master data frame .
+I think that's not the best shape for your DataFrame -- I think columns like " letter " , " number " , " acc " , " rt " or something ( giving them more meaningful names ) would be easier to pivot .
+

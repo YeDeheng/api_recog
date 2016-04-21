@@ -1,0 +1,7 @@
+Performance by label (#match, #model, #ref) (precision, recall, F1):
+    O: (64343, 64669, 64613) (0.9950, 0.9958, 0.9954)
+    B-API: (903, 1173, 1229) (0.7698, 0.7347, 0.7519)
+Macro-average precision, recall, F1: (0.882390, 0.865282, 0.873632)
+Item accuracy: 65246 / 65842 (0.9909)
+Instance accuracy: 2881 / 3388 (0.8504)
+Elapsed time: 2.887287 [sec] (1173.8 [instance/sec])
