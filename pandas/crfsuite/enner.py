@@ -164,7 +164,8 @@ def get_gaz_unamb(t):
                 if any( re.match(pattern1, api) or re.match(pattern2, api) or re.match(pattern3, api) for api in api_pos):
                     return "T"
             except:
-                print t
+                pass
+                #print t
     return "F"
 
 def bc_prefix(code, p):
