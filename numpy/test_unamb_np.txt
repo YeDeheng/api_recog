@@ -1,0 +1,150 @@
+` fromiter ` wants a 1d input , e.g. ` [ 1 , 2 , 3 ]` ( or the generator equivalent ) .
+read more : take()
+For this I'm using an instance of the ` numpy ` class ` RandomState ` .
+You can write a thinly wrapped subclass to ` np.ndarray ` .
+Using ` ndarray.reshape ` #CODE
+E.g. this works in the interpreter : ` >>> a = np.arange ( 10 , dtype=float ) .resize ( 1 , 5 )` , because the interpreter doesn't " see " the intermediate value .
+I attempted your suggestion but got stuck trying to iterate through the existing dtype .
+` numpy.setdiff1d ( a , a [ sel_id ])` should do the trick .
+Instead of disabling the behavior you could try using np.select :
++1 I liked you approach , but how to make ` np.copyto() ` work with a memoryvew ?
+Just import Decimal and for the printing just write print Decimal ( ndarray [ i ]) .
+Or , for that matter , numpy.genfromtxt .
+glad to hear it - I only recently found out about ` np.einsum ` myself , and it has rocked my world ever since
+The ` dtype ` could be deduced from one ( or more ) of the dictionary items : #CODE
+I didn't realize ` array_split ` existed !
+However , in that case , you could just do : ( ` searchsorted ` uses bisection ) #CODE
+Btw . you can also implicitly force the ` dtype ` to be ` float ` when using dots : #CODE
+dtypes .
+I would prefer using the xor ufunc I think , which is ` bitwise_xor ` ( or ` logical_xor `) : #CODE
+This is the root of why your ` fromarrays ` works , but not the ` append_fields ` .
+The dtype should be big endian .
+parameterArray += line.split() \nline = self.inputBuffer.next() \ nnp.parameterArray = np.array ( parameterArray )
+As JoshAdel points out , ` vectorize ` wraps ` frompyfunc ` .
+Sorry , the line was output [ i , j ] = np.sum ( ssd_difference [ #URL ( ) )
+( or ` np.array ([[ 1 ] , [ 2 ] , [ 3 ] , [ 4 ]]) .shape `)
+Thank you for the great tipp with ` plt.hist ( img.ravel() )` !
+The ` recarray ` class accepts an aligned parameter , but looks to lose it in ` format_parser ` .
+In case someone comes past this , numpy ( as of 1.8 I think ) support higher that 2D generation of position grids with meshgrid .
+` numpy.random.choice ` is not implemented in Python but in a ` .pyx ` file which needs to be compiled to C using Cython .
+A plain ` .copy ` did work for me .
+` A [ np.ix_ ( x , y )]`
+einsum : 5.2 s
+10**423 exceeds the largest int representable as an integer ( or float ) NumPy dtype , so there is no point in using NumPy here : ` np.iinfo ( ' int64 ') .max < 10**423 ` .
+Probably , better performance is by using ` numpy.fromiter ` : #CODE
+Why are the polyfit constants from the third case listed as NAN ?
+Try ` numpy.array_split ` .
+Using np.repeat on sub-arrays
+shows that ' region ' has an ` object ` dtype : #CODE
+What I am looking for is something along the original functionality of ` np.unique ` #CODE
+In my opinion , np.matrix should override for addition and subtraction as well .
+or ` np.vstack ` , ` np.dstack ` ` np.r_ ` , ` np.c_ ` , ` np.concatenate ` depending on the desired shapes .
+TypeError when using SymPy matrices for numpy.linalg.eig
+Doing ` a.astype ( float )` actually creates a * new * ndarray which is of type ` float ` .
+Trying to vectorize the code also resulted in very poor performance ,
+Also look into the genfromtxt and loadtxt family of Numpy functions .
+` coll [ 1 ] .set_color ( " r ") # this does not work , coll not indexable this way `
+The ` testing.assert_equal ` approach is almost good , except that it presumably fails if ` __debug__ ` is False !
+I've just checked and found out that my implementation is about 2.x times * faster * than using ` numpy.convolve ` .
+Not as concise as I wanted ( I was experimenting with ` mask_indices ` ) , but this will also do the work : #CODE
+The documentation of ` numpy.nonzero() ` describes how its result must be interpreted .
+scikits-learn pca dimension reduction issue
+` np.mean ` can also preserve dimensions if needed .
+Are there alternatives to do the sorts of things ` einsum ` can do with sparse matrices ?
+Your immediate problem is ` numpy.putmask ` .
+why not ` np.array ([ o.value1 for o in objects ])` ?
+In a comment to ` @USER ` s answer I suggested ` np.delete ` .
+I have a ` numpy.ndarray ` .
+I believe it comes down to the fact that Python calls a ` __getitem__ ` on your objects and treats the entire block of code of ` for ` loop as an inline statement .
+In the Notes section to column_stack , it points out this :
+` logical_or ( a , logical_or ( b , c ))`
+How about reading them in correctly as numpy.datetime64 objects using numpy.loadtxt ( they are coming from a csv file ) ?
+Also - I see that np.getfromtxt() has a ' dtype ' option which allows the user to specify the datatype of each column .
+No worries , the dtype is inferred as ` int64 ` unless you pass it explicitly
+whats the result of ` print a ` after ` a = np.loadtxt `
+Keep in mind that ` np.cov ` is basically doing ` data.dot ( data.T )` .
+If you want to vectorize operations , you need to think in terms of these higher dimensional arrays .
+Does ` s2 = pd.Series ( s , dtype =o bject )` work ?
+` PyArray_DATA ` is defined in
+` a [: , : , 5 ] .shape = ( 10 , 10 , 1 )`
+Can you print ` datas [ 0 ] .shape ` ?
+actually used is this line within the definition for ` np.array_repr `
+That's why ` dstack ` behaves the way it does .
+>>> x = np.asanyarray ( [ ] , dtype= ' float64 ')
+This doesn't work for floating point types ( it will not consider + 0.0 and - 0.0 the same value ) , and ` np.intersect1d ` uses sorting , so it is has linearithmic , not linear , performance .
+But off course , isreal would be more readable :-)
+mshgrd = ax.pcolormesh ( X , Y , Z )
+Otherwise , the performance advantages of using numpy are quickly nullified , regardless of how you implement your ringbuffer .
+The answer is numpy.clip #CODE
+Can you please go into more depth about nesting a recarray in another by using the np.object method ?
+Why do you need ` vectorize ` for that ?
+I did try gc.colletc() without success but adding a clf() inside the loop does the trick !
+not a bad solution ; though I am somewhat wary of the performance of random.shuffle .
+date2num , ValueError : ordinal must be > = 1
+And you could override ` __mul__ ` , ` __add__ ` , ` __sub__ ` accordingly , but I don't know exactly how numpy-like you actually * need * this to be , so I can't say for sure .
+` np.array = partial ( np.array , dtype= np.float32 )` with ` partial ` from the ` functools ` module .
+A solution that worked uses griddata .
+Numpy 1.7.0 assert_array_almost_equal documentation
+You can read matlab ( .mat ) files in Python , try this : #CODE
+Thanks for the idea of genfromtxt() .
+If you are using numpy , for multidimensional lists ` numpy.repeat ` is your best bet .
+If the following equation is element-wise True , then allclose returns ` True ` : #CODE
+` np.vstack ` just vertically stacks the arrays you pass to it , and so something else in your code may be cutting off the rest of the results inadvertently .
+If you move the line ` np_verticies= np.array ( verticies )` outside of ` Fnumpy ` and the timed section your results will be very different : #CODE
+` fromiter `' s example is essentially this : ` np.fromiter (( x*x for x in range ( 5 )) , int )` .
+In Python , I have a numpy.array of integers ` [ 2 , 4 , 7 , 8 , 9 , 10 , 15 , 10 8] ` .
+I will go with newaxis then .
+pcolormesh returns a QuadMesh .
+And when I call each of the instructions inside f() individually it gives me an other result ( which is correct ): #CODE
+Here's one vectorized approach based on ` np.einsum ` - #CODE
+What's the ` dtype ` of these arrays ?
+try adding a ` show() ` in the end
+` pandas.DataFrame `
+You can define your own types by creating a class and writing a ` __add__ ` or ` __sub__ ` method .
+On the other hand , if I did with ` genfromtxt ` , the third column is problem because it includes comma inside double-quota .
+Apparently , if there is no ' missing_value ' attribute Netcdf4 defaults to a missing value appropriate for the dtype .
+do be aware that if you have NaNs , there is an equivalent np.nanstd with the similar ddof options
+[ True , True ]] , dtype =b ool )`
+@USER true , although ` np.array ([ x for bb in b for x in bb ])` will do the job .
+return matrix_power ( self , other )
+vector = numpy.array ( vector );
+If so then you should have no problem fitting the ` numpy.fft.rfftfreq ` method into your own code .
+This fails : ` einsum ( ' i ..., i ...
+Python & Numpy - create dynamic , arbitrary subsets of ndarray
+For example , I have a ` ndarray ` that is : #CODE
+I went with the np.memmap because the performance is similar to hdf5 and I already have numpy in production .
+its np.log not m.log
+what happens if you [ ` Py_INCREF ( self )`] ( #URL ) after ` .base ` assignment ?
+File " / usr / lib64 / python2.6 / site-packages / numpy / core / fromnumeric.py " , line 806 , in searchsorted
+why isn't the ` ndarray ` constructor mentioned here ?
+>>> z = numpy.array ([ 1 , 2 ]
+Is there an equivelent to ` fseek ` when using ` fromfile ` to skip the beginning of the file ?
+The linear algebra functions are generally grouped in ` numpy.linalg ` .
+np.mean : #CODE
+As others have said , 32-bit versions of numpy still support 64-bit dtypes .
+` vstack ` is coercing the type of ` d ` to the type of ` e ` .
+` df.plot ` returns an AxesSubplot , which has a ` axvspan ` method .
+With the variables defined above , ` np.searchsorted ( lat , x )` is 16x faster than the equivalent call ` np.nanargmin (( lat-x ) **2 )` on my computer .
+Pypy with iterators is still solving this about 3x faster than CPython + Numpy , even when using ` np.searchsorted ` ( see my solution ) .
+and ` hstack (( a , z ))` ?
+Have you tried passing ` interpolation= ' nearest '` to ` imshow ` ?
+` cumsum ` might not be the best example .
+I think you're after ` plt.axis ([ xmin , xmax , ymin , ymax ])` : #CODE
+Is ` ( dry , unrch ) = (( G == 3 ) .sum() , ( G == 1 ) .sum() )` more vectorized ?
+Then , ` np.array ( np.matrix ( s.strip ( ' [ ]')))` will do the same magic .
+I'm trying to vectorize Z , but I'm finding it rather difficult for a triple for loop .
+How would that be done using np.dot ?
+I was surprised how descending sorting of np.array seem so un-pythonic .
+` numpy.genfromtxt ` accepts generators , so you can chain ` genfromtext ` and ` ifilter ` : #CODE
+I also tried ` df.query() ` , but no much improvement .
+According to the documentation ( e.g. , here ) , ` PyArray_SimpleNew ` has a return of type ` PyObject * ` and thus the above should be perfectly fine .
+Edit : ` np.where ` is optional , thanks @USER .
+or with ` numpy.concatenate ` ?
+@USER you can do it , it's easy with ` np.histogram ` .
+` numpy.base_repr ` uses this , but only operates on scalars .
+Python apply_along_axis of multiple arrays
+` numpy.average() ` has a weights option , but ` numpy.std() ` does not .
+I wanted to write ` M.det() ` instead of ` numpy.linalg.det ( M )` ,
+I was working with something like ``` s = pd.DataFrame ([ ' 1 ' , ' na ' , ' 3 ' , ' 4 ']) .
+tested it a bit myself : sympy.sin is much slower than numpy.sin
+I was thinking of something like ` frombuffer ` .

@@ -1,0 +1,500 @@
+I haven't checked any of the details and you should therefore not rely on it to be correct .
+You can access members and slices of the array as you would with normal numpy arrays .
+Running 1000 simulations at the same time might be a bit expensive though .
+I need to look at other formats that allow create .
+finding element of numpy array that satisfies condition
+All the results ( percentage ) are the comparison between the described condition and the reference which here is the packaged ATLAS library .
+how do you use ` slicing ` to extract something from ` x ` ?
+Mapping a numpy array pairwise
+If that is all you want to do , it should just work otherwise look at #URL since subclassing an array is not that simple .
+If you want to access an individual element using 2D notation , you can create a view and work with that .
+Regarding 3 , I don't think this would be necessary since the above trick can also be applied to an array allocated by ` shmarray ` .
+And here a list with the names of all distribution functions available in Scipy 0.12.0 ( VI ): #CODE
+I get this error whenever i try to use any functions of matplotlib such as graph etc ...
+Numpy is designed for repeated application of the exact same operation in parallel across an array .
+Each B i is a ` k ` -by- ` n ` matrix .
+I created a copy of the initial array in the hope that it would sort it out but it still doesn't work !
+So far , all the solutions I found required converting to IPLImage .
+However , I haven't tested this very systematically , and it's likely that for smaller matrices the additional overhead would outweigh the performance benefit from a higher thread count .
+but why dimA+dimB to begin with , that just leaves you 0s at the end .
+If you select a list of actual fitness entries , ` indices ` , the corresponding points are given by ` A [ ' point '] [ indices ]` , which is a simple ` ( n , 3 )` array .
+It's also possible to generate an array of indices without using ` enumerate ` .
+If you want to keep the array allocated , and with the same size , you don't need to clear the elements .
+It'll print out all methods and properties of the object .
+Search numpy array inside numpy array
+Assigning a view to a structured array also copies the data , soyour suggestion doesnt work .
+If you know there are not many different values ( relative to the size of the input " itemArray ") , something like this could be efficient : #CODE
+When I import numpy in a script , I don't have all the functions of numpy available , only few of them ( not a lot , and not array ) ?
+It allows to have your custom system inside the home directory accessible via proot and , therefore , you can install any packages without root privileges .
+Hey , is there an optimal size for a block ?
+Numpy array , how to select indices satisfying multiple conditions ?
+I'm still learning git and this whole open source thing .
+A further problem is that a list index can't contain duplicates - I couldn't simultaneously read pixels ` [ 1 , 2 ]` and ` [ 1 , 3 ]` , since my list of pixel x-coordinates would contain ` [ 1 , 1 ]` .
+Your interpretation is , of course , quite correct : ` count ` refers to the number of elements in the ` float* ` " array " .
+This all works .
+Of course it may _not_ be acceptable , but it seemed like it was at least trying .
+I think what should happen is for R to be overwritten with an upper triangular matrix .
+@USER Is there a way to get it to return all possible solutions ?
+Thank you all for some great insight !
+as numpy array of 0 and 1 values .
+By construction of the problem , there can not be any non-unique values lying within one another .
+Both functions are kind of equal , but are different .
+For a sparse csr matrix ( X ) and a list of indices to drop ( index_to_drop ): #CODE
+This will be relatively slow , and requires you to have twice the free memory space required to store the array .
+I need numpy for this because I don't want to loop through the array n-times for n groups , since my array sizes can be arbitrarily large .
+I wonder what the speed delta between native Numpy arrays and an ` mpfr ` array , seeing as ` mpfr ` is a relatively low-level C wrapper class .
+In this particular case , each 1D column ( ` column = myarray [ i , j , :] `) of the 3D array can be treated independently .
+Any ideas ?
+Then take element 3 and 1 from second row , etc .
+print len ( index )
+I don't know how to label rows and columns in numpy , so I just made a dict mapping the row label to the row index and another doing the same for the columns .
+It's the same as a normal solve except I know some of the solution to begin with .
+yeah , this is the best answer anywhere where edge cases are important .
+With this , I solve the problem ( may help you ): #CODE
+Teach a man to fish and all that .
+Looks like this would be a good place to use a context manager , so you can say " with fullprint " .
+What do you mean by ' random sort ' ?
+However , it indeed does not allow you to exponentiate any matrix directly : #CODE
+The first one would probably be slow for large data , and the second one does not seem to offer any other interpolation method except splines .
+EDIT : For the record , here is example code that demonstrates the issue : #CODE
+In terms of functionality , it's not a metaclass at all , it's a function which takes a class ( along with some others stuff ) and returns a new class .
+or from source #CODE
+Didn't do any timings here , but it's possible this version has reasonable performance .
+I'll just test whether or not there's a significan space gain on my data with protocol 2 .
+Just wanted to add that the moving average function has been extracted into the [ Bottleneck ] ( #URL ) library if pandas seems too heavyweight as a dependency .
+` numpy ` can use ` malloc ` / ` realloc ` for creating an array of objects of ` sizeof ( int )` .
+If you read through the documentation of those engines you will often find statements saying that they are optimized for speed ( 30fps - 60fps ) .
+I know I have to look at each row , but I don't want to do it with loops .
+I'm hoping this can at least save someone a few hours of hopeless research for this topic .
+What does " doesn't work " mean ?
+You might look at your code that generates the ` y ` values , and see if that would benefit from the use of additional numpy or scipy functions .
+For example , give the list [ ( .3 , ' a ') , ( .4 , ' b ') , ( .3 , ' c ')] I'd like to sample ' b ' 40% of the time .
+The square bracket idea you mentioned works for my current problem .
+However , when I try to use a weighted average #CODE
+If I scale that to a 2000 X 2000 np array , here is what I get : #CODE
+Unfortunately , I'm not aware of a numpy implementation , but I did find this : #URL
+We can do this quite neatly using numpy , without having to worry about the channels at all !
+It's not exactly the most efficient way , but it will work , and not require keeping a copy of the file in memory ( or two ) .
+I'm trying to find the fastest way to find the first non-zero value for each row of a two dimensional sorted array .
+Convert the numpy array into a list first .
+@USER do you mean that grid dictonary holds the results in memory or something else ?
+@USER : This solution is indeed designed to give the set of all the numbers found in the array .
+This way at most one line is in memory at any one time .
+It's low efficiency , I want to know are there any builtin functions that can do this in NumPy .
+The raw hardware data is 32-bit signed integer , which becomes float when I convert it to normal physics units ( m / s )
+Calculate subset of matrix multiplication
+EDIT : as to what DSM pointed out , OP is infact using a numpy array .
+As for the second question , ` delete ` has been suggested before : #CODE
+The remaining rows of the matrices are all linear combinations ( in fact exact copies for almost all submatrices ) of these rows .
+I'm printing the contents of an array with a header .
+Edit : If you need to save memory try radix sort , which is much faster on integers than quicksort ( which I believe is what numpy uses ) .
+The data was in following order ( with sample data ) #CODE
+definitely a good solution , nevertheless I'd like to solve this without a range , but the nearest neighbour .
+For my recent project that works on the order of 20000x20000 matrix entries , I will quickly and disastrously use up all of my workstation's 8GB of RAM and more .
+Well , this might give a small speed-up just because it uses less memory .
+Try using ` all ` ( edited to return ` int `) : #CODE
+: I don't care if the statement modifies array or not .
+Rather than doing nans I put in -1 and then filtered on match = b > = 0 .
+Removing duplicate columns and rows from a NumPy 2D array
+arrays to extract arrays of the same
+as i have to test if it works or not so minimum i have to try with 10-15 different types of images . its not specific images it can be any image of people .
+So having a python loop , and having to sum all the results together , is taking 390 ms more than 200 times what it takes to solve each of the 200 systems that have to be solved .
+You could then sample pixels at the locations of the new points .
+I could use an idea about either how to fix the compilation errors or another way to convert my python objects .
+I tried every possible combination resulting with a 0 bytes file if the extension was mpg , and 5.5kb if it was avi .
+Fortran 90 DOES support arbitrary lower bounds on arrays , and borrowing from that paradigm sounds quite plausible .
+I want to perform an operation on a that increments all the values inside it that are less than 0 and leaves the rest alone . for example , if I had : #CODE
+I like how this one uses straight python slicing and doesn't require numpy
+I select the first value using ` ys [ 0 ]` .
+While waiting for the next buffer to fill , I'd like to process the most recent buffer with numpy and save the result .
+( They all do the same thing , in this case . )
+As of PIL 1.1.6 , the " proper " way to convert between images and numpy arrays is simply #CODE
+So first you need to construct an array that represents the rows you wish to select .
+Any ideas how to improve this ?
+If this is the case , you can easily plot a known asymmetric shape and the plot will tell you everything .
+Apart from the compression part , this shouldn't be any slower than normal .
+Acquiring the Minimum array out of Multiple Arrays by order in Python
+first copy #CODE
+Getting all points where y=2 .
+moving average function on numpy / scipy ?
+for a N dimensional array : #CODE
+From looking at #URL it seems that it was originally required because indexing with ` ...
+In other words ... yes you can trust it to be faster ... but don't think python is that slow that you cannot do a for loop over 3 items without waiting for ages ...
+And all that while you're getting lunch .
+If you do want to raise some sort of exception for invalid data ( not type checking ) , either let an existing exception propagate , or wrap it in your own exception type .
+casting are used in Numexpr , in contrast with NumPy , where array types
+I check mathexchange and while making the tags for the post , it didn't have any the ones that would seem relevant like scipy and numpy or even sparse .
+Any help would be appreciated .
+Say not that efficiency is a secondary priority ; say instead that I want to perform bivariate optimization : pythonicity + efficiency ( hence the post title ) .
+Does numpy have any constructs to make this easier ?
+If you view ` P ` as a rank-2 tensor then only three options exist for the product of ` P ` with itself , 1 ) either all the indexes cancel leaving you with a rank-0 tensor ( a scalar ) , 2 ) 1 set of indexes cancels and you are left with a rank-2 tensor ( a matrix ) , or 3 ) none of them cancel and you're left with a rank-4 tensor .
+At the moment I made a custom iterator class that builds a list of lists .
+This basically sees whether two circles ( with coordinates that correspond to the indices n and m ) connect .
+It would mean Gaussian quadrature using points along the line that are easily evaluated .
+I see one potential problem - beta is defined as 1-dimensional , but its value is given as 2-dimensional ( dimensions of size 1 still count as dimensions )
+Can you provide an algorithm for computing them based on block size ?
+If ` X ` is your array , #CODE
+You could cast the array to a list : #CODE
+But if you for example self compiled from the development version an update may fix most of it .
+In VTK I am able to use the following snippet to save the render window as an image .
+In other words , the 4th row in A_sorted was the 1st row in the original array , A , etc .
+Add a ` return ` statement at the end of the method .
+However , with different input sizes , using fft's to do a convolution can be considerably faster ( Though I can't seem to come up with a good example , at the moment ... ) .
+That is a shallow copy ...
+@USER The solutions there all make use of the fact that only a 3x3 sliding window is needed , but I need something that works for all sizes of templates .
+A masked array is useful here : #CODE
+Second I would like it to be easily expandable , that I can add new functions easily .
+If i have two variables - where they either are a 1d array of values length n , or are a single value , how do i loop through them so that I get n values returned .
+I think masked arrays have been in numpy for a few years now .
+I have an array defined in this way ( extracting the third column of a dataset ): #CODE
+I wasn't aware of the option of using ` data [ list ]` to select multiple columns .
+Beware that if the type of the output array is
+Any ideas how I would do this calculation in a simpler way ?
+Those take up about 15MB of space which , considering that I get about 1000 result files in a series , is unacceptable to save .
+I'm trying to implement a logic where I'm trying to subtract each element of an array from every other element of the array and then find the minimum difference of the result .
+My final matrix should have 5416 rows with 500 000 column each .
+I am attempting to process data saved to CSV that may have missing values in an unknown number of columns ( up to around 30 ) .
+Actually the surprise is still hidden in a way , because in your examples ` a [ indices ]` is the same as ` a [ indices [ 0 ] , indicies [ 1 ]]` but ` a [ indicies , :] ` is ` a [( indicies [ 0 ] , indicies [ 1 ]) , :] ` which is not a big surprise that it is different .
+Slice numpy array wth list of wanted rows
+Here is a slightly more complex version that always returns a view into the original array ( of course provided that you don't do any advanced indexing ; this should be guaranteed by your specification of valid indices ): #CODE
+If the array is one-dimensional , this means it has no effect .
+The problem with using ` view ` , however , is that a 32-bit integer becomes viewed as 4 8-b it integers , and we only care about the value in the last 8-b its .
+So this won't solve OP's question ( unless his nD is 2 or 3 ) .
+Note : this was meant as a comment , not an answer ... just needed more room to put in the example above .
+If I wanted to change the data type of a numpy array permanently , is reassignment the best way ?
+The shifted shm-allocated array is indeed accessible from other processes .
+The second solution you propose is better from that point of view .
+It checks for nans and empty input strings .
+The ability to extract columns and rows by header name ( as in the above example )
+With Python 2.6.5 or Python 2.7 , and Numpy 1.5.0 , I don't get any error .
+Returns a boolean array the same length as ` ar1 ` that is True
+If the objects in the array are not fixed size ( such as your MultiEvent ) the operations can become much slower .
+@USER : True the code I gave would not be all the efficient
+You print ` Length of together 2708000000 ` - where is that ` print ` statement in your code ?
+Is there a way to copy just the reference to b , so that when I change b , the change is reflected in ` a [ ' B '] [ i ]` ?
+If the matrix is not symmetric be careful about the order in dot .
+So I changed the " array " to matrix .
+config paths , cflags .
+gnibbler : That completely misses the point of the algorithm , this is a simple example , what I am doing is Gauss-Seidel iteration , which infers information about a location in a matrix by using data that has already been inferred in previous entries .
+how do i find the smallest then if this gives me the n greatest values ?
+@USER : you can wrap the insides the prange loop in ` with nogil : ` to use any Python constructs .
+For each ` Xi ` greater than ` lower_limit_X ` and less than ` upper_limit_X ` , I would like to get the number of ` Yi `' s that are greater than ` lower_limit_Y ` and less than ` upper_limit_Y ` .
+and find the roots ?
+I'd like to generalize this to an ellipsoid , that could ideally have any rotation .
+Is there any way to integrate the entire array at once , or do I need to integrate element-by-element ?
+I need to sum
+with ' f ' and ' F ' , or before and after the decimal point for a floating
+You can write that as a matrix : #CODE
+In fact , if you use tuples as Justin suggested and iterate directly over the rows of the array ( ` for row in data : `) , it's actually faster than my method below .
+Using the ` ctypedef ` keyword in Cython will make it add the C / C++ ` typedef ` statement with the given types in the compiled Cython-code .
+Here is how I would compute a subset of the elements of C given a list of tuples of C index values .
+In my specific problem ` A , B ` are slices out of a bigger 3-dimensional array ` Z ` ,
+The solution to get all the data you need as you build the list , by using the accessor on each iteration .
+Edit : Actually you could also sort both arrays into one ( and remember which one belongs to which class ) , then go from there by checking where two of the different class are next to each other .
+How can I integrate it from a given value ` a ` to another value ` b ` so that the output is a corresponding array ?
+I want to multiply a sparse matrix A , with a matrix B which has 0 , -1 , or 1 as elements .
+If you turn a ` dict ` into an array , you'll get an object array .
+` Holy CPU cycles batman !
+Note : Xarray and Yarray are each single-column vectors with data at each index that links the two arrays as sets of x , y coordinates .
+Yeah , my rule-of-thumb is ** numpy ** for anything that can handle small amounts of latency but has the potential to be very large , ** lists ** for smaller data sets where latency critical , and of course ** real benchmarking ** FTW :)
+You need to know what kind of information is stored in each field for the ` struct ` module to make sense of each field .
+Once you have this array , you can get your sums for each vertex as #CODE
+Where are ` plot ` and ` show ` coming from ?
+But it might be easier ( and more understandable when you look at the code in the future ) to just drop into Cython to get this done .
+I can't comment on the Perl code , I simply don't know it at all .
+I updated the answer with a full example .
+There you will find C code which provides the same functionality as ` fmincon ` .
+so for instance , for an array the code looked like #CODE
+I've been trying to find a solution for hours .
+Note that as implemented here , the first method gives incorrect results according to my test .
+This is my test code : #CODE
+This will short-circuit if you just want to determine if any match exists .
+It also helps to know that a resource like Wolfram Alpha is available to you at all times .
+What I meant was if we had three arrays ` X =[ 0 1 2 ] , Y =[ 0 1 1 ] , and Z =[ 0 2 2 ]` there would be six values in the range of greater than or equal 1 and and less than or equal to 2 .
+You should really split this into two separate questions since each part is distinct .
+This doesn't answer your problem exactly , but I think especially with the sum issue that you should see significant speedups with these changes .
+Basically you're iterating through each item in ` Xa ` and omitting the ones that don't fall with the range .
+This code has been written following the tips ( and copy / pasting ): #URL
+I would look at this question : #URL
+As @USER -Anderson asked , why not avoid making an array ?
+to create such an array .
+In short , I find class C to provide an implementation that is over 60x faster than the method in the original post .
+I suggest allocating an array of the correct size up-front , then populating it with data in each iteration .
+edited my solution to include what I would do . let me know if this work , as i cannot fully test because i dont have test data .
+The problem is if i don't want 0:10 , but an arbitrary set of indices .
+and it occurs at the line : ` del innerAry [ j ]`
+Do you have any references to back up that ` NaN handling is much slower than " normal " float at the CPU level ` ?
+What do you mean by the line ?
+For example if we stick with a linear search we can at least start at the appropriate end ( search backwards to find last value matching a condition ) .
+Yes , but you don't get a numpy array out , do you ?
+This seems like a simple question , but I haven't been able to find a good answer .
+@USER : it could also mean they are both strictly periodic and sinusoidal , but their frequencies are integer-independent ( ie . the interference wave is not periodic )
+Python : How to rotate an array ?
+@USER Your edited sample input is still not consistent with your expected output .
+You can calculate the variance yourself using the mean , with the following formula : #CODE
+Populate numpy matrix from the difference of two vectors
+where #CODE
+Interleaving two numpy index arrays , one item from each array
+I was worried about the performance , but the difference in load time is tiny for me .
+I looked for an online reference but couldn't find one .
+Numpy / Python : Array iteration without for-loop
+If you want it printed with commas , you could convert it to a Python list : #CODE
+I have included my code to see if you can help me implement some kind of ' fminsearch ' to find the optimal parameter values k0 and k1 that will fit my data .
+Any ideas what this could be all about ?
+What does " IIUC " mean ?
+I can't seem to find examples that don't rely on the former syntax .
+Any help would be greatly appreciated .
+Where blocks is a 3 dimensional numpy array .
+The science / engineering application I'm working on has lots of linear algebra matrix multiplications , therefore I use Numpy matrices .
+when I print Chao , the product of this loop I currently have this :
+pyopengl buffer dynamic read from numpy array
+I also have an array which is my desired subset of ages .
+It does automatically expand the array , but now every item in the array is ` None ` and cannot be changed .
+I'm liking fortran more at the moment because by the time you add all the required type annotations in cython I think it ends up looking less clear than the fortran .
+( There are also chances that Python stores the number on the heap and all you get is a pointer to it , approximately doubling the footprint , without even taking in account metadata but that's slippery grounds , I'm always wrong when I talk about Python internals , so let's not dig it too much . )
+Do you have any clue ?
+your method works , @USER . put it into an answer to get some acceptance points .
+that blas is reference blas from netlib - the slowest blas around . install atlas or mkl instead .
+The ` not ` operator implicitly tries to convert its operand to ` bool ` , and then returns the opposite truth value .
+The recommended way to do this is to preallocate before the loop and use slicing and indexing to insert #CODE
+If the simple sort solution is good enough , clearly go for that .
+Basic idea being , I know the actual value of that should be predicted for each sample in a row of N , and I'd like to determine which set of predicted values in a column of M is most accurate using the residuals .
+Fill in missing values with nearest neighbour in Python numpy masked arrays ?
+Any tips on what I'm doing wrong ?
+SO I have a file having three columns ; Frequency , Power spec .
+In numpy , your array is 2 x 5 , isn't it ?
+For small-ish problems , I would certainly just create the new array .
+If each element takes up 4 bytes , it would require 4,000,000,000,000 bytes of memory .
+TypeError : must be str , not bytes
+Error while computing probabilities of an array list
+This produces the array , but I don't know which row corresponds to which year-disease .
+I'm not sure what you mean by " all from numpy " , but you should never need to use more than one form of ` import ` at a time .
+The problem is that you have an array of strings , not an array of numbers .
+how can i effectively check items of a list of tuples against all the items of another using numpy or tabular ?
+Replace part of numpy 1D array with shorter array
+Python 2.6 numpy interaction array objects error
+So for square matrices it is basically syntactic sugar for the exact same operation .
+If we evaulate the ij th element of the matrix U*A*V , then it must equal both #CODE
+How can I get new array ` B ` such as if ` row_set = [ 0 , 2 , 5 ]` , then ` B = [ A_row [ 0 ] , A_row [ 2 ] , A_row [ 5 ]]` ?
+I have tried the following to fix it :
+The weighted sum result is approximated by the multiple passes and actually after very few of them the output is already smooth .
+Basically , it comes down to checking before you add .
+Any ideas ?
+Do you really have matrix type or just list of lists from python ?
+zI [ N-1 ] = f ( xI [ N-1 ] , yI [ N-1 ]) .
+The actual size of the numpy array is 514 by 504 and of the list is 8 .
+` array ([[ a , a , a , a , 0 , 0 , 0 , 0 , 0 , b , b , b ,... ] ,
+What's wrong with just separating it out into real and imaginary parts ?
+I have an N-dimensional array and a set N index arrays , who's values I want to increment .
+As @USER suggests in a comment , if you really want a 3D array -- which is not entirely clear to me from your code sample -- you can use : #CODE
+In another question , other users offered some help if I could supply the array I was having trouble with .
+The other thing is changing the size of the ticklabels in the colorbar which I haven't figured out .
+Unfortunately , these lines are fast already , but I will take any speedup to offset the IO issues I have using GDAL .
+First you need to write a function that when given an array of values , with the middle one being the element currently examined , will return some computation of those values .
+Thanks in advance for any help .
+so what you want is some sort of recursive assignment -- but i don't believe there is any guarantee that this will settle down into a constant value . sure it does in your case , but not in general -- for example : ` a [: ] = 2*a [: ]` would loop forever .
+Just initialize the array of ` float* ` to point to each of the rows in the 2-D array .
+Do things go wrong gradually and more and more , or all at once ?
+If you don't find anything useful then try " R " .
+Unfortunately , when I tried it I got the error : " ValueError : array is too big .
+EDIT 2 : This raises another question - What is ` env ` and why does ` make ` add it ?
+However it doesn't give you negative overflows , probably because ` uint32 ` fits inside the positive values of the ` int64 ` .
+Consider for example the array : #CODE
+One difference could be the result of python having to take extra steps to resolve the float64 types .
+How do I turn this into a numpy matrix ?
+I want to rotate an array but not as a whole , only small portion of it .
+is so much more readable than any dot ( a , b ) equivalent .
+The array looks like : #CODE
+Constructing an n-by-n matrix in Numpy is easy and fairly efficient .
+Numpy array broadcasting with vector parameters
+It only works like this for numpy ` array ` s .
+@USER : Also there's a mistake in your code I think : because when you set elements to NaN in each iteration , the elements are not restored to their pre-NaN values for the next iteration !
+Quick question : is there any reason why you use
+Now the question is , which equal area projection shall I choose in order to have comparable area sizes for the polygons .
+numpy array multiplication issue
+( 2 ) When I change the connection keywords to check_same_thread=False , then the full pool of workers is used , but then only some queries succeed and some queries fail .
+It also has the advantage of being able to load and store transparently with HDF5 .
+Bah : " operates on two n-dimensional arrays " should be " operates on an n-dimensional array " above .
+Instead , they expect the user to either pass an array of shape ` ( r , c )` exactly , or for the user to pass a 1-D array that broadcasts up to shape ` ( r , c )` .
+Though , it isn't so straight forward because I don't necessarily know how many duplicates of each lon or lat there are which determines the shape of the array .
+geom function takes an n+1 X 2 array and n as input , i guess i'm doing something really stupid ( which i think i am ) or i don't understand this behavior #CODE
+When I tried this , I got sort of similar shaped " tiles " of different colors rather than 3 Gaussian humps .
+There was a comment here saying that the Apple version of python 2.7 comes with numpy so you shouldn't have to install it at all .
+For more general solution , you could use somekind of edge detection method to find only the edge points .
+If you see any errors ; provide a link to the code that can be run .
+What I am looking for is a quick and easy way to find the closest ( nearest neighbor ) of some multidimensional query point in an 2D ( numpy ) array of multidimensional points ( also numpy arrays ) .
+How do I get the ` Image ` part only and how do I convert it to Numpy Array ?
+Maybe it'll save you some frustration =)
+Is there any way to rewrite this functions with Numpy ?
+Is there any easy way to speed my calculation up ?
+A variable in Python is just a label for an object ; giving the object a new label doesn't change the object itself at all .
+But this is actually where the doc belongs .
+So given the sorted version , you can reconstruct the original by " putting items back where they came from " : #CODE
+Note that this all assumes that your values are normally distributed .
+( Bounding box intersections are actually a rather poor way of deciding where to place labels . What's the point in writing a ton of code for something that will only work in one case out of 1000 ? )
+The python code outputs eleven 0's , eleven 1's all the way to eleven 39's .
+@USER ; in above example z is ( 5 , 2 ) array created by another function , with first dimension from the number of True ( at least one True in x > y ) , here 5 , and second dimention as the first dimension of x , here 2 .
+I have a NumPy array of values .
+I just need the total of all the values instead of the actual values themselves .
+Didn't think about multiplying my array of number by an array of booleans to extract my data .
+not to convert floats to floats would be the first step .
+make a list of all the days
+This way , you could access all the ` A ` through ` result [ ' label '] [ ' A ']` ...
+picking out elements based on complement of indices in Python pandas
+Joran , could you please explain what you mean more ?
+Anyone have any clues for what I can do , or approaches I should research ?
+Appending data to an existing array is a natural thing to want to do for anyone with python experience .
+Note that you get a sorte copy of the array .
+I'm not sure that this is the way that you should do things as I'd expect numpy to have a much more efficient method of going about it , but do you just mean something like this ?
+` KMID ` is a function , not an array , so you can't index it with ` : ` .
+Insert to original code in question : #CODE
+Multiple conditions using ' or ' in numpy array
+Usually , it's best to avoid the matrix class ( see docs ) .
+I have tried two different methods but both of them are slow .
+Not really , you can construct the Counter from any iterable .
+( I have the code ready , but as i'm new to stackoverflow , i don't know where to put it . Here , in this comment field ? Or rather making a new answer ?? )
+For example , one simple method to generate at most rank ` k ` ( when ` m ` is ` k+1 `) is to get a random valid B 0 , keep rotating all rows of this matrix up to get B 1 to B m-2 , set first row of B m-1 to all 1 , and the remaining rows to all 0 .
+Glad you saw around it !
+@USER : basically I am converting some matlab code into python , I can not write actual code because that is confidential , ( 1+float ( 100 )) Here 100 is coming from two dimension string matrix , that why I have written float to convert string variable .
+instead of call plot ( test [ " x "] [ 5:10 ]) , you can call the plot method of Series object : #CODE
+The size of a slice with ` 0:5 ` is not 6 as you say : it's 5 .
+This ensures proper display and syntax highlighting - right now someone who would usually fix your formatting is likely to not do it because he'd have to remove all the HTML linebreaks on his own .
+I believe you've reduced the problem to a one of finding roots .
+In order to make sure it is still multiprocessor safe , I believe you will have to use the ` acquire ` and ` release ` methods that exist on the ` Array ` object , ` a ` , and its built in lock to make sure its all safely accessed ( though I'm not an expert on the multiprocessor module ) .
+So , given your matrix M , your problem asks to maximize the PB function #CODE
+I would like to find all elements within a specific range .
+I cannot seem to find how to do that .
+Any thoughts ?
+If you want the PRNGs to be independent , do not seed them with anything .
+In the end I'll probably take n randomly selected samples .
+This is a mystery to me , though I would guess that there must be more overhead associated with accessing an array element than with appending to a list .
+If it's not reasonable , you can always decompose the matrix multiplication yourself .
+If the vectors do not have equal dimension , or if you want to avoid numpy , then perhaps , #CODE
+In particular , you can't index a 2D matrix with a single integer , because -- well -- it's two dimensional and you need to specify two integers , hence the need for the extra 0 index in the second example .
+nearly all of which the author responded to and in some cases ,
+I added the slow Python code to the description .
+The easy way - pick a random number q [ 0 , 1 ] .
+will be the number of bytes which the pattern of streams will repeat after .
+Any idea how I can later make 1.6.2 in / usr / local / lib work with python-dbg ?
+Because I'm still not quite grasping the method and there seems to be simpler ways to solve the problem , I'm just going to put this here : #CODE
+how do I fix that ?
+The usual shape is ( xx , ) .
+what does ` [ 0 , 1:3 ]` mean ?
+@USER he basically considers x as my array and defines a function that gives the range of each row .. works fine .
+I was just curious to find a * best practice * in this instance I suppose .
+I'm guessing there's an easy way to do this without iterating through the full array .
+I don't know how efficient ` Image ` is at storing images , but a list of bytes uses four bytes of space for each element in the list , so you'll burn more than 8GB of ( virtual ) memory ... and a lot of patience .
+They are all floats
+I want to efficiently iterate through the two columns , a [: , 0 ] and a [: , 1 ] and remove any pairs that meet a certain condition , in this case if they are NaN .
+I turned ` color_array ` into a two-dimensional array , since this seems more appropriate .
+An important caveat is that the array must be * contiguous * in memory -- otherwise the view fails .
+You might want to also make sure that you use a method of generating your random numbers that causes them to fall into the range of 16 bit ints .
+I have a 100x200 2D array expressed as a numpy array consisting of black ( 0 ) and white ( 255 ) cells .
+If you know the shape of the array ( to find discover the edges ) you can use simple math ... annoying , time consuming ( to write and process ) , but pretty straight forward .
+And yet another way , possibly faster ( thanks for all the comments , guys ! ): #CODE
+Now , you can construct another matrix , B , that has 1s at certain locations to pick the elements from the set E .
+But overhead of all the object creation it's true , plus the time of Numpy array creation .
+I was trying to calculate the curvature of a surface given by array of points ( x , y , z ) .
+You also don't have any speed improvement , when you try to do a function return in C instead of doing that in python , also array access is neglectable compared to the cost of the function call .
+I want to view the file outside the python environment also .
+The following code demonstrates how to get the indices of some vertex ( number 17 , in this example ): #CODE
+@USER : the idea is possibly that two calculation that both arrive at positive infinity could get there via ** wildly ** different calculations .
+Given a wavelength ( or band number ) , I would like to extract the 2D image corresponding to that wavelength .
+( d / dx ) ^n ( d / dy ) ^m f ( x , y )
+The ` a [: , 0 ] <3 ` will create an array of ` bool ` with the same dimension as ` a ` , which says which elements go into the selection .
+( Maybe I should add this to this answer . )
+Count elements in a box
+The problem may cook down to mean being subtracted over all numbers , but in the next step they are not used anymore ...
+I wrote a function that works , but it is extremely slow .
+The plot commands split the arrays in two halfs and swap them to get a nicer picture .
+Any help would be appreciated !
+` be replaced with if ` d ` should become ` array ([[ 1 , 1 ] , [ 2 , 2 ] , [ 3 , 3 ]])` ?
+How big is the triangular matrix ?
+Program is to add two signals using Matlab
+This tax makes sense when you are doing CPU bound operations like matrix decompositions and whose processing time takes longer than the time it takes to copy the data .
+Numpy object array of numerical arrays
+After looking at these page and other I got it working using raw uncoded buffers using mencoder ( ffmpeg solution still wanted ) .
+thanks seberg . but I can create an array of objects using numpy , then I can assign an arbitrary array to each element of array ( in python interpreter ) . what do you think of this ?
+Check if values in a set are in a numpy array in python
+Would you know of a way to ** average ** the duplicates instead of sum them ?
+I think that I phrased the question badly ; what I meant is I want a list when I input a list and I want a numpy array when I input a numpy array .
+I have a list of numbers and I need to split into to corresponding arrays of different sizes , but that make up all the combinations of the array splitting up .
+Yes , it is true that before you ask any question on stackoverflow , you should perform a minimum of research which includes looking for existing answers on stackoverflow .
+This is probably the thing that is most important for numpy to know ... although there may be other subtle differences ( if numpy is doing some dirty hacking to get at information stored in a common block for instance ) .
+You might want to add this link to the response : #URL
+A list takes up significantly more memory than a comparably sized numpy array ( factor of ~2 ) -- So why are you going back to using lists ?
+From my understanding , when you use python standard operators , these are fairly similar to using the ones from " import operator .
+This gives you 4000 samples of your function , sampled at 33.33 Hz , representing 120 seconds of data .
+Before , what you were doing was having SWIG convert the C++ ` std :: vector ` objects into Python tuples , and then passing those tuples back down to ` numpy ` - where they were converted again .
+Currently I am generating a list of 7 numbers with random values from [ 0-1 ) then multiplying by [ X1 .. X7 ]
+Introducing the transposing of the matrix everything is working correctly .
+So I did everything , but I feel the slicing method I used ( and the initialisation of ` b `) is not pythonic at all : #CODE
+The python extension calls this function and places it into the module-level numpy array variable ` arr ` ( and I make it read-only for good measure ): #CODE
+Depending on the rig you have at the moment , optimizing your SciPy
+Examples would be the git commit id of the current version , and the input parameters used to generate the data so that later I can look at the data and know exactly how I created it .
+There are other ways to do this ( you may want to avoid storing a reference to a specific numpy array in each ` point ` , for example ) , but I hope it's a useful example .
+I downloaded a new version of ` pip ` and installed locally in my home directory but the system wide old one is still used when I type ` pip ` at the prompt .
+I need to iterate over the matrix summing all elements in rows 0 , 1 , 2 , 3 , 4 only
+If you compare point i to point i+1 and remove all for which the distance is less than your threshold , then you will miss the cumulative effect of many small steps in the same direction .
+In my output array I only want to include rows for position values which appear in all 3 input arrays .
+Perhaps you should change the title of this question to more accurately reflect your specific problem .
+Perhaps there is a good choice for this special case .
+it must be a record in syntax boycotting !
+Addressing ranges in a Scipy sparse matrix
+Still , I would like something much more computationally efficient , like relying on builtin numpy functions , but I cannot find relevant functions , can someone help me ?
+You can run the test suite to see if the build works .
+The bit where you index into the original CSR matrix is surely expensive .
+I don't believe there's a way to do what you're asking ( it would require unaligned access , which is highly inefficient on some architectures ) .
+This should give a large speedup compared with iterating over each row in the array ...
+Not sure what addition you're talking about nor what random replacements you mean .
+I have a counter for c , and if it hits 50 I want it to print out that You have been mauled by a bear , and then on the screen have a bear pop up , whether the bear image is just a file in the same folder , or if it links to a webpage that I have the bear image hosted at .
+I have yet to find anything in the python documentation that states how a list of list is assembled , is it like : #CODE
+I'm trying to use leastsq for this , but I'm unsure how to adjust the line to be below all points instead of the line of best fit .
+I do not want to store the array objects , I want to store the lists of numbers in a record list .
+I have tried two different methods but both of them are slow .
+Where can I find information regarding the ` L ` option and other options ?
+The essential problem was that when the array is 1d you call it array [ i ] when it is 2d you call it array [ i ] [ j ] , without two separate cases I don't know how to handle this .
+You can iterate through your input file ( in chunks if possible ) and convert the incoming data and insert them as rows into a memory-mapped numpy array .
+This all works great when I run the Python ( command line ) tool that comes with Python .
+The standard linear algebra methods you seem to be thinking of cannot ( to the best of my knowledge ) be used to solve this sort of constrained integer problem .
+You will probably find answers to all your questions regarding NumPy and parallel programming on the official wiki .
+Also the size will increase as I process data with higher and higher horizontal resolution .
+Where each row ( of a fixed arbitrary width ) is shifted by one .
+ATLAS 3.10 doesn't know how to handle a lower number of cores than the number it had at build time and generate an exception .
+This doesn't result in a ` NaN ` in the last place of your array though .
+I've tried to add -march=i486 to the gcc line , as suggested in this post :
+I tried indexing it before but i didn't get the trick of adding 1 to the size of label 1 before .
+Merging ND array into single array and list
+Its not complaning any error , so I don't know what to do in this case .
+Here is a sample implementation : #CODE
+And then proceed with the split of each shuffled array as in HYRY's answer .
+This is quite a generic solution : #CODE
+List comprehensions and generator expressions are fairly fast , and they don't suffer any overhead from trying to guess what the type or size of the returned item should be , as they don't care .
+Examples and further explanation of this 40-year-old algorithm at the matplotlib FAQ .
+The copy will only copy the memory page on which the refcount integer resides .
+What is the cleanest way to add a field to a structured numpy array ?
+Is there any way to redefine my function so it will pass without warnings ?
+@USER : the reference count might be needed ( though I'm not entirely sure in this case ) because no other thread must deallocate the array .
+I looked around but couldn't find anything syntax wise regarding this specific scenario .
+While this involves copying , do you do this often enough for the cost of the copy to be a problem ?
+I think you can see where this is going .
+Here is a sample function ( you need to have the pyopencv module installed ): #CODE
+I have learned now that numpy does internally create a temporary array for the output and in the end copies this array , that is why it fails for the values that are zero in the original array .
+If your list is sorted , you can achieve very quick search of index with the ' bisect ' package .
+How to save a boolean matrix ?
+I have need to slice an array where I would like zero to be assumed for every dimension except the first .
+will compile machine code that will execute fast and with minimal memory overhead , taking care of memory locality stuff ( and thus cache optimization ) if the same array occurs several times in your expression ,
+First , note that for most everyday uses , you probably won't require an array ( which is a special datatype in Numpy ) .
+Not sure if it helps but if you add another array of a different shape , it converts back to the types you want : #CODE
+plus lists of known objects falling inside the field of view .
+Look at the documentation here and here to see how to set your backend .
+numpy array plot matrix matplotlib
+After the records are loaded , I can access them in the normal NumPy fashion .
+Eventually , I'm looking for a way of creating graphs similar to the one below using naive Python ( with any " standard " library such as numpy , matplotlib etc , but without using R or other external tools ) .
+On a general note however , in numpy it is better to always use base class arrays unless you are doing a lot of matrix multiplications , etc .
+Exact , in optimization context , and as far as Powell Badly Scaled function is used for test , I impose some box constraints .
+At the moment I have the lines in a list of lists then looping through and testing for identity with the previous value at index 0 in the list but this is very clumsy .
+Calculating the exact dimensions of this array : I tried len ( x [ 0 ]) and len ( x ) to get the both dimensional coordinates , but this way seems a bit hackish .
+If you know the size , you might want to consider pre-allocating the array and parsing it yourself .
+What does the autocorrelation array look like if you plot it ?
+Where it says : #CODE

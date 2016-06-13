@@ -1,0 +1,188 @@
+Multiply the coefficients and sum #CODE
+Note that the diagonal is always zero since ` mahalanobis ( x , x )` equals zero for
+I will have a go at the numpy 2d histogram in the next days .
+For example , 1851 is four times and 1852 is 5 times , when i put the interval ( 1851,185 2 ) it will sum up and give out put as 9 .
+NumPy has the efficient function / method ` nonzero() ` to identify the indices of non-zero elements in an ` ndarray ` object .
+possible duplicate of [ NumPy min / max in-place assignment ] ( #URL )
+Once the tree structure has been built , go back and collect all the branches and leaves into the array structure and by definition , they will be unique .
+I wrote the following code but the output only contains the ids ( single column ) .
+Maximum is always bigger than the minimum ( more to the right on a 1d axis , not by absolute value ) .
+Note that ` unq_count ` doesn't count the occurrences of the last unique item , because that is not needed to split the index array .
+If yes , you can use the Linux terminal to strip quotes from the ends of the rows quickly .
+Which works fairly well , except it's somewhat cumbersome to do interactive work since you constantly have to remember which array dimensions correspond to which axes , and which parameteres correspond to which indices along that certain axis , etc .
+The append method for a numpy array returns a copy of the array with new items added to the end .
+I have a 2-D NumPy array and a set of indices the size of which is the first dimension of the NumPy array .
+I want to get the norm of this array using numpy .
+The only problem here is that I think it will append directly to the column , when I would prefer it to append to a new column .
+So the function might be something like ` def some_function ( arr )` and it returns the indices in arr that meet a series of conditions .
+However , because columns indices are both 0 , it adds a_ to the end of the dataframe column , resulting in a single column .
+The value held in your tensor ` x ` at position with indices ` [ 0 , 0 , 1 , 1 ]' ?
+You don't need to import string , and you don't need to loop through all the lines and append text or count the characters .
+The transpose of the transpose of a matrix == that matrix , or , [ A^T ] ^T == A .
+The last timestamps in ` a ` that are smaller than or equal to each item in ` b ` would be ` [ 0 , 4 , 6 ]` , which correspond to indices ` [ 0 , 2 , 3 ]` , which is exactly what we get if we do : #CODE
+Currently I am looping through the arrays and using numpy.dstack to stack the 1000 arrays into a rather large 3d array ... and then will calculate the mean across the 3rd ( ? ) dimension .
+[8 0 :] [ 105 :] it returns me an array with the corresponding values of allpix but when I set [8 0:1 : 200 ] [ 105:1 : 200 ] it returns me the original one roipix ( i.e with only zeros ) without any change .
+transpose simply returns a ` view ` if possible -- So it's a fast operation -- That said , if you * can * just switch the way you index your array , that's probably the fastest you can do if you're operating one element at a time .
+If you strip all these out and just call lapack in your for loop ( since you already know the dimensions of your matrix and maybe know that it's real , not complex ) , things run MUCH faster ( Note that I've made my array larger ) : #CODE
+First , you have a binomial response : having or not having a particular behavior .
+The call to ` np.sqrt ` , which is a Python function call , is killing your performance You are computing the square root of scalar floating point value , so you should use the ` sqrt ` function from the C math library .
+A little annoying :) which is one reason why I almost never use the ` trace ` feature ; seeing _all_ syscalls is often more instructive , and ` grep -v ` can remove ones I don't want to see after the fact .
+What's the ` dot ` product involving your ' point ' ?
+It's probably ( ? ) those two that are slowing you down ( mostly ` sum ` vs ` numpy.sum `) .
+I would like to perform dot ( A , A.T ) where certain indices are omitted : #CODE
+I know need the sum of the values for each label and column .
+Now to this I want to add a new column at beginning with all ones
+This would call the function ` np.loadtxt ` which would load the file ` GPBUSD1d.txt '` and transpose ( " unpack ") it .
+I have a quite large numpy array of one dimension for which I would like to apply some sorting on a slice inplace and also retrieve the permutation vector for other processing .
+Can anyone explain me why does this happen ? and what do i do if i have keep the frame from getting changed when i write a composite clip into a video ?
+You can't change the typing of the array in-place ( unless I'm grossly mistaken ) , but you can floor .
+I have a 2D histogram that I generate with numpy : #CODE
+Your calculation is essentially a dot ( matrix ) product .
+Finally I just transpose the dataframe to get ids as rows and categories as columns .
+Are the operations you're doing simple enough ( eg , dot product etc ) that you could simply implement them yourself ?
+As a side note , in Matlab you'd better use the [ more efficient approach ] ( #URL ) ` mat = bsxfun ( @USER , mat , sum ( mat , 1 ))`
+The following way of obtaining the unique elements in all sub-arrays is very fast : #CODE
+Can't use dot , though , because doing that will add extra dimensions .
+Whats the best way to plot a histogram of this data with minute bins and 10-min bins ?
+You can't use the numpy reshape for a simple reason : you have data duplicity in your original array ( time and positions ) and not in the result you want .
+So it does not make much sense to me to reshape it to a " 1d-matrix " .
+PS : For the curious ones , this is a variant of the prize-winning solution to the famous NetFlix million prize problem .
+Now create 5-bit bitstrings from each integer and join them together : #CODE
+It would probably be just as much work to translate the top Matlab routine from Maurits .
+In the particular case of your example , where your unique values are sequential integers , you can use ` find_objects ` directly .
+Every second row of the ft consists completely of zeros .
+The i-th element of the output is the sum of all the ` data ` elements corresponding to " id " ` i ` .
+I'd like to add two numpy arrays of different shapes , but without broadcasting , rather the " missing " values are treated as zeros .
+axis=1 refers to working on rows in this 2d case ( axis=0 , in contrast , would be getting you the max in each column )
+There are many other ` ufunc ` , and other iteration modes - ` accumulate ` , ` reduceat ` .
+All diagonal elements will be of the form ` s_i ** 2 / s_i ** 2 == 1 ` .
+I get a vector of zeros and ones , of length 1200 .
+Note that in many geometries d ( x , y ) = 0 iff x = y , so you may want to skip that check , and deal with the zeros later on .
+Take the sum over ` a [ i ]` out of the loop , just like you did for ` b `
+@USER In the example above , I get the following error : Non-broadcastable operand with shape ( 100 ) doesn't match the broadcast shape ( 100,100 )
+However , I cant just use a matrix full of zeros , since I could afterwards not say which elements of the matrix are the " default " zeros and which ones i might have inserted myself .
+is calculated such that all but the diagonal #CODE
+Now in that sorted array , the first element would always be the unique one and that ` diff ` would have reduced the length by 1 .
+To compute the number of unique elements in a numpy array , you can use ` unique ( x ) .size ` or ` len ( unique ( x ))` ( see ` numpy.unique ` ) .
+To make sure they appear as an ordered pair I'd have to find the indices where ` x ` and ` y ` appear in ` cluster ` and compare them , which seems very clunky and inelegant , and I'm certain there must be a better solution out there .
+Or would that basically require implementing the outer loop in Cython ?
+For a tensor it is not clear how to define an inverse or a transpose .
+Second , you are doing transpose the hard way .
+I would like to compute the following sum .
+I've modified the answer to show how to get this sum in numpy .
+I am thinking of re-sample all the time columns into uniformly separated ones based on the starting point .
+The older arrays that are filtered I could then add to the yearly sum and delete , so that I do not have more than 16 ( 4+12 ) time steps ( arrays ) in memory at all times .
+sum ( triple ) = 1
+Where does log ( b , 2 ) come from ?
+` numpy.indices ` calculates the indices of each axis of the array when " flattened " through the other two axes ( or n - 1 axes where n = total number of axes ) .
+( The values in the corners correspond to the diagonal elements . )
+I tried using the scipy.stat module by creating my numbers with ` np.random.normal ` , since it only takes data and not stat values like mean and std dev ( is there any way to use these values directly ) .
+until you reach a solution of size k , add to the solution the point for which the sum of distances from it to all the points already in the solution is the greatest .
+Where ' reverse cumulative sum ' is defined as below ( I welcome any corrections on the name for this procedure ):
+The asymptotic complexity of both of the ` matrix_rank ` and ` det ` calls are therefore O ( n^3 ) , the complexity of LU decomposition .
+One way to achieve what I need is to use a code like the following ( see e.g. THIS related answer ) , where I digitize my values and then have a j-loop selecting digitized indices equal to j like below #CODE
+I think the np.std() is just universal std .
+Column sum with matrix from txt file ?
+Golub and Van Loan also provide a way of storing a matrix in diagonal dominant form .
+I see no reason why ` numpy ` would need to make a copy for an operation like this , as long as it does the necessary checks for overlaps ( though of course as others have noted , ` resize ` may itself have to allocate a new block of memory ) .
+Any chance you know how I can display this as a normal 3D histogram with bars .
+I found another stack question about this here , but I am not entirely sure how it was resolved , I'm still a little confused .
+Maybe ` floor ( arange ( 0 , 10 , 0.1 ))` ?
+or , if you want to sum over a column , i.e. , the index that changes is the 0-th #CODE
+In python , I would like to convolve the two matrices along the second axis only .
+` view ` is basically taking your two coordinates as a single variable that can be used to find the unique coordinates .
+Optimize NumPy sum of matrices iterated through every element
+You also incur a performance penalty by constructing a new NumPy array each time in the inner loop and using ` in ` to check the sum ( which is ` O ( n )` in complexity ) .
+Keep in mind that machine precision for a 32-bit double is ~ 10^-16 , which will be an absolute limiting factor .
+This takes advantage of fast code within the sparse matrix constructor to organize the data in a useful way , constructing a sparse matrix where row ` i ` contains just the indices where the flattened data equals ` i ` .
+Each counter is basically a histogram .
+Then I try and resample the ` DataFrame ` to daily using ` df.resample ( " 1D " , how= " sum ")` .
+@USER To add to hpaulj's comment , [ advanced indexing ] ( #URL ) ( e.g. with an array of integer indices ) always returns a copy of the data rather than a view , so you need to take into account the additional cost of allocating a new array when you do ` A [: , subset ]` , as well as the fact that you are indexing non-contiguous blocks of ` A ` .
+Getting linearized indices in numpy
+Note that this approach will give you the exact proportion of zeros / ones you request , unlike say the binomial approach .
+That is the exact problem with your ` square_list() ` function as well , it is returning a list , not the sum of the list elements .
+For example , if you want to sum along the last dimension of the array , you would do : #CODE
+For a sparse csr matrix ( X ) and a list of indices to drop ( index_to_drop ): #CODE
+Also , if there is then I could just append to the b and c arrays each time instead of overwriting and starting from scratch each loop .
+Use ` multiprocessing.Process ( target = somefunc , args = ( sa , )` ( and ` start ` , maybe ` join `) to call ` somefunc ` in a separate process , passing the shared array .
+This leads to the situation that in the end I have an array with tail of zeros .
+Take a look a the concatenate function .
+The simplest way to deal with this is by making your array twice as large along every dimension , padding with extra zeros , and then discarding the extra data .
+Get the column which have maximum sum value from matrix
+Unlike Joe Kington's answer , the benefit of this is that you don't need to know the original shape of the data in the ` .mat ` file , i.e. no need to reshape upon reading in .
+Also , to start with , rather than ` pd.Series.sum ` - just use `' sum '` - the code should take a faster path .
+( The code won't even get through one loop for me because I'm using Python 3 and so the ` max ` fails -- in 2 it'll just give an answer that I doubt the OP intends . )
+If you're multiplying each element of ` y ` by every element of ` X ` , just multiply all the elements of ` X ` together first , then use multiply the array ` y ` by this number and sum : #CODE
+but I think , finding the local max can be simplified to : #CODE
+Can this be vectorised as a dot product ?
+The axis are showed clearly but no histogram appears on the plot .
+I would like to resize the ones (( 12 , 12 )) such that it's new size will be 5x5 .
+@USER ` swapaxes ` seemed to be indistinguishable from ` transpose ( 0 , 2 , 1 )` .
+Do gradient actually compute really a gradient ?
+Just multiply everything by the x raised to the absolute value of the largest negative exponent and use the normal polynomial class .
+I would suggest to first program it with ` np.nditer ` and then translate it into C .
+As you can see , using the join function on the list ( ` binary_list `) works properly , but on the equivalent numpy array ( ` binary_split_array `) it doesn't : we can see the string returned is only 72 characters long instead of 80 .
+Does this mean that ` numpy.random.RandomState ( seed=None )` is called every time you call ` rand ` ?
+@USER .B . the above question is significantly different from mine ; it asks for both min and max , and it is for 2D matrix
+This will join the rows and write them to a new csv : #CODE
+The reason I have ` -det ( mat )` in the energy function is because the simulated annealing algorithm does minimization .
+My biggest issue is that further down the code I divide my spectra by a template spectrum constructed from the sum of all my spectra in order to analyse the differences and since I do not have enough decimal places I am getting rounding errors .
+Also is ` x ` unique ?
+If you wanted to automatically generate levels like the ones I have used , you can consider this piece of code : #CODE
+` plt.hist ` is making a histogram of the values .
+Pandas append filtered row to another DataFrame
+Again , the code notes that set of combinations is not unique ; but it does have a unique subset , namely [[ 2 3 ] , [ 0 1 ]] , which as you just revealed , you do consider a valid combination .
+Note that in the last one , your list ( if you are setting a column ) would have to be a list within a list ( i.e. the outer list acts as a row , the inner lists act as columns ) .
+In short , this creates a vectorized version of the python function , that can be broadcast element-wise on an array .
+That concatenate action should be pretty fast .
+This produces a big band of zeros in the internal covariance matrix calculated by ` gaussian_kde ` , making it singular and causing the routine to fail .
+If you want to pass in the transpose , you'll need to set ` rowvar ` to zero .
+You can override this behavior by using the arguments ` vmin ` and ` vmax ` ( or ` norm `) of ` imshow ` .
+I then must sum these values , using the expression :
+gaussian sum filter for irregular spaced points
+Differences between matrix multiplication and array dot
+Here I collect 5 ( 3 , 3 ) arrays and join them into one .
+@USER , ` cs ` is sorted and ` searchsorted() ` exploits that to do a binary search - only ` O ( log ( len ( weights )))` comparisons are needed .
+If we sum the elements of the array it will give 15 .
+Think ` flatten ` without the copy .
+In your case it looks like the weight arrays will have the same dimension as ' A ' , so you reshape them accordingly and multiply dx and dy by their individual weight vectors .
+Python program can not import dot parser
+Does this mean the standard error of the gradient or intercept ?
+I would think a density map ( 2D histogram ) would be more informative .
+The second creates a 2D ` numpy.array ` of 1 row and 3 columns , filled with zeros : #CODE
+Now I have the start and end indices for my mcp process .
+In other words , I need to find the indices in my time array that satisfy that condition ( 0-240 ) , and then apply those indices to the amplitude array in a way that outputs the mean and st dev .
+Your array has a lot more zeros than ones .
+Also , the algo has a lot of matrices manipulation ( fft , filters , etc . ) , so using numpy / scipy should result in faster run time .
+First , extract the inverse indices and counts of each unique item .
+Essentially I want the code to go through the list of indices I have and find the index of the lowest value .
+You can broadcast that into an array using expressions , for example #CODE
+Sorry , my question more specifically was how I can get the indices of the True booleans in the array ?
+If I use the above test on the absolute values of the angles to be tested , everything
+` np.arange ( K ) [ None , None , :] + k1 ` is ( L , 1 , K ) , so we need to tile it #CODE
+I have the diagonal elements what I need are the off diagonal ones
+The returned gradient hence has
+To be honest , I think the ` masked_array ` constructor ought to broadcast the mask against the array internally - I might consider making a pull request .
+" In the first case the gradient is 1 mV / ms , in the second case it is 50 mV / ms .
+If True , uses the old behavior from Numeric , ( correlate ( a , v ) == correlate ( v , a ) , and the conjugate is not taken for complex arrays ) .
+Why don't you just compress the files with the built-in ` gzip ` module ?
+So you need to write some function that convert a poly parameters array to a latex string , here is an example : #CODE
+In your example , the square root is calculated by evaluating the the module and the argument of your complex number ( essentially via the log function , which returns log ( module ) + i phase ) .
+I am trying to run hstack to join a column of integer values to a list of columns created by a TF-IDF ( so I can eventually use all of these columns / features in a classifier ) .
+The only indices in my code are " index " , which is an integer from a " range " generator ; and " id " , which is pulled from a list of integers .
+How to pass these ` norm ` and ` cmap ` parameters in matplotlib to ` plt.show ` or ` imshow() ` ?
+You need to call the NumPy array's ` sum ` method , not the plain Python builtin ` sum ` function , in order to take advantage of NumPy : #CODE
+Forget about the C stack , numpy objects can't use it .
+If the sum of the ' dot ' becomes too large for the ` dtype ` , it can be negative , producing a ` nan ` when passed through ` sqrt ` .
+This is similar to those Knapsack and subset sum problems .
+You can use the append function as he has defined .
+This can be particularly tricky when trying to append to a numpy array quickly .
+I have a question regarding to the ` fft ` and ` ifft ` functions .
+and arrays filled with zeros : #CODE
+As others have hinted at your signals must have a large nonzero component .
+The polynomial results will still expose logarithmical growth ( since ` log x^n = n * log x `) , but the exponential curve will transform into a proper straight line ( ` log exp ( x ) = x `) .
+Or , better just directly index into the output array with the row and column indices - #CODE
+So for now , I just changed the max ( z ) to a number that I know is the max ( 1567 ) .
+The ` add ` operation does not do the same thing as ` join ` .
+You don't specify ` x ` or ` y ` , and your ` mat [: , i+1 ]` indexing will not work with a structured array .
+This is because in some cases it's not just NaNs and 1s , but other integers , which gives a std > 0 .
