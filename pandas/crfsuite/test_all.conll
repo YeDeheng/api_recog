@@ -15956,7 +15956,7 @@ inputs	O
 by	O
 using	O
 `	O
-plot	O
+plot	B-NER
 [	O
 0	O
 ]`	O
@@ -55109,7 +55109,7 @@ everything	O
 ,	O
 I	O
 wanna	O
-plot	O
+plot	B-NER
 (	O
 years	O
 ,	O
@@ -57000,7 +57000,7 @@ use	O
 the	O
 pandas	O
 `	O
-plot	O
+plot	B-NER
 `	O
 method	O
 ,	O
@@ -57010,7 +57010,7 @@ directly	O
 the	O
 matplotlib's	O
 `	O
-plot	O
+plot	B-NER
 `	O
 function	O
 .	O
@@ -57666,7 +57666,7 @@ post	O
 .	O
 
 '	O
-plot	O
+plot	B-NER
 '	O
 shows	O
 me	O
@@ -58747,7 +58747,7 @@ left	O
 out	O
 all	O
 the	O
-plot	O
+plot	B-NER
 commands	O
 ?	O
 
@@ -61033,7 +61033,7 @@ degrees	O
 .	O
 
 '	O
-plot	O
+plot	B-NER
 '	O
 shows	O
 me	O
@@ -65718,11 +65718,11 @@ as	O
 Where	O
 are	O
 `	O
-plot	O
+plot	B-NER
 `	O
 and	O
 `	O
-show	O
+show	B-NER
 `	O
 coming	O
 from	O
@@ -68794,7 +68794,7 @@ variable	O
 instead	O
 of	O
 call	O
-plot	O
+plot	B-NER
 (	O
 test	O
 [	O
@@ -68809,10 +68809,10 @@ you	O
 can	O
 call	O
 the	O
-plot	O
+plot	B-NER
 method	O
 of	O
-Series	O
+Series	B-NER
 object	O
 :	O
 #CODE	O

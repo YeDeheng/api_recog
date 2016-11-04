@@ -212,3 +212,4 @@ finance
 artist
 animation
 collections
+rename
